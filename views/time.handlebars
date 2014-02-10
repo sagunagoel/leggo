@@ -1,2 +1,27 @@
 <!doctype html>
-<h1> TIME IS HERE </h1>
+
+<html>
+<head>
+	<title>Leggo</title>	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/bootstrap-theme.css" rel="stylesheet">
+	<link href="css/hci-friends.css" rel="stylesheet">       
+</head>
+
+<body>
+	<div class="container">
+	<button class="btn btn-default"><a href = "/"> Start Over </a></button>
+	<button class="btn btn-default"><a href = "/help"> Help </a></button>
+	<input type="button" class="btn btn-default" value="Back To Categories" onclick="history.back(-1)"/>
+	<h1> TIME </h1>
+	<form id="addFriendForm" role="form" method="get" action="/transport">
+	    <input type="submit" id="submitBtn" class="btn btn-default" value="Pick Transport"> </input>
+	</form>
+	<script src="js/jquery-1.11.0.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/hci-friends.js"></script>
+</body>
+</html>

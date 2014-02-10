@@ -2,5 +2,5 @@ var data = require('../data.json');
 
 exports.view = function(req, res){
 	console.log(data);
-	res.render('time',data);
+	res.render('reflection',data);
 };
