@@ -1,4 +1,4 @@
-Lab 5
+LEGGO
 ====
 
-Lab 5: Putting it together
+Jenna, Adrian and Saguna's CS147 Project
