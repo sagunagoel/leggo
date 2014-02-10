@@ -8,7 +8,30 @@
 	
 	<link href="css/bootstrap.css" rel="stylesheet">
 	<link href="css/bootstrap-theme.css" rel="stylesheet">
-	<link href="css/leggo.css" rel="stylesheet">      
+	<link href="css/leggo.css" rel="stylesheet"> 
+	<script>
+function startTime()
+{
+var today=new Date();
+var h=today.getHours();
+var m=today.getMinutes();
+var s=today.getSeconds();
+// add a zero in front of numbers<10
+m=checkTime(m);
+s=checkTime(s);
+document.getElementById('txt').innerHTML=h+":"+m;
+t=setTimeout(function(){startTime()},500);
+}
+
+function checkTime(i)
+{
+if (i<10)
+  {
+  i="0" + i;
+  }
+return i;
+}
+</script>     
 </head>
 
 <body>
@@ -33,10 +56,12 @@
   </section>
   
   <section class="time-and-location">
-    <div class="time-text">
-      2:15 PM <!-- obviously should be populated correctly with js -->
-    </div>
-
+  <div class="time-text">
+  <body onload="startTime()">
+  <div id="txt"></div>
+  </body>
+  </div>
+  
     <div class="location-text">
     STANFORD, CA <!-- gps data? -->
     </div>
