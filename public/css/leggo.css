@@ -1,0 +1,103 @@
+.root-container {
+  background-color: #fff;
+  font: 'Helvetica Light', 'Helvetica', Arial, sans-serif;
+  padding-bottom: 20px;
+}
+
+/*general stuff?*/
+.bold-text {
+  font-weight: 700;
+}
+
+/*banner stuff*/
+.banner {
+  padding: 10px;
+  margin: auto;
+  background-color: #8ac2bf;
+  color: #fff;
+}
+
+.banner > div {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 100;
+}
+
+
+.help-button {
+  float: right;
+}
+
+/*first text block*/
+.intro {
+  display:block;
+  position: relative;
+  margin: 20px auto 0 auto;
+  padding: 20px;
+  width: 70%;
+  border-radius: 5px 5px 0 0;
+  color:3a3a3a;
+  
+  text-align: center;
+  background-color: #e0e4cc;
+}
+
+/*time and location section */
+.time-and-location {
+  display:block;
+  position: relative;
+  margin: 0 auto 0 auto;
+  padding: 20px;
+  width: 70%;
+  
+  color:#3a3a3a;
+  text-align:center;
+}
+
+.time-text {
+  display:block;
+  margin: 0 auto; 
+  font-size: 30px;
+}
+
+.location-text {
+  display:block;
+  margin: 0 auto;
+  font-size: 14px;
+}
+
+/* outro section with text + start button */
+.outro {
+  display:block;
+  position: relative;
+  margin: 0 auto 0 auto;
+  padding: 30px 10px 30px 10px;
+  width: 70%;
+  border-radius:0 0 5px 5px;
+  
+  color:#3a3a3a;
+  text-align: center;
+  background-color: #e0e4cc;
+}
+
+.outro-text {
+  padding: 0 30;
+}
+
+.start-button {
+  margin-top: 20px;
+  width: 80%;
+  height: 5%;
+  
+  background-color:#f37f47;
+  border:none;
+  border-radius: 3px;
+  
+  color:#FFFFFF;
+  font-size:1em;
+}
+
+body {
+  font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  padding: 10px; /*centers guts*/
+}
