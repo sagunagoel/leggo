@@ -1,0 +1,163 @@
+.root-container {
+  background-color: #fff;
+  font: 'Helvetica Light', 'Helvetica', Arial, sans-serif;
+  padding-bottom: 20px;
+  height: 100%;
+  color:#3a3a3a
+}
+
+/*general stuff?*/
+.bold-text {
+  font-weight: 100;
+}
+
+.hidden-checkbox {
+  visibility: hidden;
+}
+
+.image-checkbox {
+
+}
+
+.image-checkbox-checked {
+  background-color: white;
+}
+
+/* THE CLOCK */
+#clock {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/*banner stuff*/
+.banner {
+  padding: 10px;
+  margin: auto;
+  background-color: #8ac2bf;
+  color: #fff;
+}
+
+.banner > div {
+  display: inline-block;
+  width: 49%;
+  font-size: 12px;
+  font-weight: 100;
+}
+
+.banner-text {
+  text-align: left;
+}
+
+.help-button {
+  text-align: right;
+}
+
+/*first text block. not that useful a description I know*/
+.intro {
+  display:block;
+  position: relative;
+  margin: 20px auto 0 auto;
+  border-radius:5px 5px 0 0;
+  padding: 20px;
+  width: 70%;
+  
+  text-align: center;
+  background-color: #e0e4cc;
+}
+
+/* the filter body includes both the navigation arrows and the filter, itself */
+.filter-body {
+  text-align: center;
+  height: 40%;
+}
+
+/* icons */
+.icons {
+  display: inline-block;
+  vertical-align: top;
+  width: 60%
+}
+
+.icons button {
+  display: block;
+  margin: 30px auto 0 auto;
+  width: 25%;
+}
+
+/* navigation panels are containers for previous/next filter buttons */
+.navigation-panel {
+  display: inline-block;
+  vertical-align: top;
+  
+  padding: 50px 0 0 0;
+  width: 15%;
+  height: 100%;
+}
+
+.prev-filter {}
+
+.next-filter {}
+
+
+
+/* buttons*/
+.nonexclusive-button {
+  
+}
+
+/* outro section with text + start button */
+.outro {
+  display:block;
+  position: relative;
+  margin: 50px auto 0 auto;
+  padding: 10px 20px;
+  width: 70%;
+  border-radius:0 0 5px 5px;
+  
+  text-align: center;
+  background-color:#e0e4cc;
+}
+
+.outro-text {
+  color:#3a3a3a;
+  padding: 10 auto;
+}
+
+.start-button {
+  margin: 10px auto;
+  padding:5px 10px;
+  
+  background-color:#f37f47;
+  border:none;
+  border-radius:3px;
+  
+  color:#FFFFFF;
+  font-size:1em;
+}
+
+/* nav dots */
+.nav-dots {
+  display: block;
+  margin: 0 auto;
+}
+
+.nav-dots ul {
+    list-style: none;
+    width: 150px;
+    margin: 0 auto;
+}
+
+.nav-dots ul li{
+    float: left;
+    margin-left: 20px;
+}
+
+li.selected {
+    font-weight: bold;
+    color: orange;
+}
+
+body {
+  font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  padding: 10px; /*centers guts*/
+}

@@ -1,0 +1,281 @@
+<!doctype html>
+
+<html>
+<head>
+	<title>Leggo</title>	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link href="css/filters.css" rel="stylesheet">   
+	<link href="css/swipe.css" rel="stylesheet">   
+</head>
+
+<body>
+  <div class="root-container">
+    <section class="banner">
+      <div class="banner-text">
+        LEGGO!
+      </div>
+      <div class="help-button">
+        <a href="http://imgur.com/371okK5">
+          <img src="http://i.imgur.com/371okK5.png" title="Hosted by imgur.com" />
+        </a>
+      </div>
+    </section>
+    
+    <div id='slider' class='swipe'>
+      <div class='swipe-wrap'>
+        
+        <div>
+          <section class="intro">
+            What kind of transportation is available?
+          </section>
+          
+          <section class="filter-body">
+            <div class="navigation-panel">
+              <button class="previous-filter" onclick="window.changeFilter(false)">
+                prev
+              </button>
+            </div>
+            
+            <section class="icons">
+              <button id="walking-check_proxy" class="image-checkbox">
+                Walking
+              </button>
+              <button id="biking-check_proxy" class="image-checkbox">
+                Biking
+              </button>
+              <button id="driving-check_proxy" class="image-checkbox">
+                Driving
+              </button>
+              <input class="hidden-checkbox" id="walking-check" name="walking-check" type="checkbox"  />
+              <input class="hidden-checkbox" id="biking-check" name="biking-check" type="checkbox"  />
+              <input class="hidden-checkbox" id="driving-check" name="driving-check" type="checkbox"  />
+            </section>
+            
+            <div class="navigation-panel">
+              <button class="next-filter" onclick="window.changeFilter(true)">
+                next
+              </button>
+            </div>
+          </section>
+          
+           <section class="outro">
+            <div class="outro-text">
+              Or leave this option up to chance and continue...
+            </div>
+            <button class="start-button" onclick="window.changeFilter(true)">
+               Surprise Me!
+            </button>
+          </section>
+          
+        </div>
+      
+        <div>
+        
+          <section class="intro">
+            How many are you?
+          </section>
+          
+          <section class="filter-body">
+            <div class="navigation-panel">
+              <button class="previous-filter" onclick="window.changeFilter(false)">
+                prev
+              </button>
+            </div>
+            
+            <section class="icons">
+              <button class="nonexclusive-button single-button">
+                It's just me!
+              </button>
+              <button class="nonexclusive-button pair-button">
+                2 people
+              </button>
+              <button class="nonexclusive-button group-button">
+                3 or more
+              </button>
+            </section>
+            
+            <div class="navigation-panel">
+              <button class="next-filter" onclick="window.changeFilter(true)">
+                next
+              </button>
+            </div>
+          </section>
+          
+          <section class="outro">
+            <div class="outro-text">
+              Or leave this option up to chance and continue...
+            </div>
+            <button class="start-button" onclick="window.changeFilter(true)">
+               Surprise Me!
+            </button>
+          </section>
+        
+        </div>
+        
+        <div>
+        
+          <section class="intro">
+            How much are you willing to spend per person?
+          </section>
+          
+          <section class="filter-body">
+            <div class="navigation-panel">
+              <button class="previous-filter" onclick="window.changeFilter(false)">
+                prev
+              </button>
+            </div>
+            
+            <section class="icons">
+              <button class="nonexclusive-button free-button">
+                Nothing!
+              </button>
+              <button class="nonexclusive-button 10-button">
+                $10
+              </button>
+              <button class="nonexclusive-button 25-button">
+                $25
+              </button>
+              <button class="nonexclusive-button 45-button">
+                $45
+              </button>
+              <button class="nonexclusive-button 70-button">
+                $70
+              </button>
+            </section>
+            
+            <div class="navigation-panel">
+              <button class="next-filter" onclick="window.changeFilter(true)">
+                next
+              </button>
+            </div>
+          </section>
+          
+          <section class="outro">
+            <div class="outro-text">
+              Or leave this option up to chance and continue...
+            </div>
+            <button class="start-button" onclick="window.changeFilter(true)">
+               Surprise Me!
+            </button>
+          </section>
+        
+        </div>
+        
+        <div>
+        
+          <section class="intro">
+            When do you need to get back?
+          </section>
+          
+          <section class="filter-body">
+            <div class="navigation-panel">
+              <button class="previous-filter" onclick="window.changeFilter(false)">
+                prev
+              </button>
+            </div>
+            
+            <section class="icons">
+              <img id="clock" src="http://i.imgur.com/D35yWQ4.jpg" title="Hosted by imgur.com" />
+            </section>
+            
+            <div class="navigation-panel">
+              <button class="next-filter" onclick="window.changeFilter(true)">
+                next
+              </button>
+            </div>
+          </section>
+        
+          <section class="outro">
+            <div class="outro-text">
+              Or leave this option up to chance and continue...
+            </div>
+            <button class="start-button" onclick="window.changeFilter(true)">
+               Surprise Me!
+            </button>
+          </section>
+        
+        </div>
+        
+      </div> <!-- swipe-wrap -->
+      
+    </div>
+    
+    <nav class="nav-dots">
+      <ul id="nav">
+        <li class="selected">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+      </ul>
+    </nav>
+  </div>
+  
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src='js/swipe.js'></script>
+  <script>
+    $(document).ready( function () {
+      // pure JS
+      var elem = document.getElementById('slider');
+      window.mySwipe = Swipe(elem, {
+        // startSlide: 4,
+        // auto: 3000,
+        // continuous: true,
+        // disableScroll: true,
+        // stopPropagation: true,
+        // callback: function(index, element) {},
+        // transitionEnd: function(index, element) {}
+      });
+
+      // with jQuery
+      // window.mySwipe = $('#mySwipe').Swipe().data('Swipe');
+      
+      
+      var allCheckboxDivs = document.getElementsByClassName("image-checkbox");
+      for (var i=0;i<allCheckboxDivs.length;i++) {
+
+          $(allCheckboxDivs[i]).unbind('click').click(function (e) {
+              e.preventDefault();
+              var divID = this.id;
+              var checkboxID =divID.split("_")[0];
+              var checkboxElement = document.getElementById(checkboxID);
+
+              if (checkboxElement.checked == true) {
+                  checkboxElement.checked = false;
+                  $(this).removeClass('image-checkbox-checked');
+                  $(this).addClass('image-checkbox');
+              } else {
+                  checkboxElement.checked = true;
+                  $(this).removeClass('image-checkbox');
+                  $(this).addClass('image-checkbox-checked');
+              }
+          });
+      }
+      
+      window.changeFilter = function changeFilter (isNext) {
+        var currPos = mySwipe.getPos();
+        console.log(currPos);
+        var children = $('.nav-dots').children()[0].children;
+        $(children[currPos]).removeClass('selected');
+        
+        if (isNext) {
+          mySwipe.next();
+        } else {
+          mySwipe.prev();
+        }
+        
+        currPos = mySwipe.getPos();
+        $(children[currPos]).addClass('selected');
+      }
+    });
+    
+  </script>
+</body>
+</html>
+
+
+
+
+
+
