@@ -4,6 +4,7 @@ exports.filter = function (req, res) {
   var filters = req.body;
 
   var filtered = data.activities.filter( function (activity) {
+    var doesThisMatch = true;
     
     //distance filter
     var activityCoords = activity['coords'];
@@ -15,45 +16,58 @@ exports.filter = function (req, res) {
         'longitude': myCoords[1] });
     console.log('distance: ' + distance);
     var myTransportation = filters['transportation'] || [];
-    var foundMatch = false;
+    var foundMatch = myTransportation.length === 0;
     for (var i = 0; i < myTransportation.length; i++) {
       if (myTransportation[i] === 'walking' && distance < 3) {
         foundMatch = true;
       } else if (myTransportation[i] === 'biking' && distance < 20) {
         foundMatch = true;
-      } else if (myTransportation[i] === 'driving' && distance < 10000) {
+      } else if (myTransportation[i] === 'driving' && distance < 500) {
         foundMatch = true;
       }
+    }
+    if (!foundMatch) {
+      doesThisMatch = false;
     }
   
     //start time filter
     var myStartTime = filters['starttime'];
     var activityStartTime = activity['starttime'];
-    console.log('starttime diff: ' + (myStartTime - activityStartTime));
+    var timeDiff = myStartTime - activityStartTime;
+    //console.log('starttime diff: ' + timeDiff);
+    if (timeDiff < 0) {
+      doesThisMatch = false;
+    }
     
     //number of people filter. Note that there is no 'minpeople' attribute yet
     var myPeople = filters['people'] || [];
-    var foundMatch = false;
+    var foundMatch = myPeople.length === 0;
     for (var i = 0; i < myPeople.length; i++) {
       if (activity['maxpeople'] >= myPeople[i]) {
         foundMatch = true;
       }
     }
+    if (!foundMatch) {
+      doesThisMatch = false;
+    }
     
     //money filter
     var myMoney = filters['money'] || [];
-    var foundMatch = false;
+    var foundMatch = myMoney.length === 0;
     for (var i = 0; i < myPeople.length; i++) {
       if (activity['moneyupperlimit'] <= myMoney[i]) {
         foundMatch = true;
       }
     }
+    if (!foundMatch) {
+      doesThisMatch = false;
+    }
     
-    return false;
-    
+    return doesThisMatch;
   });
 
   console.log(filtered);
+  res.json({ 'activities' : filtered });
 }
 
 var Geolocation = {

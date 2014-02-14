@@ -87,7 +87,12 @@
     
     console.log(someData);
   
-    $.post('/findactivities', someData);
+    $.post('/findactivities', someData, function (data) {
+      activityData = data['activities'];
+      //populate activities page!
+      
+      console.log(data);
+    });
   }
 
 })(this, window.leggo = window.leggo || {}, jQuery);
