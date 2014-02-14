@@ -197,6 +197,80 @@
           </section>
         
         </div>
+
+
+        <div>
+          <section class="intro">
+            Here are your activities:
+          </section>
+          <section class="filter-body">
+            <div class="navigation-panel">
+              <button class="previous-filter" onclick="leggo.changeFilter(false)">
+                prev
+              </button>
+            </div>
+            
+            <section class="icons">
+            
+        {{#each activities}}
+        <a href="#" onclick="leggo.activityClicked(true,{{id}})">
+          <img src="{{imageURL}}" class="img">
+        </a>
+          <p>{{name}}</p>
+        {{/each}}
+         </section>
+            
+            <div class="navigation-panel">
+              <button class="next-filter" onclick="leggo.changeFilter(true)">
+                next
+              </button>
+            </div>
+          </section>
+        
+          <section class="outro">
+            <div class="outro-text">
+              Or leave this option up to chance and continue...
+            </div>
+            <button class="start-button" onclick="leggo.changeFilter(true)">
+               Surprise Me!
+            </button>
+          </section>
+        </div>
+
+      
+<div>
+  <section class= "#details-page">
+  <section class="picture">
+    <img id="img-detail"/>
+  </section>
+  
+  <section class="info">
+  <div class="needs">
+      <span class="bold-text"> You'll need: </span>
+      <div id="needs-detail">$7/ person, Walking shoes, Water, 2-3 hours</div> 
+    </div>
+    <!-- <div class="distance"> 
+      </br> <span class="bold-text"> Distance: </span> 29 mi 
+    </div> -->
+    <section class="descrip-text" id="descrip-detail">
+      </br>
+      <span class="bold-text"> Description: </span>
+       Visit the Muir Woods Monument to spend time among some of the world's oldest 
+       and largest redwood trees. You can learn about the local wildlife or take a 
+        path of your own to explore the peaceful views. 
+    </section>
+  </section>
+</section>
+  
+  <section class="outro">
+    <button class="start-button">
+      LEGGO!
+    </button>
+    <button class="back-button"> 
+    Or, go back to options 
+    </button>
+  </section>
+        </div>
         
       </div> <!-- swipe-wrap -->
       

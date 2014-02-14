@@ -2,6 +2,9 @@
 
   leggo.initializePage = function () {
     // pure JS
+    var currId;
+
+
     var elem = document.getElementById('slider');
     window.mySwipe = Swipe(elem, {
       // startSlide: 4,
@@ -16,6 +19,9 @@
     // with jQuery
     // window.mySwipe = $('#mySwipe').Swipe().data('Swipe');
     
+    // $.get('../../data.json', function (data) {
+    //   console.log(data);
+    // });
     
     var allCheckboxDivs = document.getElementsByClassName("image-checkbox");
     for (var i=0;i<allCheckboxDivs.length;i++) {
@@ -37,7 +43,28 @@
       });
     }
   }
-  
+
+leggo.setActivityID = function setActivityID(id){
+  currId= id;
+  console.log("Curr id is now" + id);
+}
+
+  leggo.activityClicked= function activityClicked(isNext,id){
+    leggo.setActivityID(id);
+    $.get('../../data.json', getProject);
+    leggo.changeFilter(true);
+  }
+  var result;
+
+  function getProject(result)
+{
+  console.log(result);
+  console.log(currId);
+  console.log(result['activities'][currId-1]);
+  $("#img-detail").attr('src', result['activities'][currId-1]['imageURL']);
+  $("#descrip-detail").text(result['activities'][currId-1]['description']);
+}  
+
   leggo.changeFilter = function changeFilter (isNext) {
     var currPos = mySwipe.getPos();
     console.log(currPos);
