@@ -9,10 +9,7 @@
   var activityData = {};
 
   leggo.initializePage = function () {
-    var x=document.getElementById("demo");
     // pure JS
-
-
     var elem = document.getElementById('slider');
     window.mySwipe = Swipe(elem, {
       // startSlide: 4,
@@ -42,6 +39,7 @@
           thisjQuery.removeClass('image-checkbox');
           thisjQuery.addClass('image-checkbox-checked');
         }
+        leggo.findActivities();
       });
     });
 
@@ -115,8 +113,6 @@
       someData[$(this).attr('filter')] = someData[$(this).attr('filter')] || [];
       someData[$(this).attr('filter')].push($(this).attr('filtervalue'));
     });
-    
-    console.log(someData);
   
     $.post('/findactivities', someData, function (data) {
       activityData = data['activities'];
@@ -129,13 +125,9 @@
   function populateActivities (activities) {
     var count = 0;
     $('#activities').children().each( function () {
-      console.log(this);
-    
       var newActivity = activities[count] || false;
-      console.log(newActivity);
     
       var activityAnchor = $(this).find('a');
-      var activityName = $(this).find('p');
       var activityImage = $(this).find('img');
       
       var activityID = $(activityAnchor).attr('activityid');
@@ -146,7 +138,6 @@
           e.preventDefault();
           leggo.activityClicked(true, newActivity['id']);
         });
-        $(activityName).text(newActivity['name']);
         $(activityImage).attr('src', newActivity['imageURL']);
       } else {
         $(this).hide();
