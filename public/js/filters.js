@@ -9,6 +9,9 @@
   leggo.initializePage = function () {
     var x=document.getElementById("demo");
     // pure JS
+    var currId;
+
+
     var elem = document.getElementById('slider');
     window.mySwipe = Swipe(elem, {
       // startSlide: 4,
@@ -23,6 +26,7 @@
     // with jQuery
     // window.mySwipe = $('#mySwipe').Swipe().data('Swipe');
     
+
     getLocation();
     locationRefreshInterval = setInterval(getLocation, 60000);
     
@@ -48,6 +52,29 @@
       console.log("Geolocation is not supported by this browser.");
     }
   }
+  
+
+  leggo.setActivityID = function setActivityID(id){
+    currId= id;
+    console.log("Curr id is now" + id);
+  }
+
+    leggo.activityClicked= function activityClicked(isNext,id){
+      leggo.setActivityID(id);
+      $.get('../../data.json', getProject);
+      leggo.changeFilter(true);
+    }
+    var result;
+
+    function getProject(result)
+  {
+    console.log(result);
+    console.log(currId);
+    console.log(result['activities'][currId-1]);
+    $("#img-detail").attr('src', result['activities'][currId-1]['imageURL']);
+    $("#descrip-detail").text(result['activities'][currId-1]['description']);
+  }  
+
   
   function storePosition(position) {
     longitude = position.coords.longitude;
