@@ -1,6 +1,7 @@
 {
     "activities": [
         {
+            "id" :1,
             "name": "Visit Muir Woods",
             "tags": [
                 "nature",
@@ -26,6 +27,7 @@
             ]
         },
         {
+            "id" :2,
             "name": "San Andreas Fault (Los Trancos Preserve)",
             "tags": [
                 "nature",
@@ -50,6 +52,7 @@
             ]
         },
         {
+            "id" :3,
             "name": "Geocaching",
             "tags": [
                 "adventure",
