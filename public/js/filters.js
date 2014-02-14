@@ -17,30 +17,42 @@
     // window.mySwipe = $('#mySwipe').Swipe().data('Swipe');
     
     
-    var allCheckboxDivs = document.getElementsByClassName("image-checkbox");
-    for (var i=0;i<allCheckboxDivs.length;i++) {
-      $(allCheckboxDivs[i]).unbind('click').click(function (e) {
-          e.preventDefault();
-          var divID = this.id;
-          var checkboxID =divID.split("_")[0];
-          var checkboxElement = document.getElementById(checkboxID);
+    // var allCheckboxDivs = document.getElementsByClassName("image-checkbox");
+    // for (var i=0;i<allCheckboxDivs.length;i++) {
+      // $(allCheckboxDivs[i]).unbind('click').click(function (e) {
+          // e.preventDefault();
+          // var divID = this.id;
+          // var checkboxID =divID.split("_")[0];
+          // var checkboxElement = document.getElementById(checkboxID);
 
-          if (checkboxElement.checked == true) {
-              checkboxElement.checked = false;
-              $(this).removeClass('image-checkbox-checked');
-              $(this).addClass('image-checkbox');
-          } else {
-              checkboxElement.checked = true;
-              $(this).removeClass('image-checkbox');
-              $(this).addClass('image-checkbox-checked');
-          }
+          // if (checkboxElement.checked == true) {
+              // checkboxElement.checked = false;
+              // $(this).removeClass('image-checkbox-checked');
+              // $(this).addClass('image-checkbox');
+          // } else {
+              // checkboxElement.checked = true;
+              // $(this).removeClass('image-checkbox');
+              // $(this).addClass('image-checkbox-checked');
+          // }
+      // });
+    // }
+    $('.image-checkbox').each(function (i, n) {
+      $(this).click( function (e) {
+        e.preventDefault();
+        var thisjQuery = $(this);
+        if (thisjQuery.hasClass('image-checkbox-checked')) {
+          thisjQuery.removeClass('image-checkbox-checked');
+          thisjQuery.addClass('image-checkbox');
+        } else {
+          thisjQuery.removeClass('image-checkbox');
+          thisjQuery.addClass('image-checkbox-checked');
+        }
       });
-    }
+    });
   }
   
   leggo.changeFilter = function changeFilter (isNext) {
     var currPos = mySwipe.getPos();
-    console.log(currPos);
     var children = $('.nav-dots').children()[0].children;
     $(children[currPos]).removeClass('selected');
     
@@ -57,7 +69,11 @@
   leggo.findActivities = function () {
     var someData = {};
     
-    
+    $('.image-checkbox-checked').each(function (i, n) {
+      
+      
+      
+    });
   
     //$.post('someurl', someData);
   }
