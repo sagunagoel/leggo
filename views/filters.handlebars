@@ -33,19 +33,19 @@
           
           <section class="filter-body">
             <div class="navigation-panel">
-              <button class="previous-filter" onclick="window.changeFilter(false)">
+              <button class="previous-filter" onclick="leggo.changeFilter(false)">
                 prev
               </button>
             </div>
             
             <section class="icons">
-              <button id="walking-check_proxy" class="image-checkbox">
+              <button filter="transportation" filterValue="walking" id="walking-check_proxy" class="image-checkbox">
                 Walking
               </button>
-              <button id="biking-check_proxy" class="image-checkbox">
+              <button filter="transportation" filterValue="biking" id="biking-check_proxy" class="image-checkbox">
                 Biking
               </button>
-              <button id="driving-check_proxy" class="image-checkbox">
+              <button filter="transportation" filterValue="driving" id="driving-check_proxy" class="image-checkbox">
                 Driving
               </button>
               <input class="hidden-checkbox" id="walking-check" name="walking-check" type="checkbox"  />
@@ -54,7 +54,7 @@
             </section>
             
             <div class="navigation-panel">
-              <button class="next-filter" onclick="window.changeFilter(true)">
+              <button class="next-filter" onclick="leggo.changeFilter(true)">
                 next
               </button>
             </div>
@@ -64,7 +64,7 @@
             <div class="outro-text">
               Or leave this option up to chance and continue...
             </div>
-            <button class="start-button" onclick="window.changeFilter(true)">
+            <button class="start-button" onclick="leggo.changeFilter(true)">
                Surprise Me!
             </button>
           </section>
@@ -79,25 +79,25 @@
           
           <section class="filter-body">
             <div class="navigation-panel">
-              <button class="previous-filter" onclick="window.changeFilter(false)">
+              <button class="previous-filter" onclick="leggo.changeFilter(false)">
                 prev
               </button>
             </div>
             
             <section class="icons">
-              <button class="nonexclusive-button single-button">
+              <button filter="people" filterValue="1" class="image-checkbox">
                 It's just me!
               </button>
-              <button class="nonexclusive-button pair-button">
+              <button filter="people" filterValue="2" class="image-checkbox">
                 2 people
               </button>
-              <button class="nonexclusive-button group-button">
+              <button filter="people" filterValue="3" class="image-checkbox">
                 3 or more
               </button>
             </section>
             
             <div class="navigation-panel">
-              <button class="next-filter" onclick="window.changeFilter(true)">
+              <button class="next-filter" onclick="leggo.changeFilter(true)">
                 next
               </button>
             </div>
@@ -107,7 +107,7 @@
             <div class="outro-text">
               Or leave this option up to chance and continue...
             </div>
-            <button class="start-button" onclick="window.changeFilter(true)">
+            <button class="start-button" onclick="leggo.changeFilter(true)">
                Surprise Me!
             </button>
           </section>
@@ -122,31 +122,31 @@
           
           <section class="filter-body">
             <div class="navigation-panel">
-              <button class="previous-filter" onclick="window.changeFilter(false)">
+              <button class="previous-filter" onclick="leggo.changeFilter(false)">
                 prev
               </button>
             </div>
             
             <section class="icons">
-              <button class="nonexclusive-button free-button">
+              <button filter="money" filterValue="0" class="image-checkbox">
                 Nothing!
               </button>
-              <button class="nonexclusive-button 10-button">
+              <button filter="money" filterValue="10" class="image-checkbox">
                 $10
               </button>
-              <button class="nonexclusive-button 25-button">
+              <button filter="money" filterValue="25" class="image-checkbox">
                 $25
               </button>
-              <button class="nonexclusive-button 45-button">
+              <button filter="money" filterValue="45" class="image-checkbox">
                 $45
               </button>
-              <button class="nonexclusive-button 70-button">
+              <button filter="money" filterValue="70" class="image-checkbox">
                 $70
               </button>
             </section>
             
             <div class="navigation-panel">
-              <button class="next-filter" onclick="window.changeFilter(true)">
+              <button class="next-filter" onclick="leggo.changeFilter(true)">
                 next
               </button>
             </div>
@@ -156,7 +156,7 @@
             <div class="outro-text">
               Or leave this option up to chance and continue...
             </div>
-            <button class="start-button" onclick="window.changeFilter(true)">
+            <button class="start-button" onclick="leggo.changeFilter(true)">
                Surprise Me!
             </button>
           </section>
@@ -171,7 +171,7 @@
           
           <section class="filter-body">
             <div class="navigation-panel">
-              <button class="previous-filter" onclick="window.changeFilter(false)">
+              <button class="previous-filter" onclick="leggo.changeFilter(false)">
                 prev
               </button>
             </div>
@@ -181,7 +181,7 @@
             </section>
             
             <div class="navigation-panel">
-              <button class="next-filter" onclick="window.changeFilter(true)">
+              <button class="next-filter" onclick="leggo.changeFilter(true)">
                 next
               </button>
             </div>
@@ -191,7 +191,7 @@
             <div class="outro-text">
               Or leave this option up to chance and continue...
             </div>
-            <button class="start-button" onclick="window.changeFilter(true)">
+            <button class="start-button" onclick="leggo.changeFilter(true)">
                Surprise Me!
             </button>
           </section>
@@ -201,6 +201,8 @@
       </div> <!-- swipe-wrap -->
       
     </div>
+    
+    <button onclick="findActivities()"></button>
     
     <nav class="nav-dots">
       <ul id="nav">
@@ -213,63 +215,12 @@
   </div>
   
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src='js/filters.js'></script>
   <script src='js/swipe.js'></script>
   <script>
     $(document).ready( function () {
-      // pure JS
-      var elem = document.getElementById('slider');
-      window.mySwipe = Swipe(elem, {
-        // startSlide: 4,
-        // auto: 3000,
-        // continuous: true,
-        // disableScroll: true,
-        // stopPropagation: true,
-        // callback: function(index, element) {},
-        // transitionEnd: function(index, element) {}
-      });
-
-      // with jQuery
-      // window.mySwipe = $('#mySwipe').Swipe().data('Swipe');
-      
-      
-      var allCheckboxDivs = document.getElementsByClassName("image-checkbox");
-      for (var i=0;i<allCheckboxDivs.length;i++) {
-
-          $(allCheckboxDivs[i]).unbind('click').click(function (e) {
-              e.preventDefault();
-              var divID = this.id;
-              var checkboxID =divID.split("_")[0];
-              var checkboxElement = document.getElementById(checkboxID);
-
-              if (checkboxElement.checked == true) {
-                  checkboxElement.checked = false;
-                  $(this).removeClass('image-checkbox-checked');
-                  $(this).addClass('image-checkbox');
-              } else {
-                  checkboxElement.checked = true;
-                  $(this).removeClass('image-checkbox');
-                  $(this).addClass('image-checkbox-checked');
-              }
-          });
-      }
-      
-      window.changeFilter = function changeFilter (isNext) {
-        var currPos = mySwipe.getPos();
-        console.log(currPos);
-        var children = $('.nav-dots').children()[0].children;
-        $(children[currPos]).removeClass('selected');
-        
-        if (isNext) {
-          mySwipe.next();
-        } else {
-          mySwipe.prev();
-        }
-        
-        currPos = mySwipe.getPos();
-        $(children[currPos]).addClass('selected');
-      }
+      leggo.initializePage();
     });
-    
   </script>
 </body>
 </html>
