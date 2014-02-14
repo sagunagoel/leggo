@@ -9,6 +9,7 @@ var path = require('path');
 var handlebars = require('express3-handlebars')
 
 var filters = require('./routes/filters');
+var findactivities = require('./routes/findactivities');
 
 var splashscreen = require('./routes/splashscreen');
 var categories = require('./routes/categories');
@@ -48,8 +49,10 @@ if ('development' == app.get('env')) {
 }
 
 // Add routes here
-app.get('/', splashscreen.view);
 app.get('/filters', filters.view);
+app.post('/findactivities', findactivities.filter);
+
+app.get('/', splashscreen.view);
 app.get('/categories',categories.view);
 app.get('/time', time.view);
 app.get('/transport', transport.view);
