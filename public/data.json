@@ -19,7 +19,7 @@
             "energylevel": 2,
             "moneyupperlimit": 10,
             "description": "In every walk with nature one receives far more than he seeks - John Muir. Visit the Muir Woods Monument to spend time among some of the world's oldest and largest redwood trees. You can learn about the local wildlife or take a path of your own to explore the peaceful views.",
-            "imageURL": "http://focus.tracinglight.com/images/20100914093151_coastal-redwood-muir-woods.jpg",
+            "imageURL": "/images/1muirwoods-olabel.jpg",
             "thingslist": [
                 "Walking shoes",
                 "water",
@@ -46,7 +46,7 @@
             "energylevel": 2,
             "moneyupperlimit": 0,
             "description": "Los Trancos Open Space Preserve is situated at about 2,000 feet and always has fresh air scented with pungent bay leaves, sweet grass, and damp woods. Here, visitors will find a pleasant environment of rolling grassland knolls alternating with oak woodland and cool shaded forest. On a clear day, one can spot the gleaming skyscrapers of San Francisco and pick out Mt. Diablo across the bay.",
-            "imageURL": "http://farm4.static.flickr.com/3629/3396568602_80388a1911.jpg",
+            "imageURL": "/images/lostrancos-olabel.jpg",
             "thingslist": [
                 "Trail Map: http://www.openspace.org/preserves/maps/pr_los_trancos.pdf"
             ]
@@ -72,7 +72,7 @@
             "energylevel": 2,
             "moneyupperlimit": 0,
             "description": "Geocaching is a real-world, outdoor treasure hunting game using GPS-enabled devices. Navigate to a specific set of GPS coordinates and then attempt to find the geocache (container) hidden at that location. Go here to findhttp://www.geocaching.com/",
-            "imageURL": "http://www.backpacker.com/media/originals/18699-geocache_0408_sgengler_445x260.jpg",
+            "imageURL": "/images/3geocache-olabel.jpg",
             "thingslist": [
                 "Walking shoes",
                 "water",

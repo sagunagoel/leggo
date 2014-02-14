@@ -17,7 +17,7 @@
         LEGGO!
       </div>
       <div class="help-button">
-        <a href="http://imgur.com/371okK5">
+        <a href="/help">
           <img src="http://i.imgur.com/371okK5.png" title="Hosted by imgur.com" />
         </a>
       </div>
@@ -163,8 +163,10 @@
         
         </div>
         
-        <!--
-        <div>
+
+        
+        
+        <!-- <div>
         
           <section class="intro">
             When do you need to get back?
@@ -202,7 +204,7 @@
 
         <div>
           <section class="intro">
-            Here are your activities:
+            Here are your activities. Pick one!:
           </section>
           <section class="filter-body">
             <div class="navigation-panel">
@@ -213,6 +215,7 @@
             
             <section class="icons">
             
+
         <div id="activities">
           {{#each activities}}
           <div class="activity-display">
@@ -232,14 +235,14 @@
             </div>
           </section>
         
-          <section class="outro">
+          <!-- <section class="outro">
             <div class="outro-text">
               Or leave this option up to chance and continue...
             </div>
             <button class="start-button" onclick="leggo.changeFilter(true)">
                Surprise Me!
             </button>
-          </section>
+          </section> -->
         </div>
 
       
@@ -249,23 +252,11 @@
     <img id="img-detail"/>
   </section>
   
-  <section class="info">
+  <section class="info" id="info">
   <div class="needs">
       <span class="bold-text"> You'll need: </span>
-      <div id="needs-detail">$7/ person, Walking shoes, Water, 2-3 hours</div> 
-    </div>
-    <!-- <div class="distance"> 
-      </br> <span class="bold-text"> Distance: </span> 29 mi 
-    </div> -->
-    <section class="descrip-text" id="descrip-detail">
-      </br>
-      <span class="bold-text"> Description: </span>
-       Visit the Muir Woods Monument to spend time among some of the world's oldest 
-       and largest redwood trees. You can learn about the local wildlife or take a 
-        path of your own to explore the peaceful views. 
-    </section>
-  </section>
-</section>
+  </div>
+  <div id="needs-detail"></div> 
   
   <section class="outro">
     <button class="start-button">
@@ -274,12 +265,47 @@
     <button class="back-button" onclick="leggo.changeFilter(false)"> 
     Or, go back to options 
     </button>
-  </section>
-        </div>
-        
-      </div> <!-- swipe-wrap -->
+
+        <!-- <div class="distance"> 
+          </br> <span class="bold-text"> Distance: </span> 29 mi 
+        </div> -->
+        <section class="descrip-text">
+          </br>
+          <span class="bold-text"> Description: </span>
+          <div id="descrip-detail"></div>
+        </section>
+      </section>
+    </section>
       
-    </div>
+      <section class="outro">
+        <button class="start-button" onclick="leggo.changeFilter(true)">
+          LEGGO!
+        </button>
+        <button class="back-button" onclick="leggo.changeFilter(false)"> 
+        Or, go back to options 
+        </button>
+      </section>
+            </div>
+<div>
+  <section class="intro">
+            Hope you had fun!
+  </section>
+  <section class="outro" id="outro-details">
+        <button class="start-button">
+          <a href= "/">
+          START OVER!
+          <a>
+        </button>
+        <button class="back-button" onclick="leggo.changeFilter(false)"> 
+        Back 
+        </button>
+      </section>
+</div>
+
+            
+          </div> <!-- swipe-wrap -->
+          
+        </div>
     
     <button onclick="leggo.findActivities()">Find something to do!</button>
     
