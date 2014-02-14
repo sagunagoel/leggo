@@ -1,6 +1,13 @@
 (function (window, leggo, $, undefined) {
 
+  var longitude = null;
+  var latitude = null;
+  var locationRefreshInterval = null;
+  
+  var activityData = {};
+
   leggo.initializePage = function () {
+    var x=document.getElementById("demo");
     // pure JS
     var elem = document.getElementById('slider');
     window.mySwipe = Swipe(elem, {
@@ -16,26 +23,9 @@
     // with jQuery
     // window.mySwipe = $('#mySwipe').Swipe().data('Swipe');
     
+    getLocation();
+    locationRefreshInterval = setInterval(getLocation, 60000);
     
-    // var allCheckboxDivs = document.getElementsByClassName("image-checkbox");
-    // for (var i=0;i<allCheckboxDivs.length;i++) {
-      // $(allCheckboxDivs[i]).unbind('click').click(function (e) {
-          // e.preventDefault();
-          // var divID = this.id;
-          // var checkboxID =divID.split("_")[0];
-          // var checkboxElement = document.getElementById(checkboxID);
-
-          // if (checkboxElement.checked == true) {
-              // checkboxElement.checked = false;
-              // $(this).removeClass('image-checkbox-checked');
-              // $(this).addClass('image-checkbox');
-          // } else {
-              // checkboxElement.checked = true;
-              // $(this).removeClass('image-checkbox');
-              // $(this).addClass('image-checkbox-checked');
-          // }
-      // });
-    // }
     $('.image-checkbox').each(function (i, n) {
       $(this).click( function (e) {
         e.preventDefault();
@@ -49,6 +39,22 @@
         }
       });
     });
+  }
+  
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(storePosition);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  }
+  
+  function storePosition(position) {
+    longitude = position.coords.longitude;
+    latitude = position.coords.latitude;
+  
+    // x.innerHTML="Latitude: " + position.coords.latitude + 
+    // "<br>Longitude: " + position.coords.longitude;	
   }
   
   leggo.changeFilter = function changeFilter (isNext) {
@@ -67,15 +73,21 @@
   }
   
   leggo.findActivities = function () {
-    var someData = {};
+    var currTime = new Date();    
+    var startTime = currTime.getHours() + currTime.getMinutes()/60;
+    var someData = {
+      'coords': [ latitude, longitude ],
+      'starttime': startTime
+    };
     
     $('.image-checkbox-checked').each(function (i, n) {
-      
-      
-      
+      someData[$(this).attr('filter')] = someData[$(this).attr('filter')] || [];
+      someData[$(this).attr('filter')].push($(this).attr('filtervalue'));
     });
+    
+    console.log(someData);
   
-    //$.post('someurl', someData);
+    $.post('/findactivities', someData);
   }
 
 })(this, window.leggo = window.leggo || {}, jQuery);
