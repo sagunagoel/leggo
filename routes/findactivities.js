@@ -2,6 +2,7 @@ var data = require('../public/data.json');
 
 exports.filter = function (req, res) {
   var filters = req.body;
+  console.log(filters);
 
   var filtered = data.activities.filter( function (activity) {
     var doesThisMatch = true;
@@ -31,7 +32,7 @@ exports.filter = function (req, res) {
     }
   
     //start time filter
-    var myStartTime = filters['starttime'];
+    var myStartTime = parseInt(filters['starttime']);
     var activityStartTime = activity['starttime'];
     var timeDiff = myStartTime - activityStartTime;
     //console.log('starttime diff: ' + timeDiff);
@@ -43,7 +44,7 @@ exports.filter = function (req, res) {
     var myPeople = filters['people'] || [];
     var foundMatch = myPeople.length === 0;
     for (var i = 0; i < myPeople.length; i++) {
-      if (activity['maxpeople'] >= myPeople[i]) {
+      if (activity['maxpeople'] >= parseInt(myPeople[i])) {
         foundMatch = true;
       }
     }
@@ -53,9 +54,10 @@ exports.filter = function (req, res) {
     
     //money filter
     var myMoney = filters['money'] || [];
+    console.log(activity['moneyupperlimit'] <= parseInt(myMoney[i]));
     var foundMatch = myMoney.length === 0;
-    for (var i = 0; i < myPeople.length; i++) {
-      if (activity['moneyupperlimit'] <= myMoney[i]) {
+    for (var i = 0; i < myMoney.length; i++) {
+      if (activity['moneyupperlimit'] <= parseInt(myMoney[i])) {
         foundMatch = true;
       }
     }
