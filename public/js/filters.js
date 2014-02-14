@@ -128,7 +128,6 @@
       var newActivity = activities[count] || false;
     
       var activityAnchor = $(this).find('a');
-      var activityName = $(this).find('p');
       var activityImage = $(this).find('img');
       
       var activityID = $(activityAnchor).attr('activityid');
@@ -139,7 +138,6 @@
           e.preventDefault();
           leggo.activityClicked(true, newActivity['id']);
         });
-        $(activityName).text(newActivity['name']);
         $(activityImage).attr('src', newActivity['imageURL']);
       } else {
         $(this).hide();
