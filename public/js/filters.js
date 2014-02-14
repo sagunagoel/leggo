@@ -4,12 +4,13 @@
   var latitude = null;
   var locationRefreshInterval = null;
   
+  var currId;
+  
   var activityData = {};
 
   leggo.initializePage = function () {
     var x=document.getElementById("demo");
     // pure JS
-    var currId;
 
 
     var elem = document.getElementById('slider');
@@ -59,14 +60,14 @@
     console.log("Curr id is now" + id);
   }
 
-    leggo.activityClicked= function activityClicked(isNext,id){
-      leggo.setActivityID(id);
-      $.get('../../data.json', getProject);
-      leggo.changeFilter(true);
-    }
-    var result;
+  leggo.activityClicked= function activityClicked(isNext,id){
+    leggo.setActivityID(id);
+    $.get('../../data.json', getProject);
+    leggo.changeFilter(true);
+  }
+  var result;
 
-    function getProject(result)
+  function getProject(result)
   {
     console.log(result);
     console.log(currId);
@@ -116,9 +117,39 @@
   
     $.post('/findactivities', someData, function (data) {
       activityData = data['activities'];
-      //populate activities page!
+      populateActivities(activityData);
       
       console.log(data);
+    });
+  }
+  
+  function populateActivities (activities) {
+    var count = 0;
+    $('#activities').children().each( function () {
+      console.log(this);
+    
+      var newActivity = activities[count] || false;
+      console.log(newActivity);
+    
+      var activityAnchor = $(this).find('a');
+      var activityName = $(this).find('p');
+      var activityImage = $(this).find('img');
+      
+      var activityID = $(activityAnchor).attr('activityid');
+      activityAnchor.unbind('click');
+      if (newActivity) {
+        $(this).show();
+        activityAnchor.click( function (e) {
+          e.preventDefault();
+          leggo.activityClicked(true, newActivity['id']);
+        });
+        $(activityName).text(newActivity['name']);
+        $(activityImage).attr('src', newActivity['imageURL']);
+      } else {
+        $(this).hide();
+      }
+      
+      count++;
     });
   }
 

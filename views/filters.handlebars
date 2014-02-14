@@ -212,12 +212,16 @@
             
             <section class="icons">
             
-        {{#each activities}}
-        <a href="#" onclick="leggo.activityClicked(true,{{id}})">
-          <img src="{{imageURL}}" class="img">
-        </a>
-          <p>{{name}}</p>
-        {{/each}}
+        <div id="activities">
+          {{#each activities}}
+          <div class="activity-display">
+            <a href="#" activityid="{{id}}" >
+              <img src="{{imageURL}}" class="img">
+            </a>
+            <p>{{name}}</p>
+          </div>
+          {{/each}}
+        </div>
          </section>
             
             <div class="navigation-panel">
@@ -266,7 +270,7 @@
     <button class="start-button">
       LEGGO!
     </button>
-    <button class="back-button"> 
+    <button class="back-button" onclick="leggo.changeFilter(false)"> 
     Or, go back to options 
     </button>
   </section>

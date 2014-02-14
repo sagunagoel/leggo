@@ -67,6 +67,10 @@ exports.filter = function (req, res) {
   });
 
   console.log(filtered);
+  //truncate array
+  if (filtered.length > 3) {
+    filtered.length = 3;
+  }
   res.json({ 'activities' : filtered });
 }
 
