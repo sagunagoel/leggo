@@ -1,34 +1,80 @@
 {
-	"friends": [
-		{
-			"name": "Doug Engelbart",
-			"description": "Has awesome pet mice",
-			"imageURL": "http://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Douglas_Engelbart_in_2008.jpg/972px-Douglas_Engelbart_in_2008.jpg"			
-		},
-		{
-			"name": "Ivan Sutherland",
-			"description": "Great at sketching",
-			"imageURL": "http://upload.wikimedia.org/wikipedia/commons/5/5c/Ivan_Sutherland_at_CHM.jpg"			
-		},
-		{
-			"name": "Lucy Suchman",
-			"description": "Loves Trukese navigators",
-			"imageURL": "http://upload.wikimedia.org/wikipedia/commons/d/df/Lucy_Suchman.jpeg"			
-		},
-		{
-			"name": "Vannevar Bush",
-			"description": "Has stellar associative memory",
-			"imageURL": "http://upload.wikimedia.org/wikipedia/commons/e/ea/Vannevar_Bush_portrait.jpg"			
-		},
-		{
-			"name": "Grace Hopper",
-			"description": "Only friend with a Navy ship named after them",
-			"imageURL": "http://www.personal.psu.edu/djd5202/gHop.jpg"
-		},
-		{
-			"name": "Allen Newell",
-			"description": "Really into psychology",
-			"imageURL": "http://www.nap.edu/html/biomems/photo/anewell.JPG"
-		}
-	]
+    "activities": [
+        {
+            "name": "Visit Muir Woods",
+            "tags": [
+                "nature",
+                "relaxing",
+                "active"
+            ],
+            "coords": [
+                37,
+                122
+            ],
+            "starttime": 8,
+            "endtime": 18,
+            "maxpeople": 4,
+            "length": 2,
+            "energylevel": 2,
+            "moneyupperlimit": 10,
+            "description": "In every walk with nature one receives far more than he seeks - John Muir. Visit the Muir Woods Monument to spend time among some of the world's oldest and largest redwood trees. You can learn about the local wildlife or take a path of your own to explore the peaceful views.",
+            "imageURL": "http://focus.tracinglight.com/images/20100914093151_coastal-redwood-muir-woods.jpg",
+            "thingslist": [
+                "Walking shoes",
+                "water",
+                "$7 per person"
+            ]
+        },
+        {
+            "name": "San Andreas Fault (Los Trancos Preserve)",
+            "tags": [
+                "nature",
+                "relaxing",
+                "driving",
+                "view"
+            ],
+            "coords": [
+                37.32,
+                -122.18
+            ],
+            "starttime":6,
+            "endtime": 18,
+            "maxpeople": 4,
+            "length": 2,
+            "energylevel": 2,
+            "moneyupperlimit": 0,
+            "description": "Los Trancos Open Space Preserve is situated at about 2,000 feet and always has fresh air scented with pungent bay leaves, sweet grass, and damp woods. Here, visitors will find a pleasant environment of rolling grassland knolls alternating with oak woodland and cool shaded forest. On a clear day, one can spot the gleaming skyscrapers of San Francisco and pick out Mt. Diablo across the bay.",
+            "imageURL": "http://farm4.static.flickr.com/3629/3396568602_80388a1911.jpg",
+            "thingslist": [
+                "Trail Map: http://www.openspace.org/preserves/maps/pr_los_trancos.pdf"
+            ]
+        },
+        {
+            "name": "Geocaching",
+            "tags": [
+                "adventure",
+                "nature",
+                "challenge",
+                "creative",
+                "weird"
+            ],
+            "coords": [
+                0,
+                0
+            ],
+            "starttime": 0,
+            "endtime": 23.59,
+            "maxpeople": 2,
+            "length": 0,
+            "energylevel": 2,
+            "moneyupperlimit": 0,
+            "description": "Geocaching is a real-world, outdoor treasure hunting game using GPS-enabled devices. Navigate to a specific set of GPS coordinates and then attempt to find the geocache (container) hidden at that location. Go here to findhttp://www.geocaching.com/",
+            "imageURL": "http://www.backpacker.com/media/originals/18699-geocache_0408_sgengler_445x260.jpg",
+            "thingslist": [
+                "Walking shoes",
+                "water",
+                "$7 per person"
+            ]
+        }
+    ]
 }
