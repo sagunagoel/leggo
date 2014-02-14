@@ -70,6 +70,7 @@ exports.filter = function (req, res) {
   res.json({ 'activities' : filtered });
 }
 
+//taken from some random guy on internet
 var Geolocation = {
   rad: function(x) { return x * Math.PI / 180 },
 
