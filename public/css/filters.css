@@ -164,31 +164,33 @@ body {
 
 .picture {
   display:block;
-  position: relative;
+
   width: 70%;
   margin: 20px auto 0 auto;
-  height: 20%;
+ 
   border-radius: 5px 5px 0 0;
   
   background-color: #e0e4cc;
 }
 
 .picture > img {
-  display:block;
-  height: 100%;
-  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
   border-radius: 5px 5px 0 0;
 }
 
 /*description of activity*/
 .info {
   display: block;
-  margin: 0 20px;
+  width:70%;
+  margin: 0 auto;
   border: 1px solid #e0e4cc;
-  padding: 10px;
   
   color:#3a3a3a;
   font-size: .75em;
+}
+.detail-text {
+  padding: 10px;
 }
 
 /* outro section with text + start button */
@@ -200,4 +202,9 @@ body {
   color:#3a3a3a;
   text-align: center;
   background-color: #e0e4cc;
+}
+ /*image for each activity choice */
+.act-img {
+  max-width: 100%;
+  margin: 10px auto;
 }

@@ -220,9 +220,8 @@
           {{#each activities}}
           <div class="activity-display">
             <a href="#" activityid="{{id}}" >
-              <img src="{{imageURL}}" class="img">
+              <img src="{{imageURL}}" class="act-img">
             </a>
-            <p>{{name}}</p>
           </div>
           {{/each}}
         </div>
@@ -253,23 +252,23 @@
   </section>
   
   <section class="info" id="info">
-  <div class="needs">
-      <span class="bold-text"> You'll need: </span>
-  </div>
-  <div id="needs-detail"></div> 
-  
-
+    <div class="details-text">
+      <div class="needs">
+        <span class="bold-text"> You'll need: </span>
+      </div>
+      <div id="needs-detail">
+      </div> 
 
         <!-- <div class="distance"> 
           </br> <span class="bold-text"> Distance: </span> 29 mi 
         </div> -->
-        <section class="descrip-text">
-          </br>
-          <span class="bold-text"> Description: </span>
-          <div id="descrip-detail"></div>
-        </section>
-      </section>
-    </section>
+      <div class="descrip-text">
+        </br> <span class="bold-text"> Description: </span>
+        <div id="descrip-detail">
+        </div>
+      </div>
+    </div>
+  </section>
       
       <section class="outro">
         <button class="start-button" onclick="leggo.changeFilter(true)">
