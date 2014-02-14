@@ -216,7 +216,6 @@
         <a href="#" onclick="leggo.activityClicked(true,{{id}})">
           <img src="{{imageURL}}" class="img">
         </a>
-          <p>{{name}}</p>
         {{/each}}
          </section>
             
@@ -247,34 +246,49 @@
   <section class="info">
   <div class="needs">
       <span class="bold-text"> You'll need: </span>
-      <div id="needs-detail">$7/ person, Walking shoes, Water, 2-3 hours</div> 
-    </div>
-    <!-- <div class="distance"> 
-      </br> <span class="bold-text"> Distance: </span> 29 mi 
-    </div> -->
-    <section class="descrip-text" id="descrip-detail">
-      </br>
-      <span class="bold-text"> Description: </span>
-       Visit the Muir Woods Monument to spend time among some of the world's oldest 
-       and largest redwood trees. You can learn about the local wildlife or take a 
-        path of your own to explore the peaceful views. 
-    </section>
-  </section>
-</section>
+  </div>
+  <div id="needs-detail"></div> 
   
-  <section class="outro">
-    <button class="start-button">
-      LEGGO!
-    </button>
-    <button class="back-button"> 
-    Or, go back to options 
-    </button>
-  </section>
-        </div>
-        
-      </div> <!-- swipe-wrap -->
+        <!-- <div class="distance"> 
+          </br> <span class="bold-text"> Distance: </span> 29 mi 
+        </div> -->
+        <section class="descrip-text">
+          </br>
+          <span class="bold-text"> Description: </span>
+          <div id="descrip-detail"></div>
+        </section>
+      </section>
+    </section>
       
-    </div>
+      <section class="outro">
+        <button class="start-button" onclick="leggo.changeFilter(true)">
+          LEGGO!
+        </button>
+        <button class="back-button" onclick="leggo.changeFilter(false)"> 
+        Or, go back to options 
+        </button>
+      </section>
+            </div>
+<div>
+  <section class="intro">
+            Hope you had fun!
+  </section>
+  <section class="outro">
+        <button class="start-button">
+          <a href= "/">
+          START OVER!
+          <a>
+        </button>
+        <button class="back-button" onclick="leggo.changeFilter(false)"> 
+        Back 
+        </button>
+      </section>
+<div>
+
+            
+          </div> <!-- swipe-wrap -->
+          
+        </div>
     
     <button onclick="leggo.findActivities()">Find something to do!</button>
     

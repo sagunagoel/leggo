@@ -73,6 +73,7 @@
     console.log(result['activities'][currId-1]);
     $("#img-detail").attr('src', result['activities'][currId-1]['imageURL']);
     $("#descrip-detail").text(result['activities'][currId-1]['description']);
+     $("#needs-detail").text(result['activities'][currId-1]['thingslist']);
   }  
 
   
