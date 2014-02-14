@@ -44,6 +44,8 @@
         }
       });
     });
+
+    leggo.findActivities();
   }
   
   function getLocation() {
@@ -103,7 +105,7 @@
   
   leggo.findActivities = function () {
     var currTime = new Date();    
-    var startTime = currTime.getHours() + currTime.getMinutes()/60;
+    var startTime = 12;//currTime.getHours() + currTime.getMinutes()/60;
     var someData = {
       'coords': [ latitude, longitude ],
       'starttime': startTime

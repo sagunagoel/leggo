@@ -1,4 +1,4 @@
-var data = require('../data.json');
+var data = require('../public/data.json');
 
 exports.filter = function (req, res) {
   var filters = req.body;
