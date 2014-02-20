@@ -1,0 +1,572 @@
+{
+    "activities": [
+        {
+            "id": 1,
+            "name": "Visit Muir Woods",
+            "tags": [
+                "nature",
+                "relaxing",
+                "active"
+            ],
+            "coords": [
+                37.896395,
+                -122.581185
+            ],
+            "address": "",
+            "hours": {
+                "allDays": {
+                    "starttime": [
+                        8
+                    ],
+                    "endtime": [
+                        18
+                    ]
+                }
+            },
+            "length": 2,
+            "energylevel": 2,
+            "moneyupperlimit": 10,
+            "description": "In every walk with nature one receives far more than he seeks - John Muir. Visit the Muir Woods Monument to spend time among some of the world's oldest and largest redwood trees. You can learn about the local wildlife or take a path of your own to explore the peaceful views.",
+            "imageURL": "public/images/1muirwoods-olabel.jpg",
+            "thingslist": [
+                "Walking shoes",
+                "water",
+                "$7 per person"
+            ],
+            "moreinfoURL": "http://www.nps.gov/muwo/index.htm"
+        },
+        {
+            "id": 2,
+            "name": "San Andreas Fault (Los Trancos Preserve)",
+            "tags": [
+                "nature",
+                "relaxing",
+                "driving",
+                "view"
+            ],
+            "coords": [
+                39.003578,
+                -123.696062
+            ],
+            "address": "",
+            "hours": {
+                "allDays": {
+                    "starttime": [
+                        6
+                    ],
+                    "endtime": [
+                        18
+                    ]
+                }
+            },
+            "length": 2,
+            "energylevel": 2,
+            "moneyupperlimit": 0,
+            "description": "Los Trancos Open Space Preserve is situated at about 2,000 feet and always has fresh air scented with pungent bay leaves, sweet grass, and damp woods. Here, visitors will find a pleasant environment of rolling grassland knolls alternating with oak woodland and cool shaded forest. On a clear day, one can spot the gleaming skyscrapers of San Francisco and pick out Mt. Diablo across the bay.",
+            "imageURL": "public/images/lostranco-olabel.jpg",
+            "thingslist": [
+                "Trail Map: http://www.openspace.org/preserves/maps/pr_los_trancos.pdf"
+            ],
+            "moreinfoURL": "http://www.openspace.org/preserves/pr_los_trancos.asp"
+        },
+        {
+            "id": 3,
+            "name": "Geocaching",
+            "tags": [
+                "adventure",
+                "nature",
+                "challenge",
+                "creative",
+                "weird"
+            ],
+            "coords": [
+                0,
+                0
+            ],
+            "address": "",
+            "hours": {
+                "allDays": {
+                    "starttime": [
+                        0
+                    ],
+                    "endtime": [
+                        23.9
+                    ]
+                }
+            },
+            "length": 2,
+            "energylevel": 2,
+            "moneyupperlimit": 0,
+            "description": "Geocaching is a real-world, outdoor treasure hunting game using GPS-enabled devices. Navigate to a specific set of GPS coordinates and then attempt to find the geocache (container) hidden at that location. Go here to find a treasure and replace it with something new: http://www.geocaching.com/",
+            "imageURL": "public/images/3geocahe-olabel.jpg",
+            "thingslist": [
+                "Smartphone with Geocaching app OR GPS tracker",
+                "Something small to hide",
+                "Curiosity"
+            ],
+            "moreinfoURL": "http://www.geocaching.com/"
+        },
+        {
+            "id": 4,
+            "name": "Write a Letter ",
+            "tags": [
+                "adventure",
+                "nature",
+                "challenge",
+                "creative",
+                "weird"
+            ],
+            "coords": [
+                0,
+                0
+            ],
+            "address": "",
+            "hours": {
+                "allDays": {
+                    "starttime": [
+                        0
+                    ],
+                    "endtime": [
+                        23.9
+                    ]
+                }
+            },
+            "length": 0.5,
+            "energylevel": 1,
+            "moneyupperlimit": 0,
+            "description": "Think about someone who could use some encouragement or who you haven't reached out to in a while. Write them a card or letter, and either send it in the mail or hand-deliver it!",
+            "imageURL": "public/images/4-writealetter.jpg",
+            "thingslist": [
+                "Stationery, paper, or a card",
+                "Pen",
+                "Someone you care about",
+                "A stamp (optional)"
+            ],
+            "moreinfoURL": ""
+        },
+        {
+            "id": 5,
+            "name": "C.R.E.A.M.",
+            "tags": [
+                "adventure",
+                "nature",
+                "challenge",
+                "creative",
+                "weird"
+            ],
+            "coords": [
+                37.447555,
+                -122.159804
+            ],
+            "address": "440 University Ave, Palo Alto, CA 94301",
+            "hours": {
+                "weekDays": {
+                    "starttime": [
+                        12
+                    ],
+                    "endtime": [
+                        23
+                    ]
+                },
+                "weekEnds": {
+                    "starttime": [
+                        0,
+                        12
+                    ],
+                    "endtime": [
+                        2,
+                        23.59
+                    ]
+                }
+            },
+            "length": 0.5,
+            "energylevel": 1,
+            "moneyupperlimit": 5,
+            "description": "Get an ice cream sandwich with fresh cookies or another whimsical treat at this specialty ice cream parlor. Walk down University Avenue with your treat and enjoy the shops and festively lit trees. ",
+            "imageURL": "public/images/5-cream.jpg",
+            "thingslist": [
+                "Cash (for a discont!)",
+                "Sweet tooth"
+            ],
+            "moreinfoURL": "http://creamnation.com"
+        },
+        {
+            "id": 6,
+            "name": "California Ave. Farmer's Market",
+            "tags": [
+                "adventure",
+                "nature",
+                "challenge",
+                "creative",
+                "weird"
+            ],
+            "coords": [
+                37.4177563,
+                -122.1235054
+            ],
+            "address": "494 S California Ave, Palo Alto, CA 94306",
+            "hours": {
+                "sundays": {
+                    "starttime": [
+                        9
+                    ],
+                    "endtime": [
+                        13
+                    ]
+                }
+            },
+            "length": 1,
+            "energylevel": 2,
+            "moneyupperlimit": 15,
+            "description": "Enjoy the local flavor at the farmer's market. Walk down California Avenue sampling fresh produce, perusing hand-made crafts, smelling flowers, and enjoying live music. At the end of the street, food trucks sell a variety of cultural foods, from Indian wraps to crepes and gelato.",
+            "imageURL": "public/images/6-farmersmarket.jpg",
+            "thingslist": [
+                "Cash",
+                "Sunglasses"
+            ],
+            "moreinfoURL": "http://www.urbanvillageonline.com/markets/california-avenue/"
+        },
+        {
+            "id": 6,
+            "name": "California Ave. Farmer's Market",
+            "tags": [
+                "adventure",
+                "nature",
+                "challenge",
+                "creative",
+                "weird"
+            ],
+            "coords": [
+                37.4177563,
+                -122.1235054
+            ],
+            "address": "494 S California Ave, Palo Alto, CA 94306",
+            "hours": {
+                "sundays": {
+                    "starttime": [
+                        9
+                    ],
+                    "endtime": [
+                        13
+                    ]
+                }
+            },
+            "length": 1,
+            "energylevel": 2,
+            "moneyupperlimit": 15,
+            "description": "Enjoy the local flavor at the farmer's market. Walk down California Avenue sampling fresh produce, perusing hand-made crafts, smelling flowers, and enjoying live music. At the end of the street, food trucks sell a variety of cultural foods, from Indian wraps to crepes and gelato.",
+            "imageURL": "public/images/6-farmersmarket.jpg",
+            "thingslist": [
+                "Cash",
+                "Sunglasses"
+            ],
+            "moreinfoURL": "http://www.urbanvillageonline.com/markets/california-avenue/"
+        },
+                {
+            "id": 7,
+            "name": "Stanford Theater",
+            "tags": [
+                "arts",
+                "historic",
+                "romantic",
+                "local flavor",
+                "relaxing"
+            ],
+            "coords": [
+                37.445042, 
+                -122.1626228
+            ],
+            "address": "221 University Ave, Palo Alto, CA 94301",
+            "hours": {
+                "wednesdays": {
+                    "starttime": [
+                        18
+                    ],
+                    "endtime": [
+                        23.59
+                    ]
+                },
+                "thursdays": {
+                    "starttime": [
+                        18
+                    ],
+                    "endtime": [
+                        23.59
+                    ]
+                },
+                "weekEnds": {
+                    "starttime": [
+                        17.3
+                    ],
+                    "endtime": [
+                        23.59
+                    ]
+                },
+                "sundays": {
+                    "starttime": [
+                        17.3
+                    ],
+                    "endtime": [
+                        23.59
+                    ]
+                }
+
+            },
+            "length": 3,
+            "energylevel": 1,
+            "moneyupperlimit": 10,
+            "description": "Take a trip back in time and watch a classic film or two at this historical theater. Eat cheap delicious popcorn, check out the old posters, and stay to the end to hear the live organist as he comes out of the stage floor (sorry to spoil the surprise). Showtimes vary, so make sure to check their old-school website for this week's schedule!",
+            "imageURL": "public/images/7-stanfordtheater.jpg",
+            "thingslist": [
+                "Money for snacks and tickets",
+                "Snacks",
+                "Sweater"
+            ],
+            "moreinfoURL": "http://www.stanfordtheatre.org/aboutWeek.html"
+        },
+            {
+            "id": 8,
+            "name": "Thrift-shop at Savers",
+            "tags": [
+                "shopping",
+                "discount"
+            ],
+            "coords": [
+                37.485265, 
+                -122.225608
+            ],
+            "address": "875 Main St, Redwood City, CA 94063",
+            "hours": {
+                "allDays": {
+                    "starttime": [
+                        9
+                    ],
+                    "endtime": [
+                        21
+                    ]
+                }
+            },
+            "length": 1.5,
+            "energylevel": 2,
+            "moneyupperlimit": 5,
+            "description": "Peruse through this huge thrift store to find some hidden treasures for cheap! Whether you're looking for something strange, a good deal or just a good time, Savers is the place to find it.",
+            "imageURL": "public/images/8-savers.jpg",
+            "thingslist": [
+                "Bags of clothing donations (for a disount!)",
+                "Sense of humor",
+                "A friend"
+            ],
+            "moreinfoURL": "http://www.savers.com/"
+            },
+
+
+           {
+            "id": 9,
+            "name": "Law Garden Terrace",
+            "tags": [
+                "relaxing",
+                "study",
+                "fresh air",
+                "romantic",
+                "peaceful",
+                "24-hour",
+                "peaceful"
+            ],
+            "coords": [
+                37.42407761, 
+                -122.16762164
+            ],
+            "address": "559 Nathan Abbott Way, Stanford, CA 94305",
+            "hours": {
+                "allDays": {
+                    "starttime": [
+                        0
+                    ],
+                    "endtime": [
+                        23.59
+                    ]
+                }
+            },
+            "length": 0.25,
+            "energylevel": 1,
+            "moneyupperlimit": 0,
+            "description": "Climb the spiral staircase of the Stanford Law School to the peaceful second-floor garden terrace. Sunny by the day and romantically lit by night, this is a great place to relax, study, or just check out. Bring a drink or treat from nearby Coupa Cafe to add some Palo Alto flavor. Warning: zero to few power outlets, so charge up if you plan to use your laptop. ",
+            "imageURL": "public/images/9-lawgardenterrace.jpg",
+            "thingslist": [
+                "Optional: Something to read or work on"
+            ],
+            "moreinfoURL": ""
+        },
+                    {
+            "id": 10,
+            "name": "Fountain Hop",
+            "tags": [
+                "local flavor",
+                "refreshing",
+                "adventurous",
+                "social"
+            ],
+            "coords": [
+                37.4244756, 
+                -122.1696775
+            ],
+            "address": "The Claw, 519 Lasuen Mall, Stanford, CA 94305",
+            "hours": {
+                "allDays": {
+                    "starttime": [
+                        0
+                    ],
+                    "endtime": [
+                        23.59
+                    ]
+                }
+            },
+            "length": 0.5,
+            "energylevel": 3,
+            "moneyupperlimit": 0,
+            "description": "A Stanford tradition! Jump in the nearest fountain, splash around, dance, or float on an inner tube, then move on to a new fountain if you're brave. Relax and cool off during the day, or get some adrenaline pumping and fountain hop at night. Reccommended: start or end at the Claw in White Plaza or Terman Fountain in the Engineering quad.",
+            "imageURL": "public/images/10-fountainhopping.jpg",
+            "thingslist": [
+                "Swimsuit or clothes that can get wet",
+                "Flip flops"
+            ],
+            "moreinfoURL": ""
+        },
+        {
+            "id": 11,
+            "name": "Walk the Dish",
+            "tags": [
+                "fresh air",
+                "active",
+                "local flavor",
+                "social"
+            ],
+            "coords": [
+                37.4127475, 
+                -122.1692681
+            ],
+            "address": "Stanford Dish Hiking Trail, CA 94305",
+            "hours": {
+                "allDays": {
+                    "starttime": [
+                        6.3
+                    ],
+                    "endtime": [
+                        18
+                    ]
+                }
+            },
+            "length": 1,
+            "energylevel": 3,
+            "moneyupperlimit": 0,
+            "description": "Walk or jog the steep paved paths in the foothills behind Stanford for a workout and view of the Peninsula on a clear day. Parking limited, so consider parking further up Stanford Ave and walking a little more.",
+            "imageURL": "public/images/11-walkthedish.jpg",
+            "thingslist": [
+                "Walking attire",
+                "Water",
+                "Sunscreen"
+            ],
+            "moreinfoURL": "http://www.everytrail.com/guide/the-stanford-dish-hike"
+        },
+        {
+            "id": 12,
+            "name": "Paintballing",
+            "tags": [
+                "adventure",
+                "outdoors",
+                "adrenaline",
+                "day trip",
+                "active",
+                "social"
+            ],
+            "coords": [
+                37.25558, 
+                -121.798295
+            ],
+            "address": "Santa Clara Paintball, 2542 Monterey Highway, San Jose, CA 95111",
+            "hours": {
+                "wednesdays": {
+                    "starttime": [
+                        16
+                    ],
+                    "endtime": [
+                        22
+                    ]
+                },
+                "fridays": {
+                    "starttime": [
+                        12
+                    ],
+                    "endtime": [
+                        22
+                    ]
+                },
+                "saturdays": {
+                    "starttime": [
+                        9
+                    ],
+                    "endtime": [
+                        17
+                    ]
+                },
+                "sundays": {
+                    "starttime": [
+                        9
+                    ],
+                    "endtime": [
+                        17
+                    ]
+                }
+            },
+            "length": 4,
+            "energylevel": 3,
+            "moneyupperlimit": 60,
+            "description": "Get your adrenaline pumping and go paintballing at Santa Clara paintball! Reccommended as a day-longgroup activity.",
+            "imageURL": "public/images/12-paintballing.jpg",
+            "thingslist": [
+                "2 layers of long sleeves ",
+                "Long Pants",
+                "Rent or bring equipment"
+            ],
+            "moreinfoURL": "http://santaclarapaintball.com/"
+        },
+          {
+            "id": 12,
+            "name": "Give Free Hugs",
+            "tags": [
+                "social",
+                "weird",
+                "funny",
+                "free"
+            ],
+            "coords": [
+                37.4127475, 
+                -122.1692681
+            ],
+            "address": "Any street",
+            "hours": {
+                "allDays": {
+                    "starttime": [
+                       0
+                    ],
+                    "endtime": [
+                        23.59
+                    ]
+                }
+            },
+            "length": 1,
+            "energylevel": 2,
+            "moneyupperlimit": 0,
+            "description": "Make a 'FREE HUGS' sign and stand on a busy walking street. Hug everyone!",
+            "imageURL": "public/images/12-freehugs.jpg",
+            "thingslist": [
+                "Poster paper",
+                "Marker",
+                "Smile",
+                "Open arms",
+                "Safe street"
+            ],
+            "moreinfoURL": "http://www.freehugscampaign.org/"
+        }
+    ]
+}
