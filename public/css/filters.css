@@ -29,6 +29,20 @@
   max-height: 100%;
 }
 
+/*#hours-hand {*/
+  /*-webkit-transform: rotate(290deg);*/
+  /*-webkit-transform-origin: 0% 100%;*/
+/*  background-color: black;
+  position: absolute;
+  width: 2%;
+  height: 33%;
+  left:0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: 17% auto auto auto;
+}*/
+
 /*banner stuff*/
 .banner {
   padding: 10px;
@@ -75,6 +89,7 @@
 /* icons */
 .icons {
   display: inline-block;
+  position: relative;
   vertical-align: top;
   width: 60%
 }

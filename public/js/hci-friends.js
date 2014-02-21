@@ -55,5 +55,4 @@ function anagrammedName(name) {
 		console.log(name + " not known for anagramming.");
 		return name;
 	}
->>>>>>> c697f92ac3b82a057c5f29a3510e2549c0f7d1c9
 }

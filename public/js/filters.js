@@ -3,10 +3,21 @@
   var longitude = null;
   var latitude = null;
   var locationRefreshInterval = null;
+  var timeRefreshInterval = null;
   
   var currId;
   
   var activityData = {};
+  
+  var isMouseDown = false;
+  
+  var currTime;
+  var endTime;
+  
+  // // clock stuff
+  // var hand;
+  // var offsets;
+  // var handCenter;
 
   leggo.initializePage = function () {
     // $('#help-button').popover();
@@ -29,6 +40,22 @@
     getLocation();
     locationRefreshInterval = setInterval(getLocation, 60000);
     
+    // set up time filter
+    currTime = new Date();
+    $('#time-display').text(currTime.getHours() + ':' + currTime.getMinutes() + ':' + currTime.getSeconds());
+    $('#time-display').attr('filterValue', currTime.getHours() + currTime.getMinutes()/60);
+    endTime = new Date(currTime.getTime());
+    timeRefreshInterval = setInterval(function () {
+      currTime = new Date();
+      if (currTime.getTime() > endTime.getTime()) {
+        currTimeStr = currTime.getHours() + ':' + currTime.getMinutes() + ':' + currTime.getSeconds();
+        $('#time-display').text(currTimeStr);
+        $('#time-display').attr('filterValue', currTime.getHours() + currTime.getMinutes()/60);
+        endTime = new Date(currTime.getTime());;
+      }
+    }, 500);
+    
+    //enable filter buttons
     $('.image-checkbox').each(function (i, n) {
       $(this).click( function (e) {
         console.log('hi!');
@@ -37,21 +64,91 @@
         if (button.hasClass('image-checkbox-checked')) {
           button.removeClass('image-checkbox-checked');
           button.addClass('image-checkbox');
-          var newURL = button.attr('src').split('_')[0];
-          newURL = newURL + '_unsel.png';
-          button.attr('src', newURL);
+          deselectButton(button);
         } else {
           button.removeClass('image-checkbox');
+          console.log(button.siblings('.image-checkbox-checked'));
+          button.siblings('.image-checkbox-checked').removeClass('image-checkbox-checked').addClass('image-checkbox')
+            .each( function () {
+              deselectButton(this);
+            });
           button.addClass('image-checkbox-checked');
-          var newURL = button.attr('src').split('_')[0];
-          newURL = newURL + '_selected.png';
-          button.attr('src', newURL);
+          selectButton(button);
         }
         leggo.findActivities();
+        setTimeout(function () { leggo.changeFilter(true); }, 500);
       });
     });
+    
+    $('.surprise-button').each(function (i, n) {
+      $(this).click( function (e) {
+        e.preventDefault();
+        var buttons = $(this).parent().parent().find('.icons').children().removeClass('image-checkbox-checked').addClass('image-checkbox')
+          .each( function () {
+            deselectButton(this);
+          });
+        setTimeout(function () { leggo.changeFilter(true); }, 500);
+      });
+    });
+    
+    // hand = $('#hours-hand');
+    // offsets = hand.offset();
+    // handCenter = [ offsets.left + hand.width()/2, offsets.top + hand.height() ];
+    // console.log(offsets.left);
+    // $('#clock-wrapper').mousedown(function (e) {
+      // isMouseDown = true;
+      // setClock(e);
+    // })
+    // .mousemove(function (e) {
+      // if (true) {
+        // setClock(e);
+      // }
+    // })
+    // .mouseup(function (e) {
+      // isMouseDown = false
+    // });
+    
 
     leggo.findActivities();
+  }
+  
+  function deselectButton (button) {
+    var newURL = $(button).attr('src');
+    if (newURL !== undefined) {
+      newURL = newURL.split('_')[0];
+      newURL = newURL + '_unsel.png';
+      $(button).attr('src', newURL);
+    }
+  }
+  
+  function selectButton (button) {
+    var newURL = $(button).attr('src');
+    if (newURL !== undefined) {
+      newURL = newURL.split('_')[0];
+      newURL = newURL + '_selected.png';
+      $(button).attr('src', newURL);
+    }
+  }
+  
+  function setClock (e) {
+    var x = e.pageX;
+    var y = e.pageY;
+    
+    var hand = $('#hours-hand');
+    var clock = $('#clock');
+    var offsets = clock.offset();
+    var handCenter = [ offsets.left + clock.width()/2, offsets.top + clock.height()/2 ];
+    console.log(handCenter);
+    // var left = (x - offsets.left)
+    // var top = ((offsets.top + $('#hours-hand').height()) - y)
+    var angle = -1*Math.atan2(x - handCenter[0], y - handCenter[1])*(180/Math.PI);
+    console.log(angle);
+    
+    $('#hours-hand').css('-webkit-transform','rotate('+angle+'deg)');
+    
+    console.log('mouseX: ' + x + ' mouseY: ' + y);
+    console.log('rectX: ' + handCenter[0] + ' rectY: ' + handCenter[1]);
+    // element.style.webkitTransform = "rotate(" + rad + "rad)";
   }
   
   function getLocation() {
@@ -62,7 +159,23 @@
     }
   }
   
-
+  function addMinutes(date, minutes) {
+    return new Date(date.getTime() + minutes*60000);
+  }
+  
+  leggo.changeEndTime = function changeEndTime(amount) {
+    endTime = addMinutes(endTime, amount);
+    if ( endTime.getTime() < currTime.getTime() ) {
+      currTimeStr = currTime.getHours() + ':' + currTime.getMinutes() + ':' + currTime.getSeconds();
+      $('#time-display').text(currTimeStr);
+      $('#time-display').attr('filterValue', currTime.getHours() + currTime.getMinutes()/60);
+    } else {
+      endTimeStr = endTime.getHours() + ':' + endTime.getMinutes() + ':' + endTime.getSeconds();
+      $('#time-display').text(endTimeStr);
+      $('#time-display').attr('filterValue', endTime.getHours() + endTime.getMinutes()/60);
+    }
+  }
+  
   leggo.setActivityID = function setActivityID(id){
     currId= id;
     console.log("Curr id is now" + id);
@@ -122,8 +235,9 @@ function callbackFunc(){
   }
   
   leggo.findActivities = function () {
-    var currTime = new Date();    
-    var startTime = 12;//currTime.getHours() + currTime.getMinutes()/60;
+    currTime = new Date();    
+    var startTime = currTime.getHours() + currTime.getMinutes()/60;
+    
     var someData = {
       'coords': [ latitude, longitude ],
       'starttime': startTime
@@ -132,6 +246,7 @@ function callbackFunc(){
     $('.image-checkbox-checked').each(function (i, n) {
       someData[$(this).attr('filter')] = someData[$(this).attr('filter')] || [];
       someData[$(this).attr('filter')].push($(this).attr('filtervalue'));
+      console.log('filter: ' + $(this).attr('filter') + ' value: ' + $(this).attr('filtervalue'));
     });
   
     $.post('/findactivities', someData, function (data) {
