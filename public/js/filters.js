@@ -42,18 +42,18 @@
     getLocation();
     locationRefreshHandle = setInterval(getLocation, 60000);
     
-    // set up time filter
+    // set up time filter. If the current time catches up to the listed end time, the end time will increment with the current time.
     currTime = new Date();
-    $('#time-display').text(currTime.getHours() + ':' + currTime.getMinutes() + ':' + currTime.getSeconds());
+    $('#time-display').text(toClockString(currTime));
     $('#time-display').attr('filterValue', currTime.toDateString() + ' ' + currTime.toTimeString());
     endTime = new Date(currTime.getTime());
     timeRefreshHandle = setInterval(function () {
       currTime = new Date();
       if (currTime.getTime() > endTime.getTime()) {
-        currTimeStr = currTime.getHours() + ':' + currTime.getMinutes() + ':' + currTime.getSeconds();
-        $('#time-display').text(currTimeStr);
+        // currTimeStr = ((currTime.getHours() > 12) ? currTime.getHours() - 12 : currTime.getHours()) + ':' + ((currTime.getMinutes()<10?'0':'') + currTime.getMinutes());
+        $('#time-display').text(toClockString(currTime));
         $('#time-display').attr('filterValue', currTime.toDateString() + ' ' + currTime.toTimeString());
-        endTime = new Date(currTime.getTime());;
+        endTime = new Date(currTime.getTime());
       }
     }, 500);
     
@@ -82,6 +82,7 @@
       });
     });
     
+    //deselects all the filter options on the current filter
     $('.surprise-button').each(function (i, n) {
       $(this).click( function (e) {
         e.preventDefault();
@@ -92,7 +93,16 @@
         setTimeout(function () { leggo.changeFilter(true); }, 500);
       });
     });
+    $('#time-surprise').unbind('click').click( function (e) {
+      e.preventDefault();
+      $('#time-display').text(toClockString(currTime));
+      $('#time-display').attr('filterValue', currTime.toDateString() + ' ' + currTime.toTimeString());
+      endTime = new Date(currTime.getTime());
+      setTimeout(function () { leggo.changeFilter(true); }, 500);
+    });
     
+    //set click events for increasing and decreasing "endtime" filter
+    //note that ajax won't fire repeatedly if the user rapidly increments/decrements the time
     $('#increment-endtime').click( function (e) {
       e.preventDefault();
       leggo.changeEndTime(5);
@@ -112,6 +122,12 @@
       timeSetHandle = setTimeout(function () {
         leggo.findActivities();
       }, 500);
+    });
+    
+    //enable refresh button. gets new activities
+    $('#refresh-button').click( function (e) {
+      e.preventDefault();
+      leggo.findActivities();
     });
     
     // hand = $('#hours-hand');
@@ -137,6 +153,7 @@
     
   }
   
+  //These next two functions switch the img src of a button with the appropriate selected/unselected image
   function deselectButton (button) {
     var newURL = $(button).attr('src');
     if (newURL !== undefined) {
@@ -145,7 +162,6 @@
       $(button).attr('src', newURL);
     }
   }
-  
   function selectButton (button) {
     var newURL = $(button).attr('src');
     if (newURL !== undefined) {
@@ -155,6 +171,7 @@
     }
   }
   
+  // For that stupid clock I hate. Ignore
   function setClock (e) {
     var x = e.pageX;
     var y = e.pageY;
@@ -184,21 +201,26 @@
     }
   }
   
+  function toClockString (date) {
+    var isPM = date.getHours() > 12;
+    //return ((isPM) ? date.getHours() - 12 : date.getHours()) + ':' + (((date.getMinutes() < 10) ? '0' : '') + currTime.getMinutes()) + ((isPM) ? 'PM' : 'AM');
+    return ((date.getHours() > 12) ? date.getHours() - 12 : date.getHours()) + ':' + ( (date.getMinutes()<10?'0':'') + date.getMinutes() ) + ' ' + ((isPM) ? 'PM' : 'AM');
+  }
+  
   function addMinutes(date, minutes) {
     return new Date(date.getTime() + minutes*60000);
   }
   
+  //adds "amount" minutes to the end time filter
   leggo.changeEndTime = function changeEndTime(amount) {
     endTime = addMinutes(endTime, amount);
     if ( endTime.getTime() < currTime.getTime() ) {
-      currTimeStr = currTime.getHours() + ':' + currTime.getMinutes() + ':' + currTime.getSeconds();
+      currTimeStr = toClockString(currTime);//((currTime.getHours() > 12) ? currTime.getHours() - 12 : currTime.getHours()) + ':' + ( (currTime.getMinutes()<10?'0':'') + currTime.getMinutes() );
       $('#time-display').text(currTimeStr);
-      // $('#time-display').attr('filterValue', currTime.getHours() + currTime.getMinutes()/60);
       $('#time-display').attr('filterValue', currTime.toDateString() + ' ' + currTime.toTimeString());
     } else {
-      endTimeStr = endTime.getHours() + ':' + endTime.getMinutes() + ':' + endTime.getSeconds();
+      endTimeStr = toClockString(endTime);
       $('#time-display').text(endTimeStr);
-      // $('#time-display').attr('filterValue', endTime.getHours() + endTime.getMinutes()/60);
       $('#time-display').attr('filterValue', endTime.toDateString() + ' ' + endTime.toTimeString());
     }
   }
@@ -241,11 +263,9 @@ function callbackFunc(){
   function storePosition(position) {
     longitude = position.coords.longitude;
     latitude = position.coords.latitude;
-  
-    // x.innerHTML="Latitude: " + position.coords.latitude + 
-    // "<br>Longitude: " + position.coords.longitude;	
   }
   
+  //swipes the current filter forward if isNext is true, backward if not
   leggo.changeFilter = function changeFilter (isNext) {
     var currPos = mySwipe.getPos();
     var children = $('.nav-dots').children()[0].children;
@@ -261,6 +281,7 @@ function callbackFunc(){
     $(children[currPos]).addClass('selected');
   }
   
+  //aggregates the currently set filters and returns a list of activities that pass said filters
   leggo.findActivities = function () {
     currTime = new Date();    
     var startTime = currTime.getHours() + currTime.getMinutes()/60;
@@ -270,6 +291,7 @@ function callbackFunc(){
       'starttime': currTime.toDateString() + ' ' + currTime.toTimeString()
     };
     
+    //note that I am pushing filter values to arrays. I'll leave it for now in case we return to non-exclusive buttons
     $('.image-checkbox-checked').each(function (i, n) {
       someData[$(this).attr('filter')] = someData[$(this).attr('filter')] || [];
       someData[$(this).attr('filter')].push($(this).attr('filtervalue'));
@@ -284,7 +306,12 @@ function callbackFunc(){
     });
   }
   
+  //adds activities to the activities page
   function populateActivities (activities) {
+    if (activities.length == 0) {
+      $('#activities-intro').text('No matches found! Edit your filters and try again...');
+    }
+  
     var count = 0;
     $('#activities').children().each( function () {
       var newActivity = activities[count] || false;

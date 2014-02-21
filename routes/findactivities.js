@@ -15,7 +15,7 @@ exports.filter = function (req, res) {
         'longitude': activityCoords[1], },
       { 'latitude': myCoords[0],
         'longitude': myCoords[1] });
-    console.log('distance: ' + distance);
+    //console.log('distance: ' + distance);
     var myTransportation = filters['transportation'] || [];
     var foundMatch = myTransportation.length === 0;
     for (var i = 0; i < myTransportation.length; i++) {
@@ -31,60 +31,23 @@ exports.filter = function (req, res) {
       doesThisMatch = false;
     }
   
-    //time filter
+    //time filter. Is it open + do I have enough time. Note that transportation is NOT considered
     var startDate = new Date(Date.parse(filters['starttime']));
     var endDate = new Date(Date.parse(filters['endtime']));
     var totalHours = (endDate.getTime() - startDate.getTime())/3600000;
-    if (totalHours < activity['length']) {
+    console.log('hours: ' + totalHours);
+    //if time <= 30 min, just pass the filter...
+    if (totalHours < activity['length'] && totalHours > 0.5) {
       doesThisMatch = false;
     }
-    // console.log('day: ' + startDate.getDay());
-    // console.log('time: ' + (startDate.getHours() + startDate.getMinutes()/60));
-    //var day = startDate.getDay();
-    //var time = startDate.getHours() + startDate.getMinutes()/60);
     var hasWeekDays = activity['hours']['weekDays'] !== undefined;
     var hasWeekEnds = activity['hours']['weekEnds'] !== undefined;
     
-    var foundMatch = checkDay(startDate, endDate);
-    
-    function checkDay (start) {
-      var startDay = start.getDay();
-      var startTime = start.getHours() + start.getMinutes()/60);
-      var days = ['sundays', 'mondays', 'tuesdays', 'wednesdays', 'thursdays', 'fridays', 'saturdays'];
-      
-      if (activity['hours']['allDays'] !== undefined) {
-        checkTime(startTime, activity['hours']['allDays']['starttime'], activity['hours']['allDays']['endtime']);
-      }
-      if (startDay < 5) {
-        if (activity['hours']['weekDays'] !== undefined) {
-          //check week days
-        } else if (activity['hours'][days[startDay]] !== undefined) {
-          //check that day
-        }
-      } else {
-        if (activity['hours']['weekEnds'] !== undefined) {
-          //check week ends
-        } else if (activity['hours'][days[startDay]] !== undefined) {
-          //check that day
-        }
-      }
+    var foundMatch = checkDay(startDate, activity);
+    if (!foundMatch) {
+      doesThisMatch = false;
     }
-    
-    function checkTime (myTime, theirStartTimes, theirEndTimes) {
-      var foundMatch = false;
-      for (var i = 0; i < theirStartTimes.length; i++) {
-        if (myTime >= parseFloat(theirStartTimes[i]) && myTime <= parseFloat(theirEndTimes[i])) {
-          foundMatch = true;
-        }
-      }
-      return foundMatch;
-      if (!foundMatch) {
-        doesThisMatch = false;
-      }
-    }
-    
-    
-    
+
     // var myStartTime = parseInt(filters['starttime']);
     // var activityStartTime = activity['starttime'];
     // var timeDiff = myStartTime - activityStartTime;
@@ -94,9 +57,19 @@ exports.filter = function (req, res) {
     // }
     
     //energy level filter
+    var myEnergy = filters['energy'] || [];
+    //if there is no energy filter specified, all activities match
+    var foundMatch = myEnergy.length === 0;
+    for (var i = 0; i < myEnergy.length; i++) {
+      if (activity['energylevel'] == myEnergy[i]) {
+        foundMatch = true;
+      }
+    }
+    if (!foundMatch) {
+      doesThisMatch = false;
+    }
     
-    
-    //number of people filter. Note that there is no 'minpeople' attribute yet
+    //number of people filter. This is currently not used
     var myPeople = filters['people'] || [];
     var foundMatch = myPeople.length === 0;
     for (var i = 0; i < myPeople.length; i++) {
@@ -110,7 +83,7 @@ exports.filter = function (req, res) {
     
     //money filter
     var myMoney = filters['money'] || [];
-    console.log(activity['moneyupperlimit'] <= parseInt(myMoney[i]));
+    //console.log(activity['moneyupperlimit'] <= parseInt(myMoney[i]));
     var foundMatch = myMoney.length === 0;
     for (var i = 0; i < myMoney.length; i++) {
       if (activity['moneyupperlimit'] <= parseInt(myMoney[i])) {
@@ -124,12 +97,56 @@ exports.filter = function (req, res) {
     return doesThisMatch;
   });
 
-  console.log(filtered);
-  //truncate array
+  //console.log(filtered);
+  //truncate and shuffle results
+  var returnedActivities = filtered;
   if (filtered.length > 3) {
-    filtered.length = 3;
+    var indices = [0, 1, 2];
+    indices[1] = Math.floor(1 + Math.random()*(filtered.length - 2));
+    indices[0] = Math.floor(Math.random()*indices[1]);
+    indices[2] = Math.floor(indices[1] + 1 + Math.random()*(filtered.length - indices[1] - 1));
+    returnedActivities = [ filtered[indices[0]], filtered[indices[1]], filtered[indices[2]] ];
   }
-  res.json({ 'activities' : filtered });
+  
+  res.json({ 'activities' : returnedActivities });
+}
+
+function checkDay (start, activity) {
+  var startDay = start.getDay();
+  var startTime = (start.getHours() + start.getMinutes()/60);
+  var days = ['sundays', 'mondays', 'tuesdays', 'wednesdays', 'thursdays', 'fridays', 'saturdays'];
+  
+  if (activity['hours']['allDays'] !== undefined) {
+    return checkTime(startTime, activity['hours']['allDays']['starttime'], activity['hours']['allDays']['endtime']);
+  }
+  if (startDay < 5) {
+    if (activity['hours']['weekDays'] !== undefined) {
+      return checkTime(startTime, activity['hours']['weekDays']['starttime'], activity['hours']['weekDays']['endtime']);
+    } else if (activity['hours'][days[startDay]] !== undefined) {
+      return checkTime(startTime, activity['hours'][days[startDay]]['starttime'], activity['hours'][days[startDay]]['endtime']);
+    } else {
+      return false;
+    }
+  } else {
+    if (activity['hours']['weekEnds'] !== undefined) {
+      return checkTime(startTime, activity['hours']['weekEnds']['starttime'], activity['hours']['weekEnds']['endtime']);
+    } else if (activity['hours'][days[startDay]] !== undefined) {
+      return checkTime(startTime, activity['hours'][days[startDay]]['starttime'], activity['hours'][days[startDay]]['endtime']);
+    } else {
+      return false;
+    }
+  }
+  return false;
+}
+
+function checkTime (myTime, theirStartTimes, theirEndTimes) {
+  var foundMatch = false;
+  for (var i = 0; i < theirStartTimes.length; i++) {
+    if (myTime >= parseFloat(theirStartTimes[i]) && myTime <= parseFloat(theirEndTimes[i])) {
+      foundMatch = true;
+    }
+  }
+  return foundMatch;
 }
 
 //taken from some random guy on internet
