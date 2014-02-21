@@ -54,7 +54,7 @@
       }
     }, 500);
     
-    //enable filter buttons. TODO: make these exclusive
+    //enable filter buttons
     $('.image-checkbox').each(function (i, n) {
       $(this).click( function (e) {
         e.preventDefault();
@@ -63,10 +63,19 @@
           button.removeClass('image-checkbox-checked');
           button.addClass('image-checkbox');
         } else {
+          button.removeClass('image-checkbox');
           button.siblings('.image-checkbox-checked').removeClass('image-checkbox-checked');
           button.addClass('image-checkbox-checked');
         }
         leggo.findActivities();
+        leggo.changeFilter(true);
+      });
+    });
+    
+    $('.surprise-button').each(function (i, n) {
+      $(this).click( function (e) {
+        e.preventDefault();
+        var buttons = $(this).parent().parent().find('.icons').children().removeClass('image-checkbox-checked').addClass('image-checkbox');
         leggo.changeFilter(true);
       });
     });

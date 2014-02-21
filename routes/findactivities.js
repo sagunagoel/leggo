@@ -40,6 +40,11 @@ exports.filter = function (req, res) {
       doesThisMatch = false;
     }
     
+    //end time filter
+    
+    //energy level filter
+    
+    
     //number of people filter. Note that there is no 'minpeople' attribute yet
     var myPeople = filters['people'] || [];
     var foundMatch = myPeople.length === 0;
