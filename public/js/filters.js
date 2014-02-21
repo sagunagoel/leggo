@@ -9,6 +9,7 @@
   var activityData = {};
 
   leggo.initializePage = function () {
+    // $('#help-button').popover();
     // pure JS
     var elem = document.getElementById('slider');
     window.mySwipe = Swipe(elem, {
@@ -77,6 +78,17 @@
      $("#needs-detail").text(result['activities'][currId-1]['thingslist']);
   }  
 
+  leggo.testingfunction = function testingfunction(){
+    console.log(currId);
+    window.location.replace("/finalactivity/"+currId);
+    // $("#finaldetails").load("/chosenactivity", currId, callbackFunc);
+    // $("#finaldetails").text("<p>KILL ME NOW </p>");
+  }
+
+function callbackFunc(){
+
+  console.log("performed");
+}
   
   function storePosition(position) {
     longitude = position.coords.longitude;

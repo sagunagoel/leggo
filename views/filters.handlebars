@@ -13,10 +13,14 @@
 <body>
   <div class="root-container">
     <section class="banner">
-      <div class="banner-text">
+      <div class="banner-text" onclick="window.location.href='/';">
+        <img src="/images/homeicon.png" style= "height:18px; width: 18px;">
         LEGGO!
       </div>
       <div class="help-button">
+        <!-- <div id="help-button" data-toggle="popover" data-placement="left" data-html="false" data-content="Go to google" data-original-title="Words" title="tiles"> 
+        <img src="/images/homeicon.png" width=20px />
+      </div> -->
         <a href="/help">
           <img src="http://i.imgur.com/371okK5.png" title="Hosted by imgur.com" />
         </a>
@@ -228,14 +232,6 @@
             </div>
           </section>
         
-          <!-- <section class="outro">
-            <div class="outro-text">
-              Or leave this option up to chance and continue...
-            </div>
-            <button class="start-button" onclick="leggo.changeFilter(true)">
-               Surprise Me!
-            </button>
-          </section> -->
         </div>
 
       
@@ -254,9 +250,6 @@
       <div id="needs-detail">
       </div> 
 
-        <!-- <div class="distance"> 
-          </br> <span class="bold-text"> Distance: </span> 29 mi 
-        </div> -->
       <div class="descrip-text">
         </br> <span class="bold-text"> Description: </span>
         <div id="descrip-detail">
@@ -264,16 +257,20 @@
       </div>
     </div>
   </section>
+
       
       <section class="outro">
-        <button class="start-button" onclick="leggo.changeFilter(true)">
+        <button class="start-button" onclick="leggo.testingfunction()">
           LEGGO!
         </button>
         <button class="back-button" onclick="leggo.changeFilter(false)"> 
         Or, go back to options 
         </button>
       </section>
-            </div>
+      </div>
+
+
+
 <div>
   <section class="intro">
             Hope you had fun!
@@ -301,13 +298,16 @@
         <li>2</li>
         <li>3</li>
         <li>4</li>
+        <li>!</li>
       </ul>
     </nav>
   </div>
   
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="js/bootstrap.js"></script>
   <script src='js/filters.js'></script>
   <script src='js/swipe.js'></script>
+  
   <script>
     $(document).ready( function () {
       leggo.initializePage();
