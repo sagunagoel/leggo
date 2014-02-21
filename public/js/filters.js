@@ -2,8 +2,10 @@
 
   var longitude = null;
   var latitude = null;
-  var locationRefreshInterval = null;
-  var timeRefreshInterval = null;
+  var locationRefreshHandle = null;
+  var timeRefreshHandle = null;
+  var timeSetHandle = null;
+  var activityRefreshHandle = null;
   
   var currId;
   
@@ -38,19 +40,19 @@
     
     $('#help-button').popover();
     getLocation();
-    locationRefreshInterval = setInterval(getLocation, 60000);
+    locationRefreshHandle = setInterval(getLocation, 60000);
     
     // set up time filter
     currTime = new Date();
     $('#time-display').text(currTime.getHours() + ':' + currTime.getMinutes() + ':' + currTime.getSeconds());
-    $('#time-display').attr('filterValue', currTime.getHours() + currTime.getMinutes()/60);
+    $('#time-display').attr('filterValue', currTime.toDateString() + ' ' + currTime.toTimeString());
     endTime = new Date(currTime.getTime());
-    timeRefreshInterval = setInterval(function () {
+    timeRefreshHandle = setInterval(function () {
       currTime = new Date();
       if (currTime.getTime() > endTime.getTime()) {
         currTimeStr = currTime.getHours() + ':' + currTime.getMinutes() + ':' + currTime.getSeconds();
         $('#time-display').text(currTimeStr);
-        $('#time-display').attr('filterValue', currTime.getHours() + currTime.getMinutes()/60);
+        $('#time-display').attr('filterValue', currTime.toDateString() + ' ' + currTime.toTimeString());
         endTime = new Date(currTime.getTime());;
       }
     }, 500);
@@ -91,6 +93,27 @@
       });
     });
     
+    $('#increment-endtime').click( function (e) {
+      e.preventDefault();
+      leggo.changeEndTime(5);
+      if (timeSetHandle !== null) {
+        clearTimeout(timeSetHandle);
+      }
+      timeSetHandle = setTimeout(function () {
+        leggo.findActivities();
+      }, 500);
+    });
+    $('#decrement-endtime').click( function (e) {
+      e.preventDefault();
+      leggo.changeEndTime(-5);
+      if (timeSetHandle !== null) {
+        clearTimeout(timeSetHandle);
+      }
+      timeSetHandle = setTimeout(function () {
+        leggo.findActivities();
+      }, 500);
+    });
+    
     // hand = $('#hours-hand');
     // offsets = hand.offset();
     // handCenter = [ offsets.left + hand.width()/2, offsets.top + hand.height() ];
@@ -110,6 +133,8 @@
     
 
     leggo.findActivities();
+    activityRefreshHandle = setInterval(leggo.findActivities, 300000);
+    
   }
   
   function deselectButton (button) {
@@ -168,11 +193,13 @@
     if ( endTime.getTime() < currTime.getTime() ) {
       currTimeStr = currTime.getHours() + ':' + currTime.getMinutes() + ':' + currTime.getSeconds();
       $('#time-display').text(currTimeStr);
-      $('#time-display').attr('filterValue', currTime.getHours() + currTime.getMinutes()/60);
+      // $('#time-display').attr('filterValue', currTime.getHours() + currTime.getMinutes()/60);
+      $('#time-display').attr('filterValue', currTime.toDateString() + ' ' + currTime.toTimeString());
     } else {
       endTimeStr = endTime.getHours() + ':' + endTime.getMinutes() + ':' + endTime.getSeconds();
       $('#time-display').text(endTimeStr);
-      $('#time-display').attr('filterValue', endTime.getHours() + endTime.getMinutes()/60);
+      // $('#time-display').attr('filterValue', endTime.getHours() + endTime.getMinutes()/60);
+      $('#time-display').attr('filterValue', endTime.toDateString() + ' ' + endTime.toTimeString());
     }
   }
   
@@ -240,7 +267,7 @@ function callbackFunc(){
     
     var someData = {
       'coords': [ latitude, longitude ],
-      'starttime': startTime
+      'starttime': currTime.toDateString() + ' ' + currTime.toTimeString()
     };
     
     $('.image-checkbox-checked').each(function (i, n) {

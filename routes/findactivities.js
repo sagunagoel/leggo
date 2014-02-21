@@ -31,16 +31,67 @@ exports.filter = function (req, res) {
       doesThisMatch = false;
     }
   
-    //start time filter
-    var myStartTime = parseInt(filters['starttime']);
-    var activityStartTime = activity['starttime'];
-    var timeDiff = myStartTime - activityStartTime;
-    //console.log('starttime diff: ' + timeDiff);
-    if (timeDiff < 0) {
+    //time filter
+    var startDate = new Date(Date.parse(filters['starttime']));
+    var endDate = new Date(Date.parse(filters['endtime']));
+    var totalHours = (endDate.getTime() - startDate.getTime())/3600000;
+    if (totalHours < activity['length']) {
       doesThisMatch = false;
     }
+    // console.log('day: ' + startDate.getDay());
+    // console.log('time: ' + (startDate.getHours() + startDate.getMinutes()/60));
+    //var day = startDate.getDay();
+    //var time = startDate.getHours() + startDate.getMinutes()/60);
+    var hasWeekDays = activity['hours']['weekDays'] !== undefined;
+    var hasWeekEnds = activity['hours']['weekEnds'] !== undefined;
     
-    //end time filter
+    var foundMatch = checkDay(startDate, endDate);
+    
+    function checkDay (start) {
+      var startDay = start.getDay();
+      var startTime = start.getHours() + start.getMinutes()/60);
+      var days = ['sundays', 'mondays', 'tuesdays', 'wednesdays', 'thursdays', 'fridays', 'saturdays'];
+      
+      if (activity['hours']['allDays'] !== undefined) {
+        checkTime(startTime, activity['hours']['allDays']['starttime'], activity['hours']['allDays']['endtime']);
+      }
+      if (startDay < 5) {
+        if (activity['hours']['weekDays'] !== undefined) {
+          //check week days
+        } else if (activity['hours'][days[startDay]] !== undefined) {
+          //check that day
+        }
+      } else {
+        if (activity['hours']['weekEnds'] !== undefined) {
+          //check week ends
+        } else if (activity['hours'][days[startDay]] !== undefined) {
+          //check that day
+        }
+      }
+    }
+    
+    function checkTime (myTime, theirStartTimes, theirEndTimes) {
+      var foundMatch = false;
+      for (var i = 0; i < theirStartTimes.length; i++) {
+        if (myTime >= parseFloat(theirStartTimes[i]) && myTime <= parseFloat(theirEndTimes[i])) {
+          foundMatch = true;
+        }
+      }
+      return foundMatch;
+      if (!foundMatch) {
+        doesThisMatch = false;
+      }
+    }
+    
+    
+    
+    // var myStartTime = parseInt(filters['starttime']);
+    // var activityStartTime = activity['starttime'];
+    // var timeDiff = myStartTime - activityStartTime;
+    // //console.log('starttime diff: ' + timeDiff);
+    // if (timeDiff < 0) {
+      // doesThisMatch = false;
+    // }
     
     //energy level filter
     
