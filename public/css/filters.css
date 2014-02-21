@@ -50,7 +50,7 @@
 
 #help-button {
   text-align: right;
-  color: #3a3a3a;
+
 }
 
 /*first text block. not that useful a description I know*/
@@ -102,13 +102,23 @@
   vertical-align: top;
   
   padding: 50px 0 0 0;
-  width: 15%;
+  width: 10%;
   height: 100%;
 }
 
-.prev-filter {}
+.previous-filter {
+  background: transparent;
+  border: none !important;
+  color:#f37f47;
+  font-size:30px;
+}
 
-.next-filter {}
+.next-filter {
+  background: transparent;
+  border: none !important;
+  color:#f37f47;
+  font-size:30px;
+}
 
 
 
