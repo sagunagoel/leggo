@@ -24,20 +24,27 @@
     // with jQuery
     // window.mySwipe = $('#mySwipe').Swipe().data('Swipe');
     
-
+    $('#help-button').popover();
     getLocation();
     locationRefreshInterval = setInterval(getLocation, 60000);
     
     $('.image-checkbox').each(function (i, n) {
       $(this).click( function (e) {
+        console.log('hi!');
         e.preventDefault();
-        var thisjQuery = $(this);
-        if (thisjQuery.hasClass('image-checkbox-checked')) {
-          thisjQuery.removeClass('image-checkbox-checked');
-          thisjQuery.addClass('image-checkbox');
+        var button = $(this);
+        if (button.hasClass('image-checkbox-checked')) {
+          button.removeClass('image-checkbox-checked');
+          button.addClass('image-checkbox');
+          var newURL = button.attr('src').split('_')[0];
+          newURL = newURL + '_unsel.png';
+          button.attr('src', newURL);
         } else {
-          thisjQuery.removeClass('image-checkbox');
-          thisjQuery.addClass('image-checkbox-checked');
+          button.removeClass('image-checkbox');
+          button.addClass('image-checkbox-checked');
+          var newURL = button.attr('src').split('_')[0];
+          newURL = newURL + '_selected.png';
+          button.attr('src', newURL);
         }
         leggo.findActivities();
       });
@@ -75,6 +82,7 @@
     $("#img-detail").attr('src', result['activities'][currId-1]['imageURL']);
     $("#descrip-detail").text(result['activities'][currId-1]['description']);
      $("#needs-detail").text(result['activities'][currId-1]['thingslist']);
+     $("#cost-detail").text("$" + result['activities'][currId-1]['moneyupperlimit']);
   }  
 
   

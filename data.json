@@ -63,9 +63,11 @@
             "energylevel": 2,
             "moneyupperlimit": 0,
             "description": "Los Trancos Open Space Preserve is situated at about 2,000 feet and always has fresh air scented with pungent bay leaves, sweet grass, and damp woods. Here, visitors will find a pleasant environment of rolling grassland knolls alternating with oak woodland and cool shaded forest. On a clear day, one can spot the gleaming skyscrapers of San Francisco and pick out Mt. Diablo across the bay.",
-            "imageURL": "/images/lostranco-olabel.jpg",
+            "imageURL": "/images/lostrancos-olabel.jpg",
             "thingslist": [
-                "Trail Map: http://www.openspace.org/preserves/maps/pr_los_trancos.pdf"
+                "Trail Map",
+                "Water",
+                "Walking shoes"
             ],
             "moreinfoURL": "http://www.openspace.org/preserves/pr_los_trancos.asp"
         },
@@ -98,7 +100,7 @@
             "energylevel": 2,
             "moneyupperlimit": 0,
             "description": "Geocaching is a real-world, outdoor treasure hunting game using GPS-enabled devices. Navigate to a specific set of GPS coordinates and then attempt to find the geocache (container) hidden at that location. Go here to find a treasure and replace it with something new: http://www.geocaching.com/",
-            "imageURL": "/images/3geocahe-olabel.jpg",
+            "imageURL": "/images/3geocache-olabel.jpg",
             "thingslist": [
                 "Smartphone with Geocaching app OR GPS tracker",
                 "Something small to hide",

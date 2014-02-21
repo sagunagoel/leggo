@@ -11,6 +11,7 @@ $(document).ready(function() {
 function initializePage() {
 	console.log("Javascript connected!");
 	$("a.friendname").click(friendClick);
+	$('#help-button').popover();
 }
 
 
