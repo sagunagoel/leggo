@@ -152,6 +152,15 @@ a:link{
   font-size:1em;
 }
 
+.back-help{
+  background-color:#f37f47;
+  border:none;
+  border-radius:3px;
+  float: right;
+  color:#FFFFFF;
+  font-size:0.75em;
+}
+
 /* nav dots */
 .nav-dots {
   display: block;
