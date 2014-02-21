@@ -48,8 +48,9 @@
   text-align: left;
 }
 
-.help-button {
+#help-button {
   text-align: right;
+  color: #3a3a3a;
 }
 
 /*first text block. not that useful a description I know*/
@@ -59,7 +60,7 @@
   margin: 20px auto 0 auto;
   border-radius:5px 5px 0 0;
   padding: 20px;
-  width: 70%;
+  width: 90%;
   
   text-align: center;
   background-color: #e0e4cc;
@@ -82,6 +83,17 @@
   display: block;
   margin: 30px auto 0 auto;
   width: 25%;
+}
+
+.images  {
+  display: inline-block;
+  vertical-align: top;
+  width: 60%
+}
+.icons img {
+  display: block;
+  margin: 10px auto 0 auto;
+  width: 50%;
 }
 
 /* navigation panels are containers for previous/next filter buttons */
@@ -109,9 +121,9 @@
 .outro {
   display:block;
   position: relative;
-  margin: 50px auto 0 auto;
+  margin: 20px auto 0 auto;
   padding: 10px 20px;
-  width: 70%;
+  width: 90%;
   border-radius:0 0 5px 5px;
   text-align: center;
   font: 'Helvetica Light', 'Helvetica', Arial, sans-serif;
@@ -167,10 +179,12 @@ body {
   padding: 10px; /*centers guts*/
 }
 
+
+/* RESULTS PAGE */
 .picture {
   display:block;
 
-  width: 70%;
+  width: 90%;
   margin: 20px auto 0 auto;
  
   border-radius: 5px 5px 0 0;
@@ -192,31 +206,41 @@ body {
 /*description of activity*/
 .info {
   display: block;
-  width:70%;
+  width:90%;
   margin: 0 auto;
   border: 1px solid #e0e4cc;
+  padding: 10px;
   
+
   color:#3a3a3a;
   font-size: .75em;
-}
-.detail-text {
-  padding: 10px;
 }
 
 /* outro section with text + start button */
 .outro-details {
-  margin: 0 20px 20px 20px;
-  height: 20%;
+  margin: 0 auto;
+  width: 90%;
+
   
   border-radius:0 0 5px 5px;
   color:#3a3a3a;
   text-align: center;
   background-color: #e0e4cc;
 }
+.back-button {
+  padding: 5px;
+  background-color:#FFFFFF;
+  border:none;
+  border-radius:3px;
+  
+  color:#3a3a3a;
+  font-size:1em;;
+}
  /*image for each activity choice */
 .act-img {
   max-width: 100%;
   margin: 10px auto;
+
 }
 
 .accordion{
@@ -228,4 +252,5 @@ body {
 .accordion-toggle{
   background-color: #8ac2bf;
   color: #FFFFFF;
+
 }

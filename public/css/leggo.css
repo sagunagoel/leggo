@@ -24,7 +24,7 @@
 }
 
 
-.help-button {
+#help-button {
   float: right;
 }
 
@@ -34,7 +34,7 @@
   position: relative;
   margin: 20px auto 0 auto;
   padding: 20px;
-  width: 70%;
+  width: 90%;
   border-radius: 5px 5px 0 0;
   color:3a3a3a;
   
@@ -48,7 +48,7 @@
   position: relative;
   margin: 0 auto 0 auto;
   padding: 20px;
-  width: 70%;
+  width: 90%;
   
   color:#3a3a3a;
   text-align:center;
@@ -72,7 +72,7 @@
   position: relative;
   margin: 0 auto 0 auto;
   padding: 30px 10px 30px 10px;
-  width: 70%;
+  width: 90%;
   border-radius:0 0 5px 5px;
   
   color:#3a3a3a;
