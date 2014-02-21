@@ -6,16 +6,23 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-	<link href="css/bootstrap.css" rel="stylesheet">
-	<link href="css/bootstrap-theme.css" rel="stylesheet">
-	<link href="css/hci-friends.css" rel="stylesheet">       
+	<link href="css/filters.css" rel="stylesheet">   
+	<link href="css/swipe.css" rel="stylesheet">         
 </head>
 
 <body>
-	<div class="container">
-	<!-- <button class="btn btn-default"><a href = "/"> Start Over </a></button> -->
-	<input type="button" class="btn btn-default" value="Back" onclick="history.back(-1)"/>
-	<p> 
+	<div class="root-container">
+    <section class="banner">
+      <div class="banner-text" onclick="window.location.href='/';">
+        <img src="/images/homeicon.png" style= "height:18px; width: 18px;">
+        LEGGO!
+      </div>
+
+		<button class="back-help" onclick="history.back(-1)">
+          Back
+        </button>
+ 	</div>
+	
 		Welcome to LEGGO!, your spontaneous activity recommendation service! </br></br>
 
 	<b> What do I do now? </b></br> Press the orange LEGGO! button to start answering a few questions about the kind of activity that’s right for you, right now. You’ll help us generate 3 possible activities for you to check out, and when you’re ready to pick one, press LEGGO! one more time. 
@@ -30,6 +37,7 @@
 	<b> How can I submit ideas for activities? </b></br> We’re always looking for new ideas! email us at leggoadventures@gmail.com
 
 	</p>
+
 
 	<script src="js/jquery-1.11.0.js"></script>
 	<script src="js/bootstrap.js"></script>
