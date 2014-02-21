@@ -55,14 +55,56 @@
             <div class="outro-text">
               Or leave this option up to chance and continue...
             </div>
-            <button class="start-button" onclick="leggo.changeFilter(true)">
+            <button class="start-button surprise-button">
+               Surprise Me!
+            </button>
+          </section>
+          
+        </div>
+        
+        <div>
+          <section class="intro">
+            How energetic are you feeling?
+          </section>
+          
+          <section class="filter-body">
+            <div class="navigation-panel">
+              <button class="previous-filter" onclick="leggo.changeFilter(false)">
+                prev
+              </button>
+            </div>
+            
+            <section class="icons">
+              <button filter="energy" filtervalue="1" class="image-checkbox">
+                I want to relax a bit
+              </button>
+              <button filter="energy" filtervalue="2" class="image-checkbox">
+                Feeling restless
+              </button>
+              <button filter="energy" filtervalue="3" class="image-checkbox">
+                I need to move!
+              </button>
+            </section>
+            
+            <div class="navigation-panel">
+              <button class="next-filter" onclick="leggo.changeFilter(true)">
+                next
+              </button>
+            </div>
+          </section>
+          
+           <section class="outro">
+            <div class="outro-text">
+              Or leave this option up to chance and continue...
+            </div>
+            <button class="start-button surprise-button">
                Surprise Me!
             </button>
           </section>
           
         </div>
       
-        <div>
+        <!-- <div>
         
           <section class="intro">
             How many are you?
@@ -98,12 +140,12 @@
             <div class="outro-text">
               Or leave this option up to chance and continue...
             </div>
-            <button class="start-button" onclick="leggo.changeFilter(true)">
+            <button class="start-button surprise-button">
                Surprise Me!
             </button>
           </section>
         
-        </div>
+        </div> -->
         
         <div>
         
@@ -147,7 +189,7 @@
             <div class="outro-text">
               Or leave this option up to chance and continue...
             </div>
-            <button class="start-button" onclick="leggo.changeFilter(true)">
+            <button class="start-button surprise-button">
                Surprise Me!
             </button>
           </section>
@@ -157,7 +199,7 @@
 
         
         
-        <!-- <div>
+        <div>
         
           <section class="intro">
             When do you need to get back?
@@ -171,7 +213,15 @@
             </div>
             
             <section class="icons">
-              <img id="clock" src="http://i.imgur.com/D35yWQ4.jpg" title="Hosted by imgur.com" />
+              <button onclick="leggo.changeEndTime(5)">
+                +
+              </button>
+              <div id="time-display" filter="endtime" filtervalue="0" class="image-checkbox">
+                
+              </div>
+              <button onclick="leggo.changeEndTime(-5)">
+                -
+              </button>
             </section>
             
             <div class="navigation-panel">
@@ -185,12 +235,12 @@
             <div class="outro-text">
               Or leave this option up to chance and continue...
             </div>
-            <button class="start-button" onclick="leggo.changeFilter(true)">
+            <button class="start-button surprise-button">
                Surprise Me!
             </button>
           </section>
         
-        </div> -->
+        </div>
 
 
         <div>
@@ -221,7 +271,6 @@
             <div class="navigation-panel">
             </div>
           </section>
-        
         </div>
 
       
