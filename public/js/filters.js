@@ -42,13 +42,13 @@
     
     // set up time filter
     currTime = new Date();
-    $('#time-display').text(currTime.getHours() + ':' + currTime.getMinutes() + ':' + currTime.getSeconds());
-    $('#time-display').attr('filterValue', currTime.getHours() + currTime.getMinutes()/60);
+    $('#time-display').text(currTime.getHours() + ':' + ((currTime.getMinutes()<10?'0':'') + currTime.getMinutes()));
+    $('#time-display').attr('filterValue', currTime.getHours() + (currTime.getMinutes()<10?'0':'') + currTime.getMinutes()/60);
     endTime = new Date(currTime.getTime());
     timeRefreshInterval = setInterval(function () {
       currTime = new Date();
       if (currTime.getTime() > endTime.getTime()) {
-        currTimeStr = currTime.getHours() + ':' + currTime.getMinutes() + ':' + currTime.getSeconds();
+        currTimeStr = currTime.getHours() + ':' + ((currTime.getMinutes()<10?'0':'') + currTime.getMinutes());
         $('#time-display').text(currTimeStr);
         $('#time-display').attr('filterValue', currTime.getHours() + currTime.getMinutes()/60);
         endTime = new Date(currTime.getTime());;
@@ -166,11 +166,11 @@
   leggo.changeEndTime = function changeEndTime(amount) {
     endTime = addMinutes(endTime, amount);
     if ( endTime.getTime() < currTime.getTime() ) {
-      currTimeStr = currTime.getHours() + ':' + currTime.getMinutes() + ':' + currTime.getSeconds();
+      currTimeStr = currTime.getHours() + ':' + ( (currTime.getMinutes()<10?'0':'') + currTime.getMinutes() );
       $('#time-display').text(currTimeStr);
       $('#time-display').attr('filterValue', currTime.getHours() + currTime.getMinutes()/60);
     } else {
-      endTimeStr = endTime.getHours() + ':' + endTime.getMinutes() + ':' + endTime.getSeconds();
+      endTimeStr = endTime.getHours() + ':' + ( (endTime.getMinutes()<10?'0':'') + endTime.getMinutes() );
       $('#time-display').text(endTimeStr);
       $('#time-display').attr('filterValue', endTime.getHours() + endTime.getMinutes()/60);
     }

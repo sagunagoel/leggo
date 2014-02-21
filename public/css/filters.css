@@ -62,7 +62,7 @@
   text-align: left;
 }
 
-#help-button {
+.help-button {
   text-align: right;
 
 }
@@ -74,7 +74,7 @@
   margin: 20px auto 0 auto;
   border-radius:5px 5px 0 0;
   padding: 20px;
-  width: 90%;
+  width: 80%;
   
   text-align: center;
   background-color: #e0e4cc;
@@ -91,19 +91,19 @@
   display: inline-block;
   position: relative;
   vertical-align: top;
-  width: 60%
+  width: 70%
 }
 
 .icons button {
   display: block;
+  padding: 5px;
   margin: 30px auto 0 auto;
-  width: 25%;
 }
 
 .images  {
   display: inline-block;
-  vertical-align: top;
-  width: 60%
+  margin:0 auto;
+ width:90%;
 }
 .icons img {
   display: block;
@@ -126,6 +126,7 @@
   border: none !important;
   color:#f37f47;
   font-size:30px;
+  float:left;
 }
 
 .next-filter {
@@ -133,6 +134,7 @@
   border: none !important;
   color:#f37f47;
   font-size:30px;
+  float:right;
 }
 
 
@@ -148,7 +150,7 @@
   position: relative;
   margin: 20px auto 0 auto;
   padding: 10px 20px;
-  width: 90%;
+  width: 80%;
   border-radius:0 0 5px 5px;
   text-align: center;
   font: 'Helvetica Light', 'Helvetica', Arial, sans-serif;
@@ -216,6 +218,11 @@ body {
   background-color: #e0e4cc;
 }
 
+#activities {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .picture > p{
   font-weight: bold;
   font-color: #3a3a3a;
@@ -245,6 +252,7 @@ body {
 .outro-details {
   margin: 0 auto;
   width: 90%;
+  padding: 10px;
 
   
   border-radius:0 0 5px 5px;
@@ -264,8 +272,7 @@ body {
  /*image for each activity choice */
 .act-img {
   max-width: 100%;
-  margin: 10px auto;
-
+  margin:auto;
 }
 
 .accordion{

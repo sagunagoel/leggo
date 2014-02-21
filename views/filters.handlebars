@@ -18,7 +18,7 @@
         LEGGO!
       </div>
 
-      <div id="help-button"> 
+      <div class="help-button"> 
           <img src="/images/helpicon.png" width=20px />
       </div>
     </section>
@@ -70,7 +70,7 @@
           <section class="filter-body">
             <div class="navigation-panel">
               <button class="previous-filter" onclick="leggo.changeFilter(false)">
-                prev
+                &lt;
               </button>
             </div>
             
@@ -88,7 +88,7 @@
             
             <div class="navigation-panel">
               <button class="next-filter" onclick="leggo.changeFilter(true)">
-                next
+                &gt;
               </button>
             </div>
           </section>
@@ -164,17 +164,11 @@
               <button filter="money" filtervalue="0" class="image-checkbox">
                 Nothing!
               </button>
-              <button filter="money" filtervalue="10" class="image-checkbox">
-                $10
-              </button>
               <button filter="money" filtervalue="25" class="image-checkbox">
-                $25
+                Under $25
               </button>
-              <button filter="money" filtervalue="45" class="image-checkbox">
-                $45
-              </button>
-              <button filter="money" filtervalue="70" class="image-checkbox">
-                $70
+              <button filter="money" filtervalue="100" class="image-checkbox">
+                $25 +
               </button>
             </section>
             
@@ -208,7 +202,7 @@
           <section class="filter-body">
             <div class="navigation-panel">
               <button class="previous-filter" onclick="leggo.changeFilter(false)">
-                prev
+                &lt;
               </button>
             </div>
             
@@ -226,7 +220,7 @@
             
             <div class="navigation-panel">
               <button class="next-filter" onclick="leggo.changeFilter(true)">
-                next
+                &gt;
               </button>
             </div>
           </section>
@@ -248,30 +242,28 @@
             Here are your activities. Pick one!:
           </section>
           <section class="filter-body">
-            <div class="navigation-panel">
-              <button class="previous-filter" onclick="leggo.changeFilter(false)">
-                &lt;
-              </button>
-            </div>
-            
             <section class="images">
-            
-
-        <div id="activities">
-          {{#each activities}}
-          <div class="activity-display">
-            <a href="#" activityid="{{id}}" >
-              <img src="{{imageURL}}" class="act-img">
-            </a>
-          </div>
-          {{/each}}
-        </div>
-         </section>
-            
-            <div class="navigation-panel">
-            </div>
+              <div id="activities">
+                {{#each activities}}
+                  <div class="activity-display">
+                    <a href="#" activityid="{{id}}" >
+                    <img src="{{imageURL}}" class="act-img">
+                    </a>
+                  </div>
+                {{/each}}
+              </div>
+            </section>
+            <section class="outro-details">
+              <button class="start-button refresh-button">
+                Surprise Me!
+              </button></br>
+              <button class="back-button" onclick="leggo.changeFilter(false)"> 
+               Or, go back to activities 
+              </button>
+            </section>
           </section>
         </div>
+
 
       
 <div>
