@@ -23,6 +23,8 @@ var details = require('./routes/details');
 var chosen = require('./routes/chosenactivity');
 var reflection = require('./routes/reflection');
 var help = require('./routes/help');
+
+// var newPage= require('./routes/chosenactivity')
 // Example route
 // var user = require('./routes/user');
 
@@ -64,6 +66,7 @@ app.get('/details', details.view);
 app.get('/chosenactivity', chosen.view);
 app.get('/reflection', reflection.view);
 app.get('/help', help.view);
+app.get('/finalactivity/:id', chosen.view)
 // Example route
 // app.get('/users', user.list);
 

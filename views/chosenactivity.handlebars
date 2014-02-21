@@ -2,26 +2,112 @@
 
 <html>
 <head>
-	<title>Leggo</title>	
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-	<link href="css/bootstrap.css" rel="stylesheet">
-	<link href="css/bootstrap-theme.css" rel="stylesheet">
-	<link href="css/hci-friends.css" rel="stylesheet">       
+  <title>Leggo</title>  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link href="/css/bootstrap-new.css" rel="stylesheet">
+  <link href="/css/filters.css" rel="stylesheet">   
+  <link href="/css/swipe.css" rel="stylesheet">   
 </head>
 
 <body>
-	<div class="container">
-	<button class="btn btn-default"><a href = "/"> Start Over </a></button>
-	<button class="btn btn-default"><a href = "/help"> Help </a></button>
-	<input type="button" class="btn btn-default" value="Back To Results" onclick="history.back(-1)"/>
-	<h1> CHOSEN ACTIVITY: Dish Hike! </h1>
-	<form id="addFriendForm" role="form" method="get" action="/reflection">
-	    <input type="submit" id="submitBtn" class="btn btn-default" value="DONE!"></input>
-	</form>
-	<script src="js/jquery-1.11.0.js"></script>
-	<script src="js/bootstrap.js"></script>
-	<script src="js/hci-friends.js"></script>
+  <div class="root-container">
+    <section class="banner">
+      <div class="banner-text" onclick="window.location.href='/';">
+        <img src="/images/homeicon.png" style= "height:15px; width: 15px;">
+        LEGGO!
+      </div>
+      <div class="help-button">
+        <a href="/help">
+          <img src="http://i.imgur.com/371okK5.png" title="Hosted by imgur.com" />
+        </a>
+      </div>
+      <!-- <div class="help-button">
+    <div id="help-button" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Go to google" data-original-title="Words" title="tiles"> 
+      <img src="/images/homeicon.png" width=20px />
+      </div> -->
+
+      <!-- <a href="/help">
+        <img src="http://i.imgur.com/371okK5.png" title="Hosted by imgur.com" />
+      </a> -->
+    </section>
+
+      <div>
+      <section class= "#details-page">
+      <section class="picture">
+        <p>Hooray! </br>
+          You are now ready to get started.</p>
+        <img id="img-detail"/>
+      </section>
+
+      <section class="info" id="info">
+          <div class="activity-display">
+              <a href="#" activityid="{{id}}" >
+                <img src="{{imageURL}}" class="act-img">
+              </a>
+          </div>
+
+<div id="scrolly" style="overflow-y: hidden; overflow-x: hidden;">
+      <div class="accordion" id="accordion2">
+      <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                General Information >> 
+            </a>
+        </div>
+        <div id="collapseOne" class="accordion-body collapse in">
+          <div class="accordion-inner">
+            Cost:${{moneyupperlimit}}
+            Address: {{address}}
+          </div>
+        </div>
+      </div>
+        
+      <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                Description >>
+            </a>
+        </div>
+        <div id="collapseTwo" class="accordion-body collapse">
+          <div class="accordion-inner">
+            {{description}}
+          </div>
+        </div>
+      </div>
+        
+      <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+                Things You Will Need >>
+            </a>
+        </div>
+        <div id="collapseThree" class="accordion-body collapse">
+          <div class="accordion-inner">
+            {{thingslist}}
+          </div>
+          </div>
+          </div>
+        </section>
+        </div>
+      </div>
+        
+        <!-- NEED TO DO!!!! And change LEGGO to go back to the app -->
+        <section class="outro">
+          Ready to try something else?
+          <button class="start-button">
+          <a href="/">
+           Find something new!
+         </a>
+          </button>
+      </section>
+      </div>
+  
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/jquery-1.11.0.js"></script>
+</div>
 </body>
+
 </html>

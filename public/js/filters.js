@@ -20,6 +20,7 @@
   // var handCenter;
 
   leggo.initializePage = function () {
+    // $('#help-button').popover();
     // pure JS
     var elem = document.getElementById('slider');
     window.mySwipe = Swipe(elem, {
@@ -35,7 +36,7 @@
     // with jQuery
     // window.mySwipe = $('#mySwipe').Swipe().data('Swipe');
     
-
+    $('#help-button').popover();
     getLocation();
     locationRefreshInterval = setInterval(getLocation, 60000);
     
@@ -57,15 +58,22 @@
     //enable filter buttons
     $('.image-checkbox').each(function (i, n) {
       $(this).click( function (e) {
+        console.log('hi!');
         e.preventDefault();
         var button = $(this);
         if (button.hasClass('image-checkbox-checked')) {
           button.removeClass('image-checkbox-checked');
           button.addClass('image-checkbox');
+          var newURL = button.attr('src').split('_')[0];
+          newURL = newURL + '_unsel.png';
+          button.attr('src', newURL);
         } else {
           button.removeClass('image-checkbox');
           button.siblings('.image-checkbox-checked').removeClass('image-checkbox-checked');
           button.addClass('image-checkbox-checked');
+          var newURL = button.attr('src').split('_')[0];
+          newURL = newURL + '_selected.png';
+          button.attr('src', newURL);
         }
         leggo.findActivities();
         leggo.changeFilter(true);
@@ -167,8 +175,20 @@
     $("#img-detail").attr('src', result['activities'][currId-1]['imageURL']);
     $("#descrip-detail").text(result['activities'][currId-1]['description']);
      $("#needs-detail").text(result['activities'][currId-1]['thingslist']);
+     $("#cost-detail").text("$" + result['activities'][currId-1]['moneyupperlimit']);
   }  
 
+  leggo.testingfunction = function testingfunction(){
+    console.log(currId);
+    window.location.replace("/finalactivity/"+currId);
+    // $("#finaldetails").load("/chosenactivity", currId, callbackFunc);
+    // $("#finaldetails").text("<p>KILL ME NOW </p>");
+  }
+
+function callbackFunc(){
+
+  console.log("performed");
+}
   
   function storePosition(position) {
     longitude = position.coords.longitude;

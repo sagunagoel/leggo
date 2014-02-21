@@ -13,13 +13,13 @@
 <body>
   <div class="root-container">
     <section class="banner">
-      <div class="banner-text">
+      <div class="banner-text" onclick="window.location.href='/';">
+        <img src="/images/homeicon.png" style= "height:18px; width: 18px;">
         LEGGO!
       </div>
-      <div class="help-button">
-        <a href="/help">
-          <img src="http://i.imgur.com/371okK5.png" title="Hosted by imgur.com" />
-        </a>
+
+      <div class="help-button"> 
+          <img src="/images/helpicon.png" width=20px />
       </div>
     </section>
     
@@ -39,15 +39,12 @@
             </div>
             
             <section class="icons">
-              <button filter="transportation" filtervalue="walking" id="walking-check_proxy" class="image-checkbox">
-                Walking
-              </button>
-              <button filter="transportation" filtervalue="biking" id="biking-check_proxy" class="image-checkbox">
-                Biking
-              </button>
-              <button filter="transportation" filtervalue="driving" id="driving-check_proxy" class="image-checkbox">
-                Driving
-              </button>
+              <img src="/images/filter-icons/trans-walk_unsel.png" filter="transportation" filtervalue="walking" id="walking-check_proxy" class="image-checkbox">
+              </img>
+              <img src="/images/filter-icons/trans-bike_unsel.png" filter="transportation" filtervalue="biking" id="biking-check_proxy" class="image-checkbox">
+              </img>
+              <img src="/images/filter-icons/trans-car_unsel.png" filter="transportation" filtervalue="driving" id="driving-check_proxy" class="image-checkbox">
+              </img>
             </section>
             
             <div class="navigation-panel">
@@ -260,14 +257,14 @@
               </button>
             </div>
             
-            <section class="icons">
+            <section class="images">
             
 
         <div id="activities">
           {{#each activities}}
           <div class="activity-display">
             <a href="#" activityid="{{id}}" >
-              <img src="{{imageURL}}" class="img">
+              <img src="{{imageURL}}" class="act-img">
             </a>
           </div>
           {{/each}}
@@ -277,49 +274,49 @@
             <div class="navigation-panel">
             </div>
           </section>
-        
-          <!-- <section class="outro">
-            <div class="outro-text">
-              Or leave this option up to chance and continue...
-            </div>
-            <button class="start-button surprise-button">
-               Surprise Me!
-            </button>
-          </section> -->
         </div>
 
       
 <div>
-  <section class= "#details-page">
+  <section class= "details-page">
   <section class="picture">
     <img id="img-detail"/>
   </section>
   
   <section class="info" id="info">
-  <div class="needs">
-      <span class="bold-text"> You'll need: </span>
-  </div>
-  <div id="needs-detail"></div> 
-        <!-- <div class="distance"> 
-          </br> <span class="bold-text"> Distance: </span> 29 mi 
-        </div> -->
-        <section class="descrip-text">
-          </br>
-          <span class="bold-text"> Description: </span>
-          <div id="descrip-detail"></div>
-        </section>
-      </section>
-    </section>
+
+    <div class="details-text">
+      <div class="needs">
+        You'll need: 
+      </div>
+      <div id="needs-detail">
+      </div> 
+      <div class="cost"> 
+        Cost:
+      <div id="cost-detail"></div>
+
+
+      <div class="descrip-text">
+        </br> <span class="bold-text"> Description: </span>
+        <div id="descrip-detail">
+        </div>
+      </div>
+    </div>
+  </section>
+
       
       <section class="outro">
-        <button class="start-button" onclick="leggo.changeFilter(true)">
+        <button class="start-button" onclick="leggo.testingfunction()">
           LEGGO!
-        </button>
+        </button></br>
         <button class="back-button" onclick="leggo.changeFilter(false)"> 
-        Or, go back to options 
+        Or, go back to activities 
         </button>
       </section>
-            </div>
+      </div>
+
+
+
 <div>
   <section class="intro">
             Hope you had fun!
@@ -347,13 +344,16 @@
         <li>2</li>
         <li>3</li>
         <li>4</li>
+        <li>!</li>
       </ul>
     </nav>
   </div>
   
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="js/bootstrap.js"></script>
   <script src='js/filters.js'></script>
   <script src='js/swipe.js'></script>
+  
   <script>
     $(document).ready( function () {
       leggo.initializePage();
