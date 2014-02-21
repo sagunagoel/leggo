@@ -64,27 +64,30 @@
         if (button.hasClass('image-checkbox-checked')) {
           button.removeClass('image-checkbox-checked');
           button.addClass('image-checkbox');
-          var newURL = button.attr('src').split('_')[0];
-          newURL = newURL + '_unsel.png';
-          button.attr('src', newURL);
+          deselectButton(button);
         } else {
           button.removeClass('image-checkbox');
-          button.siblings('.image-checkbox-checked').removeClass('image-checkbox-checked');
+          console.log(button.siblings('.image-checkbox-checked'));
+          button.siblings('.image-checkbox-checked').removeClass('image-checkbox-checked').addClass('image-checkbox')
+            .each( function () {
+              deselectButton(this);
+            });
           button.addClass('image-checkbox-checked');
-          var newURL = button.attr('src').split('_')[0];
-          newURL = newURL + '_selected.png';
-          button.attr('src', newURL);
+          selectButton(button);
         }
         leggo.findActivities();
-        leggo.changeFilter(true);
+        setTimeout(function () { leggo.changeFilter(true); }, 500);
       });
     });
     
     $('.surprise-button').each(function (i, n) {
       $(this).click( function (e) {
         e.preventDefault();
-        var buttons = $(this).parent().parent().find('.icons').children().removeClass('image-checkbox-checked').addClass('image-checkbox');
-        leggo.changeFilter(true);
+        var buttons = $(this).parent().parent().find('.icons').children().removeClass('image-checkbox-checked').addClass('image-checkbox')
+          .each( function () {
+            deselectButton(this);
+          });
+        setTimeout(function () { leggo.changeFilter(true); }, 500);
       });
     });
     
@@ -107,6 +110,24 @@
     
 
     leggo.findActivities();
+  }
+  
+  function deselectButton (button) {
+    var newURL = $(button).attr('src');
+    if (newURL !== undefined) {
+      newURL = newURL.split('_')[0];
+      newURL = newURL + '_unsel.png';
+      $(button).attr('src', newURL);
+    }
+  }
+  
+  function selectButton (button) {
+    var newURL = $(button).attr('src');
+    if (newURL !== undefined) {
+      newURL = newURL.split('_')[0];
+      newURL = newURL + '_selected.png';
+      $(button).attr('src', newURL);
+    }
   }
   
   function setClock (e) {
