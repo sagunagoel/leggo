@@ -38,7 +38,7 @@
     // with jQuery
     // window.mySwipe = $('#mySwipe').Swipe().data('Swipe');
     
-    $('#help-button').popover();
+    $('#help-button').popover(); // does this work
     getLocation();
     locationRefreshHandle = setInterval(getLocation, 30000);
     
@@ -56,6 +56,31 @@
         endTime = new Date(currTime.getTime());
       }
     }, 500);
+    
+    //set up fancy time filter
+    
+    function updateSelectedTime () {
+      var yDiff = this.y - 25;
+      var idx = Math.floor(-1*yDiff/40) + 1;
+      if (this.selectedIndex === undefined || this.selectedIndex !== idx) {
+        this.selectedIndex = idx;
+        var options = $($(this.scroller).children('ul')[0]).children();
+        $(options).removeClass('selected-time');
+        $(options[idx]).addClass('selected-time');
+      }
+    }
+    
+    position = document.getElementById('position');
+    var myScrollHours = new IScroll('#hours-wrapper', { probeType: 3, mouseWheel: false });
+    myScrollHours.on('scroll', updateSelectedTime);
+    myScrollHours.on('scrollEnd', updateSelectedTime);
+    console.log(myScrollHours);
+    var myScrollMinutes = new IScroll('#minutes-wrapper', { probeType: 3, mouseWheel: false });
+    myScrollMinutes.on('scroll', updateSelectedTime);
+    myScrollMinutes.on('scrollEnd', updateSelectedTime);
+
+    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+    
     
     //enable filter buttons
     $('.image-checkbox').each(function (i, n) {
@@ -130,23 +155,6 @@
       leggo.findActivities();
     });
     
-    // hand = $('#hours-hand');
-    // offsets = hand.offset();
-    // handCenter = [ offsets.left + hand.width()/2, offsets.top + hand.height() ];
-    // console.log(offsets.left);
-    // $('#clock-wrapper').mousedown(function (e) {
-      // isMouseDown = true;
-      // setClock(e);
-    // })
-    // .mousemove(function (e) {
-      // if (true) {
-        // setClock(e);
-      // }
-    // })
-    // .mouseup(function (e) {
-      // isMouseDown = false
-    // });
-    
 
     leggo.findActivities();
     activityRefreshHandle = setInterval(leggo.findActivities, 300000);
@@ -169,28 +177,6 @@
       newURL = newURL + '_selected.png';
       $(button).attr('src', newURL);
     }
-  }
-  
-  // For that stupid clock I hate. Ignore
-  function setClock (e) {
-    var x = e.pageX;
-    var y = e.pageY;
-    
-    var hand = $('#hours-hand');
-    var clock = $('#clock');
-    var offsets = clock.offset();
-    var handCenter = [ offsets.left + clock.width()/2, offsets.top + clock.height()/2 ];
-    console.log(handCenter);
-    // var left = (x - offsets.left)
-    // var top = ((offsets.top + $('#hours-hand').height()) - y)
-    var angle = -1*Math.atan2(x - handCenter[0], y - handCenter[1])*(180/Math.PI);
-    console.log(angle);
-    
-    $('#hours-hand').css('-webkit-transform','rotate('+angle+'deg)');
-    
-    console.log('mouseX: ' + x + ' mouseY: ' + y);
-    console.log('rectX: ' + handCenter[0] + ' rectY: ' + handCenter[1]);
-    // element.style.webkitTransform = "rotate(" + rad + "rad)";
   }
   
   function getLocation() {
