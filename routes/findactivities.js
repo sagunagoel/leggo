@@ -18,6 +18,11 @@ exports.filter = function (req, res) {
     //console.log('distance: ' + distance);
     var myTransportation = filters['transportation'] || [];
     var foundMatch = myTransportation.length === 0;
+    // check if activity has no location. right now that means coords (0, 0)
+    if (activityCoords[0] === 0 && activityCoords[1] === 0) {
+      foundMatch = true;
+      distance = 0;
+    }
     for (var i = 0; i < myTransportation.length; i++) {
       if (myTransportation[i] === 'walking' && distance < 3) {
         foundMatch = true;
@@ -61,7 +66,7 @@ exports.filter = function (req, res) {
     //if there is no energy filter specified, all activities match
     var foundMatch = myEnergy.length === 0;
     for (var i = 0; i < myEnergy.length; i++) {
-      if (activity['energylevel'] == myEnergy[i]) {
+      if (activity['energylevel'] <= myEnergy[i]) {
         foundMatch = true;
       }
     }
@@ -93,7 +98,9 @@ exports.filter = function (req, res) {
     if (!foundMatch) {
       doesThisMatch = false;
     }
-    
+    if (doesThisMatch) {
+      activity['distance'] = distance;
+    }
     return doesThisMatch;
   });
 
