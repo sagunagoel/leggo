@@ -66,7 +66,7 @@ exports.filter = function (req, res) {
     //if there is no energy filter specified, all activities match
     var foundMatch = myEnergy.length === 0;
     for (var i = 0; i < myEnergy.length; i++) {
-      if (activity['energylevel'] == myEnergy[i]) {
+      if (activity['energylevel'] <= myEnergy[i]) {
         foundMatch = true;
       }
     }

@@ -8,7 +8,7 @@
   var activityRefreshHandle = null;
   
   var currId;
-  
+  var activitySelected=false;
   var activityData = {};
   
   var isMouseDown = false;
@@ -26,19 +26,24 @@
     // pure JS
     var elem = document.getElementById('slider');
     window.mySwipe = Swipe(elem, {
-      // startSlide: 4,
-      // auto: 3000,
-      // continuous: true,
-      // disableScroll: true,
-      // stopPropagation: true,
-      // callback: function(index, element) {},
-      // transitionEnd: function(index, element) {}
+      startSlide: 0,
+      speed: 300,
+      auto: 0,
+      continuous: false,
+      disableScroll: false,
+      stopPropagation: false,
+      callback: function(index, elem) {
+        if (index==5 && activitySelected!=true){
+        mySwipe.prev();
+      }
+      },
+      transitionEnd: function(index, elem) {}
     });
 
     // with jQuery
-    // window.mySwipe = $('#mySwipe').Swipe().data('Swipe');
+    // window.mySwipe = $('ß#mySwipe').Swipe().data('Swipe');
     
-    $('#help-button').popover();
+    $('#help-button').popover(); // does this work
     getLocation();
     locationRefreshHandle = setInterval(getLocation, 30000);
     
@@ -56,6 +61,31 @@
         endTime = new Date(currTime.getTime());
       }
     }, 500);
+    
+    //set up fancy time filter
+    
+    function updateSelectedTime () {
+      var yDiff = this.y - 25;
+      var idx = Math.floor(-1*yDiff/40) + 1;
+      if (this.selectedIndex === undefined || this.selectedIndex !== idx) {
+        this.selectedIndex = idx;
+        var options = $($(this.scroller).children('ul')[0]).children();
+        $(options).removeClass('selected-time');
+        $(options[idx]).addClass('selected-time');
+      }
+    }
+    
+    position = document.getElementById('position');
+    var myScrollHours = new IScroll('#hours-wrapper', { probeType: 3, mouseWheel: false });
+    myScrollHours.on('scroll', updateSelectedTime);
+    myScrollHours.on('scrollEnd', updateSelectedTime);
+    console.log(myScrollHours);
+    var myScrollMinutes = new IScroll('#minutes-wrapper', { probeType: 3, mouseWheel: false });
+    myScrollMinutes.on('scroll', updateSelectedTime);
+    myScrollMinutes.on('scrollEnd', updateSelectedTime);
+
+    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+    
     
     //enable filter buttons
     $('.image-checkbox').each(function (i, n) {
@@ -130,23 +160,6 @@
       leggo.findActivities();
     });
     
-    // hand = $('#hours-hand');
-    // offsets = hand.offset();
-    // handCenter = [ offsets.left + hand.width()/2, offsets.top + hand.height() ];
-    // console.log(offsets.left);
-    // $('#clock-wrapper').mousedown(function (e) {
-      // isMouseDown = true;
-      // setClock(e);
-    // })
-    // .mousemove(function (e) {
-      // if (true) {
-        // setClock(e);
-      // }
-    // })
-    // .mouseup(function (e) {
-      // isMouseDown = false
-    // });
-    
 
     leggo.findActivities();
     activityRefreshHandle = setInterval(leggo.findActivities, 300000);
@@ -169,28 +182,6 @@
       newURL = newURL + '_selected.png';
       $(button).attr('src', newURL);
     }
-  }
-  
-  // For that stupid clock I hate. Ignore
-  function setClock (e) {
-    var x = e.pageX;
-    var y = e.pageY;
-    
-    var hand = $('#hours-hand');
-    var clock = $('#clock');
-    var offsets = clock.offset();
-    var handCenter = [ offsets.left + clock.width()/2, offsets.top + clock.height()/2 ];
-    console.log(handCenter);
-    // var left = (x - offsets.left)
-    // var top = ((offsets.top + $('#hours-hand').height()) - y)
-    var angle = -1*Math.atan2(x - handCenter[0], y - handCenter[1])*(180/Math.PI);
-    console.log(angle);
-    
-    $('#hours-hand').css('-webkit-transform','rotate('+angle+'deg)');
-    
-    console.log('mouseX: ' + x + ' mouseY: ' + y);
-    console.log('rectX: ' + handCenter[0] + ' rectY: ' + handCenter[1]);
-    // element.style.webkitTransform = "rotate(" + rad + "rad)";
   }
   
   function getLocation() {
@@ -231,6 +222,7 @@
   }
 
   leggo.activityClicked= function activityClicked(isNext,id){
+    activitySelected=true;
     leggo.setActivityID(id);
     $.get('../../data.json', getProject);
     leggo.changeFilter(true);
@@ -244,15 +236,13 @@
     console.log(result['activities'][currId-1]);
     $("#img-detail").attr('src', result['activities'][currId-1]['imageURL']);
     $("#descrip-detail").text(result['activities'][currId-1]['description']);
-     $("#needs-detail").text(result['activities'][currId-1]['thingslist']);
-     $("#cost-detail").text("$" + result['activities'][currId-1]['moneyupperlimit']);
+    $("#needs-detail").text(result['activities'][currId-1]['thingslist']);
+    $("#cost-detail").text("$" + result['activities'][currId-1]['moneyupperlimit']);
   }  
 
   leggo.testingfunction = function testingfunction(){
     console.log(currId);
     window.location.replace("/finalactivity/"+currId);
-    // $("#finaldetails").load("/chosenactivity", currId, callbackFunc);
-    // $("#finaldetails").text("<p>KILL ME NOW </p>");
   }
 
 function callbackFunc(){
@@ -270,13 +260,16 @@ function callbackFunc(){
   //swipes the current filter forward if isNext is true, backward if not
   leggo.changeFilter = function changeFilter (isNext) {
     var currPos = mySwipe.getPos();
+    console.log(currPos);
+    
+  
     var children = $('.nav-dots').children()[0].children;
     $(children[currPos]).removeClass('selected');
     
     if (isNext) {
-      mySwipe.next();
+        mySwipe.next();
     } else {
-      mySwipe.prev();
+        mySwipe.prev();
     }
     
     currPos = mySwipe.getPos();
