@@ -40,7 +40,7 @@
     
     $('#help-button').popover();
     getLocation();
-    locationRefreshHandle = setInterval(getLocation, 60000);
+    locationRefreshHandle = setInterval(getLocation, 30000);
     
     // set up time filter. If the current time catches up to the listed end time, the end time will increment with the current time.
     currTime = new Date();
@@ -263,6 +263,8 @@ function callbackFunc(){
   function storePosition(position) {
     longitude = position.coords.longitude;
     latitude = position.coords.latitude;
+    console.log('position stored: ');
+    leggo.findActivities();
   }
   
   //swipes the current filter forward if isNext is true, backward if not
@@ -295,7 +297,7 @@ function callbackFunc(){
     $('.image-checkbox-checked').each(function (i, n) {
       someData[$(this).attr('filter')] = someData[$(this).attr('filter')] || [];
       someData[$(this).attr('filter')].push($(this).attr('filtervalue'));
-      console.log('filter: ' + $(this).attr('filter') + ' value: ' + $(this).attr('filtervalue'));
+      // console.log('filter: ' + $(this).attr('filter') + ' value: ' + $(this).attr('filtervalue'));
     });
   
     $.post('/findactivities', someData, function (data) {
