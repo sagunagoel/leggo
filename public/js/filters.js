@@ -26,13 +26,14 @@
     // pure JS
     var elem = document.getElementById('slider');
     window.mySwipe = Swipe(elem, {
-      // startSlide: 4,
-      // auto: 3000,
-      // continuous: true,
-      // disableScroll: true,
-      // stopPropagation: true,
-      // callback: function(index, element) {},
-      // transitionEnd: function(index, element) {}
+      startSlide: 0,
+      speed: 300,
+      auto: 0,
+      continuous: false,
+      disableScroll: false,
+      stopPropagation: false,
+      callback: function(index, elem) {},
+      transitionEnd: function(index, elem) {}
     });
 
     // with jQuery
@@ -244,15 +245,13 @@
     console.log(result['activities'][currId-1]);
     $("#img-detail").attr('src', result['activities'][currId-1]['imageURL']);
     $("#descrip-detail").text(result['activities'][currId-1]['description']);
-     $("#needs-detail").text(result['activities'][currId-1]['thingslist']);
-     $("#cost-detail").text("$" + result['activities'][currId-1]['moneyupperlimit']);
+    $("#needs-detail").text(result['activities'][currId-1]['thingslist']);
+    $("#cost-detail").text("$" + result['activities'][currId-1]['moneyupperlimit']);
   }  
 
   leggo.testingfunction = function testingfunction(){
     console.log(currId);
     window.location.replace("/finalactivity/"+currId);
-    // $("#finaldetails").load("/chosenactivity", currId, callbackFunc);
-    // $("#finaldetails").text("<p>KILL ME NOW </p>");
   }
 
 function callbackFunc(){
@@ -268,6 +267,11 @@ function callbackFunc(){
   //swipes the current filter forward if isNext is true, backward if not
   leggo.changeFilter = function changeFilter (isNext) {
     var currPos = mySwipe.getPos();
+    console.log(currPos);
+    
+    if(currPos==0) {
+      console.log("Hello");
+    }
     var children = $('.nav-dots').children()[0].children;
     $(children[currPos]).removeClass('selected');
     
