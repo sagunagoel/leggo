@@ -8,7 +8,7 @@
   var activityRefreshHandle = null;
   
   var currId;
-  
+  var activitySelected=false;
   var activityData = {};
   
   var isMouseDown = false;
@@ -32,12 +32,16 @@
       continuous: false,
       disableScroll: false,
       stopPropagation: false,
-      callback: function(index, elem) {},
+      callback: function(index, elem) {
+        if (index==5 && activitySelected!=true){
+        mySwipe.prev();
+      }
+      },
       transitionEnd: function(index, elem) {}
     });
 
     // with jQuery
-    // window.mySwipe = $('#mySwipe').Swipe().data('Swipe');
+    // window.mySwipe = $('ß#mySwipe').Swipe().data('Swipe');
     
     $('#help-button').popover();
     getLocation();
@@ -232,6 +236,7 @@
   }
 
   leggo.activityClicked= function activityClicked(isNext,id){
+    activitySelected=true;
     leggo.setActivityID(id);
     $.get('../../data.json', getProject);
     leggo.changeFilter(true);
@@ -269,16 +274,14 @@ function callbackFunc(){
     var currPos = mySwipe.getPos();
     console.log(currPos);
     
-    if(currPos==0) {
-      console.log("Hello");
-    }
+  
     var children = $('.nav-dots').children()[0].children;
     $(children[currPos]).removeClass('selected');
     
     if (isNext) {
-      mySwipe.next();
+        mySwipe.next();
     } else {
-      mySwipe.prev();
+        mySwipe.prev();
     }
     
     currPos = mySwipe.getPos();
