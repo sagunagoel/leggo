@@ -534,6 +534,160 @@
                 " Safe street"
             ],
             "moreinfoURL": "http://www.freehugscampaign.org/"
+        },
+        {
+            "id": 14,
+            "name": "Video Call an Old Friend",
+            "tags": [
+                "relaxing",
+                "study",
+                "fresh air",
+                "romantic",
+                "peaceful",
+                "24-hour",
+                "peaceful"
+            ],
+            "coords": [
+                0, 
+                0
+            ],
+            "address": "Wherever you have an Internet connection!",
+            "hours": {
+                "allDays": {
+                    "starttime": [
+                        0
+                    ],
+                    "endtime": [
+                        23.59
+                    ]
+                }
+            },
+            "length": 0.25,
+            "energylevel": 1,
+            "moneyupperlimit": 0,
+            "description": "You know you miss someone! You've been saying 'Yeah, we need to catch up!' for too long. Log on Skype, Google+, or FaceTime and make it happen. Or, just give them a good old fashioned phone call.",
+            "imageURL": "/images/14-videocall.jpg",
+            "thingslist": [
+                " Video calling program and account",
+                " Webcam or front-facing camera",
+                " A friend or family member online"
+            ],
+            "moreinfoURL": ""
+        },
+        {
+            "id": 15,
+            "name": "Make & Share a New Playlist",
+            "tags": [
+                "relaxing",
+                "study",
+                "fresh air",
+                "romantic",
+                "peaceful",
+                "24-hour",
+                "peaceful"
+            ],
+            "coords": [
+                0, 
+                0
+            ],
+            "address": "Wherever your music library is",
+            "hours": {
+                "allDays": {
+                    "starttime": [
+                        0
+                    ],
+                    "endtime": [
+                        23.59
+                    ]
+                }
+            },
+            "length": 0.5,
+            "energylevel": 1,
+            "moneyupperlimit": 0,
+            "description": "Put together a list of songs with a theme or person in mind. Burn it to a CD to go for an old mixtape feel, or just share the playlist with someone. Use it to tell them how you feel or just get some good music out there. If you don't want to share it, just turn out the lights and listen or go for a drive.",
+            "imageURL": "/images/15-playlist.jpg",
+            "thingslist": [
+                " Some music software or online account (ex. iTunes, Spotify, or 8tracks",
+                " Webcam or front-facing camera",
+                " A friend or family member online"
+            ],
+            "moreinfoURL": "http://www.wikihow.com/Make-a-Perfect-Mix-Tape-or-CD"
+        },
+        {
+            "id": 16,
+            "name": "Go Take Some Pictures",
+            "tags": [
+                "relaxing",
+                "study",
+                "fresh air",
+                "romantic",
+                "peaceful",
+                "24-hour",
+                "peaceful"
+            ],
+            "coords": [
+                0, 
+                0
+            ],
+            "address": "Anywhere that captures your imagination",
+            "hours": {
+                "allDays": {
+                    "starttime": [
+                        0
+                    ],
+                    "endtime": [
+                        23.59
+                    ]
+                }
+            },
+            "length": 0.3,
+            "energylevel": 1,
+            "moneyupperlimit": 0,
+            "description": "Even if your only camera is your phone or a disposable, you can still get some fun or artsy shots. Find a friend, object, or place to be your model and snap some photos. If you're with friends, you can dress up for a photoshoot. Try different angles, settings and techniques!",
+            "imageURL": "/images/16-takepictures.jpg",
+            "thingslist": [
+                " Any camera or camera phone",
+                " A subject to photograph"
+            ],
+            "moreinfoURL": "http://www.wikihow.com/Make-a-Perfect-Mix-Tape-or-CD"
+        },
+        {
+            "id": 18,
+            "name": "Learn Phrases of a New Language",
+            "tags": [
+                "relaxing",
+                "study",
+                "fresh air",
+                "romantic",
+                "peaceful",
+                "24-hour",
+                "peaceful"
+            ],
+            "coords": [
+                0, 
+                0
+            ],
+            "address": " Anywhere with internet connection or a phrasebook",
+            "hours": {
+                "allDays": {
+                    "starttime": [
+                        0
+                    ],
+                    "endtime": [
+                        23.59
+                    ]
+                }
+            },
+            "length": 0.25,
+            "energylevel": 1,
+            "moneyupperlimit": 0,
+            "description": "You've always wanted to learn a little French, or Hindi, or Japanese-- get started learning a few basic phrases now. YouTube and other websites are full of free tutorial videos to start speaking the essentials! You can also try a language podcast.",
+            "imageURL": "/images/18-learnphrases.jpg",
+            "thingslist": [
+                " Internet connection or phrasebook",
+                " Somewhere you can practice speaking out loud"
+            ],
+            "moreinfoURL": "http://www.wikihow.com/Make-a-Perfect-Mix-Tape-or-CD"
         }
     ]
 }

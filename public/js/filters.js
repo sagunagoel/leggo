@@ -276,7 +276,7 @@ function callbackFunc(){
     
     var someData = {
       'coords': [ latitude, longitude ],
-      'starttime': currTime.toDateString() + ' ' + currTime.toTimeString()
+      'starttime': 12//currTime.toDateString() + ' ' + currTime.toTimeString()
     };
     
     //note that I am pushing filter values to arrays. I'll leave it for now in case we return to non-exclusive buttons
@@ -285,7 +285,6 @@ function callbackFunc(){
       someData[$(this).attr('filter')].push($(this).attr('filtervalue'));
       // console.log('filter: ' + $(this).attr('filter') + ' value: ' + $(this).attr('filtervalue'));
     });
-  
     $.post('/findactivities', someData, function (data) {
       activityData = data['activities'];
       populateActivities(activityData);
