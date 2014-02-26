@@ -135,7 +135,7 @@
       //check if new endtime is valid. If so, set endtime. if not, reset to currtime
       checkAndSetTime();
       this.scrolling = false;
-      $(document).enbind('touchmove');
+      $(document).unbind('touchmove');
       console.log('end');
     }
     
