@@ -150,10 +150,10 @@
     
     var lastAMPM = 0;
     function checkAndSetTime () {
-      var isPM = myScrollAMPM.selectedIndex - 2;
+      // var isPM = myScrollAMPM.selectedIndex - 2;
       var hoursOptions = $($(myScrollHours.scroller).children('ul')[0]).children();
       var minutesOptions = $($(myScrollMinutes.scroller).children('ul')[0]).children();
-      if (isPM < 0) {
+      if (myScrollAMPM.selectedIndex === 1) {
         anyTime = true;
         //if endTime = currTime, the filter is ignored
         // endTime.setTime(currTime.getTime() + 1800000);
@@ -178,9 +178,10 @@
         anyTime = false;
         minutesOptions.removeClass('selected-time-gray');
         hoursOptions.removeClass('selected-time-gray');
-        lastAMPM = isPM;
+        lastAMPM = myScrollAMPM.selectedIndex - 2;
       }
-      var numHours = myScrollHours.selectedIndex - 1 + (isPM === 3) ? 12 : 0;
+      var numHours = myScrollHours.selectedIndex - 1 + ((lastAMPM === 1) ? 12 : 0);
+      console.log(numHours);
       endTime.setHours(numHours);
       // endTime.setHours(myScrollHours.selectedIndex - 1);
       endTime.setMinutes(myScrollMinutes.selectedIndex - 1);
