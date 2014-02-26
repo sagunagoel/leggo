@@ -25,10 +25,6 @@ document.getElementById('txt').innerHTML=h+":"+m+" "+((isPM) ? 'PM' : 'AM');
 t=setTimeout(function(){startTime()},500);
 }
 
-/*function toClockString (date) {
-    var isPM = date.getHours() > 12;
-    return ((date.getHours() > 12) ? date.getHours() - 12 : date.getHours()) + ':' + ( (date.getMinutes()<10?'0':'') + date.getMinutes() ) + ' ' + ((isPM) ? 'PM' : 'AM');
-  } */
 function checkTime(i)
 {
 if (i<10)
