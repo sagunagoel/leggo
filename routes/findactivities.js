@@ -1,5 +1,7 @@
 var data = require('../public/data.json');
 
+
+// NOTE: Right now it's set up to handle non-exclusive options for each filter. This isn't currently necessary, but I don't feel like taking it out
 exports.filter = function (req, res) {
   var filters = req.body;
   console.log(filters);
@@ -41,7 +43,7 @@ exports.filter = function (req, res) {
     var endDate = new Date(Date.parse(filters['endtime']));
     var totalHours = (endDate.getTime() - startDate.getTime())/3600000;
     console.log('hours: ' + totalHours);
-    //if time <= 30 min, just pass the filter...
+    //if time <= 30 minutes, just pass the filter...
     if (totalHours < activity['length'] && totalHours > 0.5) {
       doesThisMatch = false;
     }

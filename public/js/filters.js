@@ -22,6 +22,8 @@
   // var hand;
   // var offsets;
   // var handCenter;
+  var myScrollAMPM;
+  var anyTime = true;
 
   leggo.initializePage = function () {
     // $('#help-button').popover();
@@ -46,60 +48,80 @@
     
     //set up fancy time filter
     // position = document.getElementById('position');
-    var myScrollHours = new IScroll('#hours-wrapper', { probeType: 3, mouseWheel: false, bounce: false });
+    var myScrollHours = new IScroll('#hours-wrapper', { probeType: 3, mouseWheel: false, bounce: false, startY: 0 });
     myScrollHours.scrolling = false;
     myScrollHours.selectedIndex = 1;
     myScrollHours.on('scrollStart', startTimeScroll);
     myScrollHours.on('scroll', updateSelectedTime);
     myScrollHours.on('scrollEnd', endTimeScroll);
     
-    var myScrollMinutes = new IScroll('#minutes-wrapper', { probeType: 3, mouseWheel: false, bounce: false });
+    var myScrollMinutes = new IScroll('#minutes-wrapper', { probeType: 3, mouseWheel: false, bounce: false, startY: 0 });
     myScrollMinutes.scrolling = false;
     myScrollMinutes.selectedIndex = 1;
-    myScrollMinutes.on('scroll', startTimeScroll);
+    myScrollMinutes.on('scrollStart', startTimeScroll);
     myScrollMinutes.on('scroll', updateSelectedTime);
     myScrollMinutes.on('scrollEnd', endTimeScroll);
     
-    var myScrollAMPM = new IScroll('#ampm-wrapper', { probeType: 3, mouseWheel: false, bounce: false });
+    myScrollAMPM = new IScroll('#ampm-wrapper', { probeType: 3, mouseWheel: false, bounce: false, startY: 0 });
     myScrollAMPM.scrolling = false;
     myScrollAMPM.selectedIndex = 1;
-    myScrollAMPM.on('scroll', startTimeScroll);
+    myScrollAMPM.on('scrollStart', startTimeScroll);
     myScrollAMPM.on('scroll', updateSelectedTime);
     myScrollAMPM.on('scrollEnd', endTimeScroll);
 
     document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
     
     
-    function setSelectedTime(date) {
+    function setDisplayedTime(date) {
       //scroll to and highlight the hour
       var numHours = (date.getHours() < 12) ? date.getHours() : date.getHours() - 12;
       var hoursOptions = $($(myScrollHours.scroller).children('ul')[0]).children();
-      hoursOptions.removeClass('selected-time');
-      myScrollHours.scrollToElement(hoursOptions[numHours + 1], null, null, true);
-      $(hoursOptions[numHours + 1]).addClass('selected-time');
+      hoursOptions.removeClass('selected-time').removeClass('selected-time-gray');
       myScrollHours.selectedIndex = numHours + 1;
+      myScrollHours.scrollToElement(hoursOptions[myScrollHours.selectedIndex], null, null, true);
+      $(hoursOptions[myScrollHours.selectedIndex]).addClass('selected-time');
+      //check if "any time" is selected
+      if (myScrollAMPM.selectedIndex == 1) {
+        $(hoursOptions[myScrollHours.selectedIndex]).addClass('selected-time-gray');
+      }
       
       //scroll to and highlight the minutes
       var minutesOptions = $($(myScrollMinutes.scroller).children('ul')[0]).children();
-      minutesOptions.removeClass('selected-time');
-      myScrollMinutes.scrollToElement(minutesOptions[date.getMinutes() + 1], null, null, true);
-      $(minutesOptions[date.getMinutes() + 1]).addClass('selected-time');
+      minutesOptions.removeClass('selected-time').removeClass('selected-time-gray');
       myScrollMinutes.selectedIndex = date.getMinutes() + 1;
+      myScrollMinutes.scrollToElement(minutesOptions[myScrollMinutes.selectedIndex], null, null, true);
+      $(minutesOptions[myScrollMinutes.selectedIndex]).addClass('selected-time');
+      //check if "any time" is selected
+      if (myScrollAMPM.selectedIndex == 1) {
+        $(minutesOptions[myScrollMinutes.selectedIndex]).addClass('selected-time-gray');
+      }
+      
+      if (myScrollAMPM.selectedIndex > 1) {
+        var ampmOptions = $($(myScrollAMPM.scroller).children('ul')[0]).children();
+        ampmOptions.removeClass('selected-time').removeClass('selected-time-gray');
+        myScrollAMPM.selectedIndex = (date.getHours() < 12) ? 2 : 3 ;
+        myScrollAMPM.scrollToElement(ampmOptions[myScrollAMPM.selectedIndex], null, null, true);
+        $(ampmOptions[myScrollAMPM.selectedIndex]).addClass('selected-time');
+      }
     }
     
     function updateSelectedTime () {
-      var yDiff = this.y - 25;
+      var yDiff = this.y - 10;
       var idx = Math.floor(-1*yDiff/40) + 1;
       if (this.selectedIndex === undefined || this.selectedIndex !== idx) {
         this.selectedIndex = idx;
         var options = $($(this.scroller).children('ul')[0]).children();
-        $(options).removeClass('selected-time');
+        $(options).removeClass('selected-time').removeClass('selected-time-gray');
         $(options[idx]).addClass('selected-time');
+        if (myScrollAMPM.selectedIndex == 1 && this !== myScrollAMPM) {
+          $(options[idx]).addClass('selected-time-gray');
+        }
       }
     }
     
     function startTimeScroll () {
       this.scrolling = true;
+      console.log('start');
     }
     
     function endTimeScroll () {
@@ -107,35 +129,79 @@
       //check if new endtime is valid. If so, set endtime. if not, reset to currtime
       checkAndSetTime();
       this.scrolling = false;
+      console.log('end');
     }
     
+    function setToAnyTime () {
+      anyTime = true;
+      var ampmOptions = $($(myScrollAMPM.scroller).children('ul')[0]).children();
+      ampmOptions.removeClass('selected-time').removeClass('selected-time-gray');
+      myScrollAMPM.selectedIndex = 1;
+      myScrollAMPM.scrollToElement(ampmOptions[myScrollAMPM.selectedIndex], null, null, true);
+      $(ampmOptions[myScrollAMPM.selectedIndex]).addClass('selected-time');
+      
+      checkAndSetTime();
+    }
+    
+    var lastAMPM = 0;
     function checkAndSetTime () {
-      var isPM = myScrollAMPM.selectedIndex - 1;
-      endTime.setHours(myScrollHours.selectedIndex - 1 + 12*isPM);
+      var isPM = myScrollAMPM.selectedIndex - 2;
+      var hoursOptions = $($(myScrollHours.scroller).children('ul')[0]).children();
+      var minutesOptions = $($(myScrollMinutes.scroller).children('ul')[0]).children();
+      if (isPM < 0) {
+        anyTime = true;
+        //if endTime = currTime, the filter is ignored
+        // endTime.setTime(currTime.getTime() + 1800000);
+        
+        // hoursOptions.removeClass('selected-time');
+        // myScrollHours.scrollToElement(hoursOptions[1], null, null, true);
+        $(hoursOptions[myScrollHours.selectedIndex]).addClass('selected-time-gray');
+        
+        
+        // minutesOptions.removeClass('selected-time');
+        // myScrollMinutes.scrollToElement(minutesOptions[1], null, null, true);
+        $(minutesOptions[myScrollMinutes.selectedIndex]).addClass('selected-time-gray');
+        
+        // var ampmOptions = $($(myScrollAMPM.scroller).children('ul')[0]).children();
+        // ampmOptions.removeClass('selected-time');
+        // myScrollAMPM.scrollToElement(ampmOptions[1], null, null, true);
+        // $(ampmOptions[1]).addClass('selected-time');
+        
+        // setDisplayedTime(endTime);
+        
+      } else {
+        anyTime = false;
+        minutesOptions.removeClass('selected-time-gray');
+        hoursOptions.removeClass('selected-time-gray');
+        lastAMPM = isPM;
+      }
+      var numHours = myScrollHours.selectedIndex - 1 + (isPM === 3) ? 12 : 0;
+      endTime.setHours(numHours);
+      // endTime.setHours(myScrollHours.selectedIndex - 1);
       endTime.setMinutes(myScrollMinutes.selectedIndex - 1);
 
-      if (endTime.getTime() < currTime.getTime()) {
-        endTime.setTime(currTime.getTime());
-        setSelectedTime(currTime);
+      //minimum time to spend is 30 minutes
+      if (endTime.getTime() - currTime.getTime() < 1800000) {
+        endTime.setTime(currTime.getTime() + 1800000);
+        setDisplayedTime(endTime);
       }
     }
     
     // set up time filter. If the current time catches up to the listed end time, the end time will increment with the current time.
     currTime = new Date();
-    // $('#time-display').text(toClockString(currTime));
-    // $('#time-display').attr('filterValue', currTime.toDateString() + ' ' + currTime.toTimeString());
-    endTime = new Date(currTime.getTime());
+    endTime = new Date(currTime.getTime() + 1800000);
+    setDisplayedTime(endTime);
+    lastAMPM = (endTime.getHours() < 12) ? 0 : 1;
     timeRefreshHandle = setInterval(function () {
       currTime = new Date();
-      if (currTime.getTime() > endTime.getTime()) {
-        // currTimeStr = ((currTime.getHours() > 12) ? currTime.getHours() - 12 : currTime.getHours()) + ':' + ((currTime.getMinutes()<10?'0':'') + currTime.getMinutes());
-        // $('#time-display').text(toClockString(currTime));
-        // $('#time-display').attr('filterValue', currTime.toDateString() + ' ' + currTime.toTimeString());
-        endTime.setTime(currTime.getTime());
+      // if (currTime.getTime() > endTime.getTime()) {
+      //minimum time to spend is 30 minutes
+      if (endTime.getTime() - currTime.getTime() < 1800000) {
+        endTime.setTime(currTime.getTime() + 1800000);
         if (!myScrollHours.scrolling && !myScrollMinutes.scrolling && !myScrollAMPM.scrolling) {
-          setSelectedTime(endTime);
+          setDisplayedTime(endTime);
+          lastAMPM = (endTime.getHours() < 12) ? 0 : 1;
         }
-        // myScroll.scrollToElement(document.querySelector('#scroller li:nth-child(25)'), null, null, true)
       }
     }, 1000);
     
@@ -177,9 +243,10 @@
     });
     $('#time-surprise').unbind('click').click( function (e) {
       e.preventDefault();
-      $('#time-display').text(toClockString(currTime));
-      $('#time-display').attr('filterValue', currTime.toDateString() + ' ' + currTime.toTimeString());
-      endTime = new Date(currTime.getTime());
+      // $('#time-display').text(toClockString(currTime));
+      // $('#time-display').attr('filterValue', currTime.toDateString() + ' ' + currTime.toTimeString());
+      // endTime = new Date(currTime.getTime());
+      setToAnyTime();
       setTimeout(function () { leggo.changeFilter(true); }, 500);
     });
     
@@ -213,7 +280,7 @@
     });
     
 
-    leggo.findActivities();
+    var derp = setTimeout(leggo.findActivities, 2000);
     activityRefreshHandle = setInterval(leggo.findActivities, 300000);
     
   }
@@ -307,7 +374,7 @@ function callbackFunc(){
     longitude = position.coords.longitude;
     latitude = position.coords.latitude;
     console.log('position stored: ');
-    leggo.findActivities();
+    // leggo.findActivities();
   }
   
   //swipes the current filter forward if isNext is true, backward if not
@@ -328,22 +395,23 @@ function callbackFunc(){
   
   //aggregates the currently set filters and returns a list of activities that pass said filters
   leggo.findActivities = function () {
-    currTime = new Date();    
-    var startTime = currTime.getHours() + currTime.getMinutes()/60;
+    // currTime = new Date();    
+    var startStr = currTime.toDateString() + ' ' + currTime.toTimeString();//currTime.getHours() + currTime.getMinutes()/60;
+    var endStr = (anyTime) ? startStr : endTime.toDateString() + ' ' + endTime.toTimeString();
     
-    var someData = {
+    var filterData = {
       'coords': [ latitude, longitude ],
-      'starttime': currTime.toDateString() + ' ' + currTime.toTimeString(),
-      'endtime' : endTime.toDateString() + ' ' + endTime.toTimeString()
+      'starttime': startStr,
+      'endtime' : endStr
     };
     
     //note that I am pushing filter values to arrays. I'll leave it for now in case we return to non-exclusive buttons
     $('.image-checkbox-checked').each(function (i, n) {
-      someData[$(this).attr('filter')] = someData[$(this).attr('filter')] || [];
-      someData[$(this).attr('filter')].push($(this).attr('filtervalue'));
+      filterData[$(this).attr('filter')] = filterData[$(this).attr('filter')] || [];
+      filterData[$(this).attr('filter')].push($(this).attr('filtervalue'));
       // console.log('filter: ' + $(this).attr('filter') + ' value: ' + $(this).attr('filtervalue'));
     });
-    $.post('/findactivities', someData, function (data) {
+    $.post('/findactivities', filterData, function (data) {
       activityData = data['activities'];
       populateActivities(activityData);
       
