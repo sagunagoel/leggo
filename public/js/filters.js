@@ -74,7 +74,7 @@
     myScrollAMPM.on('scroll', updateSelectedTime);
     myScrollAMPM.on('scrollEnd', endTimeScroll);
 
-    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+    
     
     
     function setDisplayedTime(date) {
@@ -126,6 +126,7 @@
     
     function startTimeScroll () {
       this.scrolling = true;
+      $(document).bind('touchmove', function (e) { e.preventDefault(); });
       console.log('start');
     }
     
@@ -134,6 +135,7 @@
       //check if new endtime is valid. If so, set endtime. if not, reset to currtime
       checkAndSetTime();
       this.scrolling = false;
+      $(document).enbind('touchmove');
       console.log('end');
     }
     
