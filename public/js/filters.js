@@ -16,6 +16,8 @@
   var currTime;
   var endTime;
   
+  var hoursArray = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+  
   // // clock stuff
   // var hand;
   // var offsets;
@@ -42,22 +44,48 @@
     getLocation();
     locationRefreshHandle = setInterval(getLocation, 30000);
     
-    // set up time filter. If the current time catches up to the listed end time, the end time will increment with the current time.
-    currTime = new Date();
-    $('#time-display').text(toClockString(currTime));
-    $('#time-display').attr('filterValue', currTime.toDateString() + ' ' + currTime.toTimeString());
-    endTime = new Date(currTime.getTime());
-    timeRefreshHandle = setInterval(function () {
-      currTime = new Date();
-      if (currTime.getTime() > endTime.getTime()) {
-        // currTimeStr = ((currTime.getHours() > 12) ? currTime.getHours() - 12 : currTime.getHours()) + ':' + ((currTime.getMinutes()<10?'0':'') + currTime.getMinutes());
-        $('#time-display').text(toClockString(currTime));
-        $('#time-display').attr('filterValue', currTime.toDateString() + ' ' + currTime.toTimeString());
-        endTime = new Date(currTime.getTime());
-      }
-    }, 500);
-    
     //set up fancy time filter
+    // position = document.getElementById('position');
+    var myScrollHours = new IScroll('#hours-wrapper', { probeType: 3, mouseWheel: false, bounce: false });
+    myScrollHours.scrolling = false;
+    myScrollHours.selectedIndex = 1;
+    myScrollHours.on('scrollStart', startTimeScroll);
+    myScrollHours.on('scroll', updateSelectedTime);
+    myScrollHours.on('scrollEnd', endTimeScroll);
+    
+    var myScrollMinutes = new IScroll('#minutes-wrapper', { probeType: 3, mouseWheel: false, bounce: false });
+    myScrollMinutes.scrolling = false;
+    myScrollMinutes.selectedIndex = 1;
+    myScrollMinutes.on('scroll', startTimeScroll);
+    myScrollMinutes.on('scroll', updateSelectedTime);
+    myScrollMinutes.on('scrollEnd', endTimeScroll);
+    
+    var myScrollAMPM = new IScroll('#ampm-wrapper', { probeType: 3, mouseWheel: false, bounce: false });
+    myScrollAMPM.scrolling = false;
+    myScrollAMPM.selectedIndex = 1;
+    myScrollAMPM.on('scroll', startTimeScroll);
+    myScrollAMPM.on('scroll', updateSelectedTime);
+    myScrollAMPM.on('scrollEnd', endTimeScroll);
+
+    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+    
+    
+    function setSelectedTime(date) {
+      //scroll to and highlight the hour
+      var numHours = (date.getHours() < 12) ? date.getHours() : date.getHours() - 12;
+      var hoursOptions = $($(myScrollHours.scroller).children('ul')[0]).children();
+      hoursOptions.removeClass('selected-time');
+      myScrollHours.scrollToElement(hoursOptions[numHours + 1], null, null, true);
+      $(hoursOptions[numHours + 1]).addClass('selected-time');
+      myScrollHours.selectedIndex = numHours + 1;
+      
+      //scroll to and highlight the minutes
+      var minutesOptions = $($(myScrollMinutes.scroller).children('ul')[0]).children();
+      minutesOptions.removeClass('selected-time');
+      myScrollMinutes.scrollToElement(minutesOptions[date.getMinutes() + 1], null, null, true);
+      $(minutesOptions[date.getMinutes() + 1]).addClass('selected-time');
+      myScrollMinutes.selectedIndex = date.getMinutes() + 1;
+    }
     
     function updateSelectedTime () {
       var yDiff = this.y - 25;
@@ -70,17 +98,46 @@
       }
     }
     
-    position = document.getElementById('position');
-    var myScrollHours = new IScroll('#hours-wrapper', { probeType: 3, mouseWheel: false });
-    myScrollHours.on('scroll', updateSelectedTime);
-    myScrollHours.on('scrollEnd', updateSelectedTime);
-    console.log(myScrollHours);
-    var myScrollMinutes = new IScroll('#minutes-wrapper', { probeType: 3, mouseWheel: false });
-    myScrollMinutes.on('scroll', updateSelectedTime);
-    myScrollMinutes.on('scrollEnd', updateSelectedTime);
-
-    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+    function startTimeScroll () {
+      this.scrolling = true;
+    }
     
+    function endTimeScroll () {
+      updateSelectedTime();
+      //check if new endtime is valid. If so, set endtime. if not, reset to currtime
+      checkAndSetTime();
+      this.scrolling = false;
+    }
+    
+    function checkAndSetTime () {
+      var isPM = myScrollAMPM.selectedIndex - 1;
+      endTime.setHours(myScrollHours.selectedIndex - 1 + 12*isPM);
+      endTime.setMinutes(myScrollMinutes.selectedIndex - 1);
+
+      if (endTime.getTime() < currTime.getTime()) {
+        endTime.setTime(currTime.getTime());
+        setSelectedTime(currTime);
+      }
+    }
+    
+    // set up time filter. If the current time catches up to the listed end time, the end time will increment with the current time.
+    currTime = new Date();
+    // $('#time-display').text(toClockString(currTime));
+    // $('#time-display').attr('filterValue', currTime.toDateString() + ' ' + currTime.toTimeString());
+    endTime = new Date(currTime.getTime());
+    timeRefreshHandle = setInterval(function () {
+      currTime = new Date();
+      if (currTime.getTime() > endTime.getTime()) {
+        // currTimeStr = ((currTime.getHours() > 12) ? currTime.getHours() - 12 : currTime.getHours()) + ':' + ((currTime.getMinutes()<10?'0':'') + currTime.getMinutes());
+        // $('#time-display').text(toClockString(currTime));
+        // $('#time-display').attr('filterValue', currTime.toDateString() + ' ' + currTime.toTimeString());
+        endTime.setTime(currTime.getTime());
+        if (!myScrollHours.scrolling && !myScrollMinutes.scrolling && !myScrollAMPM.scrolling) {
+          setSelectedTime(endTime);
+        }
+        // myScroll.scrollToElement(document.querySelector('#scroller li:nth-child(25)'), null, null, true)
+      }
+    }, 1000);
     
     //enable filter buttons
     $('.image-checkbox').each(function (i, n) {
@@ -128,26 +185,26 @@
     
     //set click events for increasing and decreasing "endtime" filter
     //note that ajax won't fire repeatedly if the user rapidly increments/decrements the time
-    $('#increment-endtime').click( function (e) {
-      e.preventDefault();
-      leggo.changeEndTime(5);
-      if (timeSetHandle !== null) {
-        clearTimeout(timeSetHandle);
-      }
-      timeSetHandle = setTimeout(function () {
-        leggo.findActivities();
-      }, 500);
-    });
-    $('#decrement-endtime').click( function (e) {
-      e.preventDefault();
-      leggo.changeEndTime(-5);
-      if (timeSetHandle !== null) {
-        clearTimeout(timeSetHandle);
-      }
-      timeSetHandle = setTimeout(function () {
-        leggo.findActivities();
-      }, 500);
-    });
+    // $('#increment-endtime').click( function (e) {
+      // e.preventDefault();
+      // leggo.changeEndTime(5);
+      // if (timeSetHandle !== null) {
+        // clearTimeout(timeSetHandle);
+      // }
+      // timeSetHandle = setTimeout(function () {
+        // leggo.findActivities();
+      // }, 500);
+    // });
+    // $('#decrement-endtime').click( function (e) {
+      // e.preventDefault();
+      // leggo.changeEndTime(-5);
+      // if (timeSetHandle !== null) {
+        // clearTimeout(timeSetHandle);
+      // }
+      // timeSetHandle = setTimeout(function () {
+        // leggo.findActivities();
+      // }, 500);
+    // });
     
     //enable refresh button. gets new activities
     $('#refresh-button').click( function (e) {
@@ -188,9 +245,9 @@
   }
   
   function toClockString (date) {
-    var isPM = date.getHours() > 12;
+    var isPM = date.getHours() >= 12;
     //return ((isPM) ? date.getHours() - 12 : date.getHours()) + ':' + (((date.getMinutes() < 10) ? '0' : '') + currTime.getMinutes()) + ((isPM) ? 'PM' : 'AM');
-    return ((date.getHours() > 12) ? date.getHours() - 12 : date.getHours()) + ':' + ( (date.getMinutes()<10?'0':'') + date.getMinutes() ) + ' ' + ((isPM) ? 'PM' : 'AM');
+    return ((date.getHours() >= 12) ? hoursArray[date.getHours() - 12] : hoursArray[date.getHours()]) + ':' + ( (date.getMinutes()<10?'0':'') + date.getMinutes() ) + ' ' + ((isPM) ? 'PM' : 'AM');
   }
   
   function addMinutes(date, minutes) {
@@ -276,7 +333,8 @@ function callbackFunc(){
     
     var someData = {
       'coords': [ latitude, longitude ],
-      'starttime': 12//currTime.toDateString() + ' ' + currTime.toTimeString()
+      'starttime': currTime.toDateString() + ' ' + currTime.toTimeString(),
+      'endtime' : endTime.toDateString() + ' ' + endTime.toTimeString()
     };
     
     //note that I am pushing filter values to arrays. I'll leave it for now in case we return to non-exclusive buttons
