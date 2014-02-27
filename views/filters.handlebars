@@ -24,7 +24,7 @@
         
         <div>
           <section class="intro">
-            What kind of transportation is available?
+            What kind of transportation do you have access to now?
           </section>
           
           <section class="filter-body">
@@ -192,7 +192,7 @@
         <div>
         
           <section class="intro">
-            When do you need to get back?
+            What time do you need to be done? Give yourself at least 30 minutes!
           </section>
           
           <section class="filter-body">
@@ -204,12 +204,11 @@
             
             <section class="icons">
               <section id="fancy-time">
-                <div id="monitor">Y position: <strong id="position">0</strong></div>
                 <div id="hours-wrapper">
                   <div id="hours-scroller" class="scroller">
                     <ul>
-                      <li></li>
-                      <li class="selected-time">12</li>
+                      <li class="hours-spacer" ></li>
+                      <li class="selected-time selected-time-gray">12</li>
                       <li>1</li>
                       <li>2</li>
                       <li>3</li>
@@ -221,24 +220,24 @@
                       <li>9</li>
                       <li>10</li>
                       <li>11</li>
-                      <li></li>
+                      <li class="hours-spacer" ></li>
                     </ul>
                   </div>
                 </div>
                 <div id="minutes-wrapper">
                   <div id="minutes-scroller" class="scroller">
                     <ul>
-                      <li></li>
-                      <li class="selected-time">0</li>
-                      <li>1</li>
-                      <li>2</li>
-                      <li>3</li>
-                      <li>4</li>
-                      <li>5</li>
-                      <li>6</li>
-                      <li>7</li>
-                      <li>8</li>
-                      <li>9</li>
+                      <li class="minutes-spacer"></li>
+                      <li class="selected-time selected-time-gray">00</li>
+                      <li>01</li>
+                      <li>02</li>
+                      <li>03</li>
+                      <li>04</li>
+                      <li>05</li>
+                      <li>06</li>
+                      <li>07</li>
+                      <li>08</li>
+                      <li>09</li>
                       <li>10</li>
                       <li>11</li>
                       <li>12</li>
@@ -289,20 +288,32 @@
                       <li>57</li>
                       <li>58</li>
                       <li>59</li>
-                      <li></li>
+                      <li class="minutes-spacer"></li>
+                    </ul>
+                  </div>
+                </div>
+                <div id="ampm-wrapper">
+                  <div id="ampm-scroller" class="scroller">
+                    <ul>
+                      <li class="ampm-spacer"></li>
+                      <li class="selected-time" id="any-time-option">Never!</li>
+                      <li>AM</li>
+                      <li>PM</li>
+                      <li class="ampm-spacer"></li>
                     </ul>
                   </div>
                 </div>
               </section>
-              <button id="increment-endtime">
+              <div id="time-spacer"></div>
+              <!-- <button id="increment-endtime">
                 +
               </button>
-              <div id="time-display" filter="endtime" filtervalue="0" class="image-checkbox-checked">
+              <div id="time-display" filter="endtime" filtervalue="0">
                 
               </div>
               <button id="decrement-endtime">
                 -
-              </button>
+              </button> -->
             </section>
             
             <div class="navigation-panel">
@@ -380,7 +391,7 @@
             </section>
 
               
-            <section class="outro">
+            <section class="outro-details">
               <button class="start-button" onclick="leggo.testingfunction()">
                 LEGGO!
               </button></br>

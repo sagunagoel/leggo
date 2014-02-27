@@ -37,14 +37,29 @@ html {
 body {
 	overflow: hidden; /* this is important to prevent the whole page to bounce */
 }
-
+#any-time-option {
+ font-size: 12px;
+}
+#time-spacer {
+  height:200px;
+  width:100%;
+}
+.hours-spacer{
+  height: 82px !important;
+}
+.minutes-spacer{
+  height: 82px !important;
+}
+.ampm-spacer{
+  height: 42px !important;
+}
 #hours-wrapper {
 	position: absolute;
 	z-index: 1;
 	top: 0;
 	bottom: 0;
 	left: 0;
-	width: 50%;
+	width: 33%;
 	background: #ccc;
 	overflow: hidden;
 }
@@ -54,7 +69,24 @@ body {
 	top: 0;
 	bottom: 0;
 	right: 0;
-	width: 50%;
+  left: 0;
+	width: 33%;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: center;
+	background: #ccc;
+	overflow: hidden;
+}
+#ampm-wrapper {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	bottom: 0;
+	right: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 120px;
+	width: 33%;
 	background: #ccc;
 	overflow: hidden;
 }
@@ -103,15 +135,10 @@ body {
 }
 
 .scroller li.selected-time{
-	padding: 0 10px;
-  margin: 0;
-  border: 0;
-	height: 40px;
-	line-height: 40px;
-	border-bottom: 1px solid #ccc;
-	border-top: 1px solid #fff;
 	background-color: yellow;
-	font-size: 14px;
+}
+.scroller li.selected-time-gray{
+	background-color: DarkGray !important;
 }
 
 #monitor {
@@ -332,7 +359,7 @@ body {
 .picture {
   display:block;
 
-  width: 90%;
+  width: 100%;
   margin: 20px auto 0 auto;
  
   border-radius: 5px 5px 0 0;
@@ -352,27 +379,41 @@ body {
 
 .picture > img {
   max-width: 100%;
-  max-height: 100%;
+  max-height: 100%; 
   border-radius: 5px 5px 0 0;
 }
 
+.details-page .picture {
+  width:80%;
+}
+/* details page */
+#img-detail {
+  width:100%;
+}
 /*description of activity*/
 .info {
   display: block;
-  width:90%;
+  width:80%;
   margin: 0 auto;
   border: 1px solid #e0e4cc;
-  padding: 10px;
+  /* padding: 10px; */
   
 
   color:#3a3a3a;
   font-size: .75em;
 }
+.message {
+  max-width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 12px;
+}
+
 
 /* outro section with text + start button */
 .outro-details {
   margin: 0 auto;
-  width: 90%;
+  width: 80%;
   padding: 10px;
 
   
@@ -393,13 +434,15 @@ body {
  /*image for each activity choice */
 .act-img {
   max-width: 100%;
-  margin:auto;
+  margin:0 auto;
 }
 
 .accordion{
   font-weight: bold;
   /*padding: 5px;*/
   font-size: 12px;
+  text-align: left;
+  background-color: #FFFFFF;
 }
 
 .accordion-toggle{

@@ -13,10 +13,11 @@
 function startTime()
 {
 var today=new Date();
-var h=((today.getHours() > 12) ? today.getHours() - 12 : today.getHours());
+var hours = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+var h=(today.getHours() >= 12) ? hours[today.getHours() - 12] : hours[today.getHours()];
 var m=today.getMinutes();
 var s=today.getSeconds();
-var isPM = today.getHours() > 12;
+var isPM = today.getHours() >= 12;
 // add a zero in front of numbers<10
 m=checkTime(m);
 s=checkTime(s);
@@ -24,10 +25,6 @@ document.getElementById('txt').innerHTML=h+":"+m+" "+((isPM) ? 'PM' : 'AM');
 t=setTimeout(function(){startTime()},500);
 }
 
-/*function toClockString (date) {
-    var isPM = date.getHours() > 12;
-    return ((date.getHours() > 12) ? date.getHours() - 12 : date.getHours()) + ':' + ( (date.getMinutes()<10?'0':'') + date.getMinutes() ) + ' ' + ((isPM) ? 'PM' : 'AM');
-  } */
 function checkTime(i)
 {
 if (i<10)
