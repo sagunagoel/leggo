@@ -37,14 +37,26 @@ html {
 body {
 	overflow: hidden; /* this is important to prevent the whole page to bounce */
 }
-
+#time-spacer {
+  height:200px;
+  width:100%;
+}
+.hours-spacer{
+  height: 82px !important;
+}
+.minutes-spacer{
+  height: 82px !important;
+}
+.ampm-spacer{
+  height: 42px !important;
+}
 #hours-wrapper {
 	position: absolute;
 	z-index: 1;
 	top: 0;
 	bottom: 0;
 	left: 0;
-	width: 50%;
+	width: 33%;
 	background: #ccc;
 	overflow: hidden;
 }
@@ -54,7 +66,24 @@ body {
 	top: 0;
 	bottom: 0;
 	right: 0;
-	width: 50%;
+  left: 0;
+	width: 33%;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: center;
+	background: #ccc;
+	overflow: hidden;
+}
+#ampm-wrapper {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	bottom: 0;
+	right: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 120px;
+	width: 33%;
 	background: #ccc;
 	overflow: hidden;
 }
@@ -103,15 +132,10 @@ body {
 }
 
 .scroller li.selected-time{
-	padding: 0 10px;
-  margin: 0;
-  border: 0;
-	height: 40px;
-	line-height: 40px;
-	border-bottom: 1px solid #ccc;
-	border-top: 1px solid #fff;
 	background-color: yellow;
-	font-size: 14px;
+}
+.scroller li.selected-time-gray{
+	background-color: DarkGray !important;
 }
 
 #monitor {
