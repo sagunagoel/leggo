@@ -351,7 +351,7 @@
   leggo.activityClicked= function activityClicked(isNext,id){
     activitySelected=true;
     leggo.setActivityID(id);
-    $.get('../../data.json', getProject);
+    $.get('../data.json', getProject);
     leggo.changeFilter(true);
   }
   var result;
@@ -411,12 +411,11 @@ function callbackFunc(){
     
     var filterData = {
       'coords': [ latitude, longitude ],
-<<<<<<< HEAD
+/*
       'starttime':currTime.toDateString() + ' ' + currTime.toTimeString()
-=======
+*/
       'starttime': startStr,
       'endtime' : endStr
->>>>>>> 161d13d7af634950e0f3c1c364713a52c7315ec1
     };
     
     //note that I am pushing filter values to arrays. I'll leave it for now in case we return to non-exclusive buttons

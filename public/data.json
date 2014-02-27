@@ -652,7 +652,7 @@
             "moreinfoURL": "http://www.wikihow.com/Make-a-Perfect-Mix-Tape-or-CD"
         },
         {
-            "id": 18,
+            "id": 17,
             "name": "Learn Phrases of a New Language",
             "tags": [
                 "relaxing",
@@ -686,6 +686,46 @@
             "thingslist": [
                 " Internet connection or phrasebook",
                 " Somewhere you can practice speaking out loud"
+            ],
+            "moreinfoURL": "http://www.wikihow.com/Make-a-Perfect-Mix-Tape-or-CD"
+        },
+                {
+            "id": 18,
+            "name": "Stargaze near Lake Lagunita",
+            "tags": [
+                "relaxing",
+                "study",
+                "fresh air",
+                "romantic",
+                "peaceful",
+                "24-hour",
+                "peaceful"
+            ],
+            "coords": [
+                37.423139, 
+                -122.173950
+            ],
+            "address": "Lake Lagunita, Lomita Dr, Stanford, CA 94305",
+            "hours": {
+                "allDays": {
+                    "starttime": [
+                        0, 19
+                    ],
+                    "endtime": [
+                        4, 23.59
+                    ]
+                }
+            },
+            "length": 0.5,
+            "energylevel": 2,
+            "moneyupperlimit": 0,
+            "description": "Bring a friend and walk out to (usually dry) Lake Lagunita on a clear night. Find a darker area, lay down, and look up at the stars. Consider bringing music or a hot drink and see how many constellations you can spot. If you have a smartphone or tablet, you can always pull out a constellation-spotting app!",
+            "imageURL": "/images/19-stargaze.jpg",
+            "thingslist": [
+                " Warm layers",
+                " a friend (or at least someone who knows where you are)",
+                " a flashlight",
+                " and (optional) music, blankets, and a warm drink"
             ],
             "moreinfoURL": "http://www.wikihow.com/Make-a-Perfect-Mix-Tape-or-CD"
         }
