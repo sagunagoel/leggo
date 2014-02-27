@@ -404,12 +404,17 @@ function callbackFunc(){
   }
   
   //aggregates the currently set filters and returns a list of activities that pass said filters
-  leggo.findActivities = function () {
+  leggo.findActivities = function (noFilter) {
     // currTime = new Date();    
-    var startStr = currTime.toDateString() + ' ' + currTime.toTimeString();//currTime.getHours() + currTime.getMinutes()/60;
-    var endStr = (anyTime) ? startStr : endTime.toDateString() + ' ' + endTime.toTimeString();
+    // var startStr = currTime.toDateString() + ' ' + currTime.toTimeString();
+    var startStr = currTime.getTime();
+    // var endStr = (anyTime) ? startStr : endTime.toDateString() + ' ' + endTime.toTimeString();
+    var endStr = (anyTime) ? currTime.getTime() : endTime.getTime();
     
+    console.log('start: ' + startStr);
+    console.log('end : ' + endStr);
     var filterData = {
+      'nofilter': ((noFilter === undefined) ? false : true),
       'coords': [ latitude, longitude ],
 /*
       'starttime':currTime.toDateString() + ' ' + currTime.toTimeString()
@@ -435,7 +440,9 @@ function callbackFunc(){
   //adds activities to the activities page
   function populateActivities (activities) {
     if (activities.length == 0) {
-      $('#activities-intro').text('No matches found! Edit your filters and try again...');
+      $('#activities-intro').text('We couldn\'t find anything matching your filters, so here\'s a random selection...');
+      leggo.findActivities(true);
+      return;
     }
   
     var count = 0;
