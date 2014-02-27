@@ -283,7 +283,7 @@ function callbackFunc(){
     
     var someData = {
       'coords': [ latitude, longitude ],
-      'starttime': 12//currTime.toDateString() + ' ' + currTime.toTimeString()
+      'starttime':currTime.toDateString() + ' ' + currTime.toTimeString()
     };
     
     //note that I am pushing filter values to arrays. I'll leave it for now in case we return to non-exclusive buttons
