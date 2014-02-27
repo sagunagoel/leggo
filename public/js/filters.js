@@ -231,6 +231,7 @@
 
   function getProject(result)
   {
+    activities= result;
     console.log(result);
     console.log(currId);
     console.log(result['activities'][currId-1]);
@@ -304,6 +305,7 @@ function callbackFunc(){
   function populateActivities (activities) {
     if (activities.length == 0) {
       $('#activities-intro').text('No matches found! Edit your filters and try again...');
+
     }
   
     var count = 0;
