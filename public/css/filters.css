@@ -38,7 +38,7 @@ body {
 	overflow: hidden; /* this is important to prevent the whole page to bounce */
 }
 #any-time-option {
- font-size: 10px;
+ font-size: 12px;
 }
 #time-spacer {
   height:200px;
