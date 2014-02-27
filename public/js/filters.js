@@ -354,6 +354,7 @@
 
   function getProject(result)
   {
+    activities= result;
     console.log(result);
     console.log(currId);
     console.log(result['activities'][currId-1]);
