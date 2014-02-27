@@ -5,107 +5,122 @@ var data = require('../public/data.json');
 exports.filter = function (req, res) {
   var filters = req.body;
   console.log(filters);
-
-  var filtered = data.activities.filter( function (activity) {
-    var doesThisMatch = true;
-    
-    //distance filter
-    var activityCoords = activity['coords'];
-    var myCoords = filters['coords'];
-    var distance = Geolocation.haversine(
-      { 'latitude': activityCoords[0],
-        'longitude': activityCoords[1], },
-      { 'latitude': myCoords[0],
-        'longitude': myCoords[1] });
-    //console.log('distance: ' + distance);
-    var myTransportation = filters['transportation'] || [];
-    var foundMatch = myTransportation.length === 0;
-    // check if activity has no location. right now that means coords (0, 0)
-    if (activityCoords[0] === 0 && activityCoords[1] === 0) {
-      foundMatch = true;
-      distance = 0;
-    }
-    for (var i = 0; i < myTransportation.length; i++) {
-      if (myTransportation[i] === 'walking' && distance < 3) {
-        foundMatch = true;
-      } else if (myTransportation[i] === 'biking' && distance < 20) {
-        foundMatch = true;
-      } else if (myTransportation[i] === 'driving' && distance < 500) {
-        foundMatch = true;
-      }
-    }
-    if (!foundMatch) {
-      doesThisMatch = false;
-    }
   
-    //time filter. Is it open + do I have enough time. Note that transportation is NOT considered
-    var startDate = new Date(Date.parse(filters['starttime']));
-    var endDate = new Date(Date.parse(filters['endtime']));
-    var totalHours = (endDate.getTime() - startDate.getTime())/3600000;
-    console.log('hours: ' + totalHours);
-    //if time <= 30 minutes, just pass the filter...
-    if (totalHours < activity['length'] && totalHours > 0.5) {
-      doesThisMatch = false;
-    }
-    var hasWeekDays = activity['hours']['weekDays'] !== undefined;
-    var hasWeekEnds = activity['hours']['weekEnds'] !== undefined;
+  var filtered = data.activities;
+  
+  if (filters['nofilter'] === 'false') {
+    filtered = data.activities.filter( function (activity) {
+      var doesThisMatch = true;
+      
+      //distance filter
+      var activityCoords = activity['coords'];
+      var myCoords = filters['coords'];
+      var distance = Geolocation.haversine(
+        { 'latitude': activityCoords[0],
+          'longitude': activityCoords[1], },
+        { 'latitude': myCoords[0],
+          'longitude': myCoords[1] });
+      //console.log('distance: ' + distance);
+      var myTransportation = filters['transportation'] || [];
+      var foundMatch = myTransportation.length === 0;
+      // check if activity has no location. right now that means coords (0, 0)
+      if (activityCoords[0] === 0 && activityCoords[1] === 0) {
+        foundMatch = true;
+        distance = 0;
+      }
+      for (var i = 0; i < myTransportation.length; i++) {
+        if (myTransportation[i] === 'walking' && distance < 3) {
+          foundMatch = true;
+        } else if (myTransportation[i] === 'biking' && distance < 20) {
+          foundMatch = true;
+        } else if (myTransportation[i] === 'driving' && distance < 500) {
+          foundMatch = true;
+        }
+      }
+      if (!foundMatch) {
+        doesThisMatch = false;
+      }
     
-    var foundMatch = checkDay(startDate, activity);
-    if (!foundMatch) {
-      doesThisMatch = false;
-    }
+      //time filter. Is it open + do I have enough time. Note that transportation is NOT considered
+      // var startDate = new Date(Date.parse(filters['starttime']));
+      //fix for time zone
+      var startDate = new Date(parseInt(filters['starttime']) - 28800000);
+      // startDate = new Date();
+      console.log('start: ' + startDate.toDateString());
+      // var endDate = new Date(Date.parse(filters['endtime']));
+      //fix for time zone
+      var endDate = new Date(parseInt(filters['endtime']) - 28800000);
+      
+      var totalMillisecs = (endDate.getTime() - startDate.getTime());
+      // totalMillisecs = 1800000;
+      // console.log('hours: ' + totalMillisecs);
+      //if time <= 30 minutes, just pass the filter...
+      if (totalMillisecs < activity['length']*3600000 && totalMillisecs >= 1800000) {
+        doesThisMatch = false;
+      } else if (totalMillisecs >= 1800000) {
+        var hasWeekDays = activity['hours']['weekDays'] !== undefined;
+        var hasWeekEnds = activity['hours']['weekEnds'] !== undefined;
+        
+        var foundMatch = checkDay(startDate, activity);
+        if (!foundMatch) {
+          doesThisMatch = false;
+        }
+      }
 
-    // var myStartTime = parseInt(filters['starttime']);
-    // var activityStartTime = activity['starttime'];
-    // var timeDiff = myStartTime - activityStartTime;
-    // //console.log('starttime diff: ' + timeDiff);
-    // if (timeDiff < 0) {
-      // doesThisMatch = false;
-    // }
-    
-    //energy level filter
-    var myEnergy = filters['energy'] || [];
-    //if there is no energy filter specified, all activities match
-    var foundMatch = myEnergy.length === 0;
-    for (var i = 0; i < myEnergy.length; i++) {
-      if (activity['energylevel'] <= myEnergy[i]) {
-        foundMatch = true;
-      }
-    }
-    if (!foundMatch) {
-      doesThisMatch = false;
-    }
-    
-    //number of people filter. This is currently not used
-    var myPeople = filters['people'] || [];
-    var foundMatch = myPeople.length === 0;
-    for (var i = 0; i < myPeople.length; i++) {
-      if (activity['maxpeople'] >= parseInt(myPeople[i])) {
-        foundMatch = true;
-      }
-    }
-    if (!foundMatch) {
-      doesThisMatch = false;
-    }
-    
-    //money filter
-    var myMoney = filters['money'] || [];
-    //console.log(activity['moneyupperlimit'] <= parseInt(myMoney[i]));
-    var foundMatch = myMoney.length === 0;
-    for (var i = 0; i < myMoney.length; i++) {
-      if (activity['moneyupperlimit'] <= parseInt(myMoney[i])) {
-        foundMatch = true;
-      }
-    }
-    if (!foundMatch) {
-      doesThisMatch = false;
-    }
-    if (doesThisMatch) {
-      activity['distance'] = distance;
-    }
-    return doesThisMatch;
-  });
 
+      // var myStartTime = parseInt(filters['starttime']);
+      // var activityStartTime = activity['starttime'];
+      // var timeDiff = myStartTime - activityStartTime;
+      // //console.log('starttime diff: ' + timeDiff);
+      // if (timeDiff < 0) {
+        // doesThisMatch = false;
+      // }
+      
+      //energy level filter
+      var myEnergy = filters['energy'] || [];
+      //if there is no energy filter specified, all activities match
+      var foundMatch = myEnergy.length === 0;
+      for (var i = 0; i < myEnergy.length; i++) {
+        if (activity['energylevel'] <= parseInt(myEnergy[i])) {
+          foundMatch = true;
+        }
+      }
+      if (!foundMatch) {
+        doesThisMatch = false;
+      }
+      
+      //number of people filter. This is currently not used
+      var myPeople = filters['people'] || [];
+      var foundMatch = myPeople.length === 0;
+      for (var i = 0; i < myPeople.length; i++) {
+        if (activity['maxpeople'] >= parseInt(myPeople[i])) {
+          foundMatch = true;
+        }
+      }
+      if (!foundMatch) {
+        doesThisMatch = false;
+      }
+      
+      //money filter
+      var myMoney = filters['money'] || [];
+      //console.log(activity['moneyupperlimit'] <= parseInt(myMoney[i]));
+      var foundMatch = myMoney.length === 0;
+      for (var i = 0; i < myMoney.length; i++) {
+        if (activity['moneyupperlimit'] <= parseInt(myMoney[i])) {
+          console.log('theirmoney: ' + activity['moneyupperlimit']);
+          console.log('mymoney: ' + parseInt(myMoney[i]));
+          foundMatch = true;
+        }
+      }
+      if (!foundMatch) {
+        doesThisMatch = false;
+      }
+      if (doesThisMatch) {
+        activity['distance'] = distance;
+      }
+      return doesThisMatch;
+    });
+  }
   //console.log(filtered);
   //truncate and shuffle results
   var returnedActivities = filtered;
@@ -152,6 +167,7 @@ function checkTime (myTime, theirStartTimes, theirEndTimes) {
   var foundMatch = false;
   for (var i = 0; i < theirStartTimes.length; i++) {
     if (myTime >= parseFloat(theirStartTimes[i]) && myTime <= parseFloat(theirEndTimes[i])) {
+      console.log(myTime);
       foundMatch = true;
     }
   }
