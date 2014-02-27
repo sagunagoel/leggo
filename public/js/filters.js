@@ -416,6 +416,9 @@ function callbackFunc(){
     var filterData = {
       'nofilter': ((noFilter === undefined) ? false : true),
       'coords': [ latitude, longitude ],
+/*
+      'starttime':currTime.toDateString() + ' ' + currTime.toTimeString()
+*/
       'starttime': startStr,
       'endtime' : endStr
     };

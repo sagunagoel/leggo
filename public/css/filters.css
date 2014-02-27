@@ -402,9 +402,13 @@ body {
   color:#3a3a3a;
   font-size: .75em;
 }
-.info > p {
-  margin: auto;
+.message {
+  max-width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 12px;
 }
+
 
 /* outro section with text + start button */
 .outro-details {
@@ -437,6 +441,8 @@ body {
   font-weight: bold;
   /*padding: 5px;*/
   font-size: 12px;
+  text-align: left;
+  background-color: #FFFFFF;
 }
 
 .accordion-toggle{

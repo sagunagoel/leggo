@@ -40,19 +40,18 @@
     </section>
 
       <div>
-      <section class= "#details-page">
-      <section class="intro">
-        <p>Hooray! </br>
-          You are now ready to get started.</p>
-        <img id="img-detail"/>
-      </section>
-
-      <section class="info" id="info">
-          <div class="activity-display">
+      <section class= "details-page">
+      <section class="picture">
+        
+          <img id="img-detail"/>
+          
               <a href="#" activityid="{{id}}" >
                 <img src="{{imageURL}}" class="act-img">
               </a>
-          </div>
+        <section class="info" id="info">  
+        <div class= "message"></br> <p> Hooray, you're ready to get started! Here's all you need to know: </br></p>
+        </div>
+      </section>    
 
 <div id="scrolly" style="overflow-y: hidden; overflow-x: hidden;">
       <div class="accordion" id="accordion2">
@@ -64,8 +63,8 @@
         </div>
         <div id="collapseOne" class="accordion-body collapse in">
           <div class="accordion-inner">
-            Cost:${{moneyupperlimit}}
-            Address: {{address}}
+            Cost: ${{moneyupperlimit}} </br>
+            Location: {{address}}
           </div>
         </div>
       </div>
