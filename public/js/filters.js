@@ -57,15 +57,22 @@
     
     //make each scroll element clickable
     var lastSelectedIdx = myScrollMinutes.selectedIndex;
-    $('#minutes-scroller ul').children().mousedown( function (e) {
+    $('#minutes-scroller ul').children().bind('touchdown', mouseDownScroll)
+      .mousedown(mouseDownScroll)
+      .bind('touchup', mouseUpScroll)
+      .click(mouseUpScroll);
+    
+    function mouseDownScroll (e) {
       e.preventDefault();
       lastSelectedIdx = myScrollMinutes.selectedIndex;
-    }).click( function (e) {
+    }
+    
+    function mouseUpScroll (e) {
       e.preventDefault();
       if (lastSelectedIdx === myScrollMinutes.selectedIndex) {
         myScrollMinutes.scrollToElement($(this)[0], null, null, true);
       }
-    });
+    }
     
     
     function setDisplayedTime(date) {
