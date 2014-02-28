@@ -93,7 +93,7 @@
     
     function startTimeScroll () {
       this.scrolling = true;
-      $(document).bind('touchmove', function (e) { e.preventDefault(); });
+      // $(document).bind('touchmove', function (e) { e.preventDefault(); });
       console.log('start');
     }
     
@@ -106,7 +106,7 @@
         millisecsAvailable = 0;
       }
       this.scrolling = false;
-      $(document).unbind('touchmove');
+      // $(document).unbind('touchmove');
       console.log('end');
     }
     
