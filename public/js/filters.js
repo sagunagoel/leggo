@@ -75,18 +75,54 @@
     myScrollAMPM.on('scrollEnd', endTimeScroll);
     
     //make each element clickable
-    $('#hours-scroller ul').children().click( function (e) {
+    // $('#hours-scroller ul').children().click( function (e) {
+      // e.preventDefault();
+      // myScrollHours.scrollToElement($(this)[0], null, null, true);
+    // });
+    // $('#minutes-scroller ul').children().click( function (e) {
+      // e.preventDefault();
+      // myScrollMinutes.scrollToElement($(this)[0], null, null, true);
+    // });
+    // $('#ampm-scroller ul').children().click( function (e) {
+      // e.preventDefault();
+      // myScrollAMPM.scrollToElement($(this)[0], null, null, true);
+    // });
+    $('#hours-scroller ul').children().bind('touchstart', function (e) { mouseDownScroll(e, this, myScrollHours); })
+      .mousedown( function (e) { mouseDownScroll(e, this, myScrollHours); })
+      .bind('touchend', function (e) { mouseUpScroll(e, this, myScrollHours); })
+      .click( function (e) { mouseUpScroll(e, this, myScrollHours); });
+      
+    $('#minutes-scroller ul').children().bind('touchstart', function (e) { mouseDownScroll(e, this, myScrollMinutes); })
+      .mousedown( function (e) { mouseDownScroll(e, this, myScrollMinutes); })
+      .bind('touchend', function (e) { mouseUpScroll(e, this, myScrollMinutes); })
+      .click( function (e) { mouseUpScroll(e, this, myScrollMinutes); });
+      
+    $('#ampm-scroller ul').children().bind('touchstart', function (e) { mouseDownScroll(e, this, myScrollAMPM); })
+      .mousedown( function (e) { mouseDownScroll(e, this, myScrollAMPM); })
+      .bind('touchend', function (e) { mouseUpScroll(e, this, myScrollAMPM); })
+      .click( function (e) { mouseUpScroll(e, this, myScrollAMPM); });
+    
+        // $('#minutes-scroller ul').children()
+      // .bind('touchstart', function (e) { mouseDownScroll(e, this, myScroll); })
+      // .mousedown( function (e) { mouseDownScroll(e, this, myScroll); })
+      // .bind('touchend', function (e) { mouseUpScroll(e, this, myScroll); })
+      // .click( function (e) { mouseUpScroll(e, this, myScroll); });
+    
+    // var lastSelectedHours = myScrollHours.selectedIndex;
+    // var lastSelectedMinutes = myScrollMinutes.selectedIndex;
+    // var lastSelectedAMPM = myScrollAMPM.selectedIndex;
+    
+    function mouseDownScroll (e, myThis, myScroll) {
       e.preventDefault();
-      myScrollHours.scrollToElement($(this)[0], null, null, true);
-    });
-    $('#minutes-scroller ul').children().click( function (e) {
+      myScroll.lastSelectedIndex = myScroll.selectedIndex;
+    }
+    
+    function mouseUpScroll (e, myThis, myScroll) {
       e.preventDefault();
-      myScrollMinutes.scrollToElement($(this)[0], null, null, true);
-    });
-    $('#ampm-scroller ul').children().click( function (e) {
-      e.preventDefault();
-      myScrollAMPM.scrollToElement($(this)[0], null, null, true);
-    });
+      if (myScroll.selectedIndex === myScroll.lastSelectedIndex) {
+        myScroll.scrollToElement($(myThis)[0], null, null, true);
+      }
+    }
     
     
     function setDisplayedTime(date) {
@@ -138,7 +174,7 @@
     
     function startTimeScroll () {
       this.scrolling = true;
-      $(document).bind('touchmove', function (e) { e.preventDefault(); });
+      // $(document).bind('touchmove', function (e) { e.preventDefault(); });
       console.log('start');
     }
     
@@ -147,7 +183,7 @@
       //check if new endtime is valid. If so, set endtime. if not, reset to currtime
       checkAndSetTime();
       this.scrolling = false;
-      $(document).unbind('touchmove');
+      // $(document).unbind('touchmove');
       console.log('end');
     }
     
