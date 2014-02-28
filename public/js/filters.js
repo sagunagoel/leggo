@@ -57,10 +57,14 @@
     
     //make each scroll element clickable
     var lastSelectedIdx = myScrollMinutes.selectedIndex;
-    $('#minutes-scroller ul').children().bind('touchdown', mouseDownScroll)
-      .mousedown(mouseDownScroll)
-      .bind('touchup', mouseUpScroll)
-      .click(mouseUpScroll);
+    $('#minutes-scroller ul').children().on('tap', function (e) {
+      e.preventDefault();
+      myScrollMinutes.scrollToElement($(this)[0], null, null, true);
+    }).mousedown(mouseDownScroll).click(mouseUpScroll);
+      // .bind('touchdown', mouseDownScroll)
+      // .mousedown(mouseDownScroll)
+      // .bind('touchup', mouseUpScroll)
+      // .click(mouseUpScroll);
     
     function mouseDownScroll (e) {
       e.preventDefault();
