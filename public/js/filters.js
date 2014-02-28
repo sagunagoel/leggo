@@ -57,7 +57,7 @@
     
     //make each scroll element clickable
     var lastSelectedIdx = myScrollMinutes.selectedIndex;
-    $('#minutes-scroller ul').children().on('tap', function (e) {
+    $('#minutes-scroller ul').children().on('click', function (e) {
       e.preventDefault();
       myScrollMinutes.scrollToElement($(this)[0], null, null, true);
     }).mousedown(mouseDownScroll).click(mouseUpScroll);
