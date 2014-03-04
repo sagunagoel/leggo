@@ -73,8 +73,56 @@
     myScrollAMPM.on('scrollStart', startTimeScroll);
     myScrollAMPM.on('scroll', updateSelectedTime);
     myScrollAMPM.on('scrollEnd', endTimeScroll);
-
     
+    //make each element clickable
+    // $('#hours-scroller ul').children().click( function (e) {
+      // e.preventDefault();
+      // myScrollHours.scrollToElement($(this)[0], null, null, true);
+    // });
+    // $('#minutes-scroller ul').children().click( function (e) {
+      // e.preventDefault();
+      // myScrollMinutes.scrollToElement($(this)[0], null, null, true);
+    // });
+    // $('#ampm-scroller ul').children().click( function (e) {
+      // e.preventDefault();
+      // myScrollAMPM.scrollToElement($(this)[0], null, null, true);
+    // });
+    $('#hours-scroller ul').children().bind('touchstart', function (e) { mouseDownScroll(e, this, myScrollHours); })
+      .mousedown( function (e) { mouseDownScroll(e, this, myScrollHours); })
+      .bind('touchend', function (e) { mouseUpScroll(e, this, myScrollHours); })
+      .click( function (e) { mouseUpScroll(e, this, myScrollHours); });
+      
+    $('#minutes-scroller ul').children().bind('touchstart', function (e) { mouseDownScroll(e, this, myScrollMinutes); })
+      .mousedown( function (e) { mouseDownScroll(e, this, myScrollMinutes); })
+      .bind('touchend', function (e) { mouseUpScroll(e, this, myScrollMinutes); })
+      .click( function (e) { mouseUpScroll(e, this, myScrollMinutes); });
+      
+    $('#ampm-scroller ul').children().bind('touchstart', function (e) { mouseDownScroll(e, this, myScrollAMPM); })
+      .mousedown( function (e) { mouseDownScroll(e, this, myScrollAMPM); })
+      .bind('touchend', function (e) { mouseUpScroll(e, this, myScrollAMPM); })
+      .click( function (e) { mouseUpScroll(e, this, myScrollAMPM); });
+    
+        // $('#minutes-scroller ul').children()
+      // .bind('touchstart', function (e) { mouseDownScroll(e, this, myScroll); })
+      // .mousedown( function (e) { mouseDownScroll(e, this, myScroll); })
+      // .bind('touchend', function (e) { mouseUpScroll(e, this, myScroll); })
+      // .click( function (e) { mouseUpScroll(e, this, myScroll); });
+    
+    // var lastSelectedHours = myScrollHours.selectedIndex;
+    // var lastSelectedMinutes = myScrollMinutes.selectedIndex;
+    // var lastSelectedAMPM = myScrollAMPM.selectedIndex;
+    
+    function mouseDownScroll (e, myThis, myScroll) {
+      e.preventDefault();
+      myScroll.lastSelectedIndex = myScroll.selectedIndex;
+    }
+    
+    function mouseUpScroll (e, myThis, myScroll) {
+      e.preventDefault();
+      if (myScroll.selectedIndex === myScroll.lastSelectedIndex) {
+        myScroll.scrollToElement($(myThis)[0], null, null, true);
+      }
+    }
     
     
     function setDisplayedTime(date) {
@@ -126,7 +174,7 @@
     
     function startTimeScroll () {
       this.scrolling = true;
-      $(document).bind('touchmove', function (e) { e.preventDefault(); });
+      // $(document).bind('touchmove', function (e) { e.preventDefault(); });
       console.log('start');
     }
     
@@ -135,7 +183,7 @@
       //check if new endtime is valid. If so, set endtime. if not, reset to currtime
       checkAndSetTime();
       this.scrolling = false;
-      $(document).unbind('touchmove');
+      // $(document).unbind('touchmove');
       console.log('end');
     }
     
@@ -157,24 +205,8 @@
       var minutesOptions = $($(myScrollMinutes.scroller).children('ul')[0]).children();
       if (myScrollAMPM.selectedIndex === 1) {
         anyTime = true;
-        //if endTime = currTime, the filter is ignored
-        // endTime.setTime(currTime.getTime() + 1800000);
-        
-        // hoursOptions.removeClass('selected-time');
-        // myScrollHours.scrollToElement(hoursOptions[1], null, null, true);
         $(hoursOptions[myScrollHours.selectedIndex]).addClass('selected-time-gray');
-        
-        
-        // minutesOptions.removeClass('selected-time');
-        // myScrollMinutes.scrollToElement(minutesOptions[1], null, null, true);
         $(minutesOptions[myScrollMinutes.selectedIndex]).addClass('selected-time-gray');
-        
-        // var ampmOptions = $($(myScrollAMPM.scroller).children('ul')[0]).children();
-        // ampmOptions.removeClass('selected-time');
-        // myScrollAMPM.scrollToElement(ampmOptions[1], null, null, true);
-        // $(ampmOptions[1]).addClass('selected-time');
-        
-        // setDisplayedTime(endTime);
         
       } else {
         anyTime = false;
@@ -358,6 +390,7 @@
 
   function getProject(result)
   {
+    activities= result;
     console.log(result);
     console.log(currId);
     console.log(result['activities'][currId-1]);

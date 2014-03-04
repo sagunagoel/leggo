@@ -37,6 +37,9 @@ html {
 body {
 	overflow: hidden; /* this is important to prevent the whole page to bounce */
 }
+#any-time-option {
+ font-size: 12px;
+}
 #time-spacer {
   height:200px;
   width:100%;
@@ -48,7 +51,7 @@ body {
   height: 82px !important;
 }
 .ampm-spacer{
-  height: 42px !important;
+  height: 82px !important;
 }
 #hours-wrapper {
 	position: absolute;
@@ -70,7 +73,6 @@ body {
 	width: 33%;
   margin-left: auto;
   margin-right: auto;
-  vertical-align: center;
 	background: #ccc;
 	overflow: hidden;
 }
@@ -80,9 +82,9 @@ body {
 	top: 0;
 	bottom: 0;
 	right: 0;
-  margin-top: auto;
+  /*margin-top: auto;
   margin-bottom: auto;
-  height: 120px;
+  height: 120px;*/
 	width: 33%;
 	background: #ccc;
 	overflow: hidden;
@@ -132,7 +134,8 @@ body {
 }
 
 .scroller li.selected-time{
-	background-color: yellow;
+	background-color: #f37f47;
+  color: white;
 }
 .scroller li.selected-time-gray{
 	background-color: DarkGray !important;
