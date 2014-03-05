@@ -1,5 +1,9 @@
 var data = require('../public/data.json');
+var models = require('../models');
 
+exports.filterDB = function (req, res) {
+  
+}
 
 // NOTE: Right now it's set up to handle non-exclusive options for each filter. This isn't currently necessary, but I don't feel like taking it out
 exports.filter = function (req, res) {
@@ -7,6 +11,19 @@ exports.filter = function (req, res) {
   console.log(filters);
   
   var filtered = data.activities;
+  // var queryConditions = { 'moneyupperlimit' : (filters.energy) ? {
+  
+  var query = models.Activity.find();
+  (filters.money === undefined) || query.where('moneyupperlimit').lte(parseInt(filters.money));
+  (filters.energy === undefined) || query.where('energylevel').equals(parseInt(filters.energy));
+  
+  query.exec(afterQuery);
+  
+  function afterQuery (err, activities) {
+    if(err) console.log(err);
+    console.log('mongostuff: ', activities);
+  }
+  
   
   if (filters['nofilter'] === 'false') {
     filtered = data.activities.filter( function (activity) {
@@ -46,7 +63,7 @@ exports.filter = function (req, res) {
       //fix for time zone
       var startDate = new Date(parseInt(filters['starttime']) - 28800000);
       // startDate = new Date();
-      console.log('start: ' + startDate.toDateString());
+      // console.log('start: ' + startDate.toDateString());
       // var endDate = new Date(Date.parse(filters['endtime']));
       //fix for time zone
       var endDate = new Date(parseInt(filters['endtime']) - 28800000);
@@ -107,8 +124,8 @@ exports.filter = function (req, res) {
       var foundMatch = myMoney.length === 0;
       for (var i = 0; i < myMoney.length; i++) {
         if (activity['moneyupperlimit'] <= parseInt(myMoney[i])) {
-          console.log('theirmoney: ' + activity['moneyupperlimit']);
-          console.log('mymoney: ' + parseInt(myMoney[i]));
+          // console.log('theirmoney: ' + activity['moneyupperlimit']);
+          // console.log('mymoney: ' + parseInt(myMoney[i]));
           foundMatch = true;
         }
       }
@@ -167,7 +184,7 @@ function checkTime (myTime, theirStartTimes, theirEndTimes) {
   var foundMatch = false;
   for (var i = 0; i < theirStartTimes.length; i++) {
     if (myTime >= parseFloat(theirStartTimes[i]) && myTime <= parseFloat(theirEndTimes[i])) {
-      console.log(myTime);
+      // console.log(myTime);
       foundMatch = true;
     }
   }
