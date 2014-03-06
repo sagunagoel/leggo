@@ -6,11 +6,12 @@
   var timeRefreshHandle = null;
   var timeSetHandle = null;
   var activityRefreshHandle = null;
-  
+  var c=0000;
+  var firstTime=true;
   var currId;
   var activitySelected=false;
   var activityData = {};
-  
+  var t;
   var isMouseDown = false;
   
   var currTime;
@@ -33,12 +34,21 @@
       disableScroll: false,
       stopPropagation: false,
       callback: function(index, elem) {
+        console.log("index is now "+ index)
         if (index==5 && activitySelected!=true){
         mySwipe.prev();
       }
+        if (index==3 && firstTime) {
+        console.log("time filter is here!");
+        timedCount();
+      }
+      if(index==4){
+        console.log("what is the time now "+c);
+        stopCount(c);
+      }
       },
       transitionEnd: function(index, elem) {}
-    });
+    }); 
 
     // with jQuery
     // window.mySwipe = $('ß#mySwipe').Swipe().data('Swipe');
@@ -66,6 +76,7 @@
       .bind('touchend', mouseUpScroll)
       .click(mouseUpScroll);
     
+
     function mouseDownScroll (e) {
       e.preventDefault();
       lastSelectedIdx = myScrollMinutes.selectedIndex;
@@ -78,6 +89,25 @@
       }
     }
     
+    function timedCount(){
+      firstTime=false;
+      c=c+1;
+      console.log(c);
+      t=setTimeout(function(){timedCount()},1000);
+    }
+
+    function stopCount(){
+      clearTimeout(t);
+      console.log("final time taken was"+c);
+
+      var timeTestData = {
+        'finalTime':c
+    };
+
+    $.post('/timetest', timeTestData, function (data) {
+      console.log(data);
+    });
+    }
     
     function setDisplayedTime(date) {
       
@@ -111,6 +141,7 @@
       }
       this.scrolling = false;
       // $(document).unbind('touchmove');
+      leggo.findActivities();
       console.log('end');
     }
     
@@ -230,22 +261,23 @@
   leggo.activityClicked= function activityClicked(isNext,id){
     activitySelected=true;
     leggo.setActivityID(id);
-    $.get('../data.json', getProject);
+    // $.get('../data.json', getProject);
+    for (var i=0; i<activityData.length; ++i) {
+      if (activityData[i]['id'] === id) {
+        showActivity(activityData[i]);
+      }
+    }
     leggo.changeFilter(true);
   }
-  var result;
+  // var result;
+  
+  function showActivity(activity) {
+    $("#img-detail").attr('src', activity['imageURL']);
+    $("#descrip-detail").text(activity['description']);
+    $("#needs-detail").text(activity['thingslist']);
+    $("#cost-detail").text("$" + activity['moneyupperlimit']);
+  }
 
-  function getProject(result)
-  {
-    activities= result;
-    // console.log(result);
-    // console.log(currId);
-    // console.log(result['activities'][currId-1]);
-    $("#img-detail").attr('src', result['activities'][currId-1]['imageURL']);
-    $("#descrip-detail").text(result['activities'][currId-1]['description']);
-    $("#needs-detail").text(result['activities'][currId-1]['thingslist']);
-    $("#cost-detail").text("$" + result['activities'][currId-1]['moneyupperlimit']);
-  }  
 
   leggo.testingfunction = function testingfunction(){
     // console.log(currId);
@@ -254,7 +286,7 @@
 
 function callbackFunc(){
 
-  console.log("performed");
+  // console.log("performed");
 }
   
   function storePosition(position) {
@@ -293,20 +325,22 @@ function callbackFunc(){
     // console.log('end : ' + endStr);
     var filterData = {
       'nofilter': ((noFilter === undefined) ? false : true),
-      'coords': [ latitude, longitude ],
+      'coords': (latitude === null || longitude === null) ? [] : [ latitude, longitude ], //empty array if location data missing
 /*
       'starttime':currTime.toDateString() + ' ' + currTime.toTimeString()
 */
       'starttime': startStr,
-      'endtime' : endStr
+      'endtime' : (noFilter) ? startStr : endStr
     };
     
     //note that I am pushing filter values to arrays. I'll leave it for now in case we return to non-exclusive buttons
-    $('.image-checkbox-checked').each(function (i, n) {
-      filterData[$(this).attr('filter')] = filterData[$(this).attr('filter')] || [];
-      filterData[$(this).attr('filter')].push($(this).attr('filtervalue'));
-      // console.log('filter: ' + $(this).attr('filter') + ' value: ' + $(this).attr('filtervalue'));
-    });
+    if (!noFilter) {
+      $('.image-checkbox-checked').each(function (i, n) {
+        filterData[$(this).attr('filter')] = filterData[$(this).attr('filter')] || [];
+        filterData[$(this).attr('filter')].push($(this).attr('filtervalue'));
+        // console.log('filter: ' + $(this).attr('filter') + ' value: ' + $(this).attr('filtervalue'));
+      });
+    }
     $.post('/findactivities', filterData, function (data) {
       activityData = data['activities'];
       populateActivities(activityData);
