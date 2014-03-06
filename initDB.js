@@ -25,7 +25,7 @@ console.log(mongoose.version);
 // Do the initialization here
 
 // Step 1: load the JSON data
-var activities_json = require('./datamswap.json');
+var activities_json = require('./datamswap3.json');
 
 // Step 2: Remove all existing documents
 models.Activity
