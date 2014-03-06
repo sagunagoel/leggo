@@ -144,6 +144,14 @@
     function stopCount(){
       clearTimeout(t);
       console.log("final time taken was"+c);
+
+      var timeTestData = {
+        'finalTime':c
+    };
+
+    $.post('/timetest', timeTestData, function (data) {
+      console.log(data);
+    });
     }
     
     function setDisplayedTime(date) {

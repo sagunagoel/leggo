@@ -74,8 +74,12 @@ var ActivitySchema = new Mongoose.Schema({
     moreinfoURL: String
 });
 
+var TimeSchema = new Mongoose.Schema({
+time: Number
+});
+
 ActivitySchema.index({ loc: '2dsphere' });
 
 exports.Activity = Mongoose.model('Activity', ActivitySchema);
-
+exports.Time=Mongoose.model('Time', TimeSchema);
 

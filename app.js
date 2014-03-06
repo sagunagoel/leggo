@@ -24,6 +24,7 @@ var details = require('./routes/details');
 var chosen = require('./routes/chosenactivity');
 var reflection = require('./routes/reflection');
 var help = require('./routes/help');
+var timetest= require('./routes/timetest');
 
 // var newPage= require('./routes/chosenactivity')
 // Example route
@@ -60,6 +61,7 @@ if ('development' == app.get('env')) {
 // Add routes here
 app.get('/filters', filters.view);
 app.post('/findactivities', findactivities.filter);
+app.post('/timetest',timetest.filter);
 
 app.get('/', splashscreen.view);
 app.get('/categories',categories.view);
@@ -74,6 +76,7 @@ app.get('/chosenactivity', chosen.view);
 app.get('/reflection', reflection.view);
 app.get('/help', help.view);
 app.get('/finalactivity/:id', chosen.view)
+
 // Example route
 // app.get('/users', user.list);
 
