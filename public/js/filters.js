@@ -474,7 +474,7 @@ function callbackFunc(){
   function populateActivities (activities) {
     if (activities.length == 0) {
       $('#activities-intro').text('We couldn\'t find anything matching your filters, so here\'s a random selection...');
-      leggo.findActivities(true);
+      // leggo.findActivities(true);
       return;
     }
   

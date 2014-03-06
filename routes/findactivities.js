@@ -10,7 +10,7 @@ exports.filter = function (req, res) {
   var filters = req.body;
   console.log(filters);
   
-  var filtered = data.activities;
+  // var filtered = data.activities;
   // var queryConditions = { 'moneyupperlimit' : (filters.energy) ? {
   
   // if (filters.transportation !== undefined && filters.coords.length !== 0)
