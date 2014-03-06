@@ -7,7 +7,6 @@
           "relaxing",
           "active"
       ],
-      "test": {"dherp": {"sherp": "merp", "derp": [11.033, -20.954]}},
       "loc": {
         "type": "Point",
         "coordinates": [

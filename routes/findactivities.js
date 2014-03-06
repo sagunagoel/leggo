@@ -13,16 +13,79 @@ exports.filter = function (req, res) {
   var filtered = data.activities;
   // var queryConditions = { 'moneyupperlimit' : (filters.energy) ? {
   
-  var query = models.Activity.find();
-  (filters.money === undefined) || query.where('moneyupperlimit').lte(parseInt(filters.money));
-  (filters.energy === undefined) || query.where('energylevel').equals(parseInt(filters.energy));
+  // if (filters.transportation !== undefined && filters.coords.length !== 0)
+    // queryGuts['loc'] = {
+      // $nearSphere: {
+        // type: 'Point',
+        // coordinates: [ parseFloat(filters.coords[1]), parseFloat(filters.coords[0]) ]
+      // },
+      // $maxDistance: (filters.transportation[0] === 'walking') ? 1000 : ((filters.transportation[0] === 'biking') ? 3000 : 16000)
+    // };
   
+  var queryGuts = {};
+  if (filters.energy !== undefined)
+    queryGuts['energylevel'] = parseInt(filters.energy[0]);
+  if (filters.money !== undefined)
+    queryGuts['moneyupperlimit'] = { $lte: parseInt(filters.money[0]) };
+    
+  var query = models.Activity.find(queryGuts);
+  if (filters.transportation !== undefined && filters.coords.length !== 0)
+    query.near('loc', {
+      center: {
+        type: 'Point',
+        coordinates: [ parseFloat(filters.coords[1]), parseFloat(filters.coords[0]) ]
+      },
+      maxDistance: (filters.transportation[0] === 'walking') ? 1000 : ((filters.transportation[0] === 'biking') ? 3000 : 16000)
+    });
+    
   query.exec(afterQuery);
   
   function afterQuery (err, activities) {
     if(err) console.log(err);
-    console.log('mongostuff: ', activities);
+    // console.log('mongostuff: ', activities);
+    
+    if (filters.transportation !== undefined && filters.coords.length !== 0) {
+      var secondQuery = models.Activity.find(queryGuts);
+      secondQuery.near('loc', {
+        center: {
+          type: 'Point',
+          coordinates: [ 0.0, 0.0 ]
+        },
+        maxDistance: 1
+      });
+      
+      secondQuery.exec(afterQueryTwo);
+    } else {
+      console.log('DERRP');
+    }
+    
+    
+    
+    function afterQueryTwo (err, anywhereActivities) {
+      if(err) console.log(err);
+      
+      combinedActivities = activities.concat(anywhereActivities);
+      console.log(combinedActivities);
+    }
+    
   }
+  // if (filters.transportation !== undefined && filters.coords.length !== 0) {
+    // query.or([{ loc: {
+        // $nearSphere: {
+          // type: "Point",
+          // coordinates: [ parseFloat(filters.coords[1]), parseFloat(filters.coords[0]) ]
+        // },
+        // $maxDistance: (filters.transportation[0] === 'walking') ? 1000 : ((filters.transportation[0] === 'biking') ? 3000 : 16000)
+      // }
+    // },{ loc: {
+        // $nearSphere: {
+          // type: "Point",
+          // coordinates: [ 0.0, 0.0 ]
+        // },
+        // $maxDistance: 1
+      // }
+    // }]);
+  // }
   
   
   if (filters['nofilter'] === 'false') {

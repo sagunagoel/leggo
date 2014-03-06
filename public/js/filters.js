@@ -448,7 +448,7 @@ function callbackFunc(){
     console.log('end : ' + endStr);
     var filterData = {
       'nofilter': ((noFilter === undefined) ? false : true),
-      'coords': [ latitude, longitude ],
+      'coords': (latitude === null || longitude === null) ? [] : [ latitude, longitude ], //empty array if location data missing
 /*
       'starttime':currTime.toDateString() + ' ' + currTime.toTimeString()
 */

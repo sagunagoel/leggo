@@ -42,7 +42,7 @@ function onceClear(err) {
   var to_save_count = activities_json.length;
   for(var i=0; i<activities_json.length; i++) {
     var json = activities_json[i];
-    console.log(json.loc);
+    // console.log(json.loc);
     var proj = new models.Activity(json);
 
     proj.save(function(err, proj) {
