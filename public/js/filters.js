@@ -383,31 +383,43 @@
   leggo.activityClicked= function activityClicked(isNext,id){
     activitySelected=true;
     leggo.setActivityID(id);
-    $.get('../data.json', getProject);
+    // $.get('../data.json', getProject);
+    for (var i=0; i<activityData.length; ++i) {
+      if (activityData[i]['id'] === id) {
+        showActivity(activityData[i]);
+      }
+    }
     leggo.changeFilter(true);
   }
-  var result;
+  // var result;
+  
+  function showActivity(activity) {
+    $("#img-detail").attr('src', activity['imageURL']);
+    $("#descrip-detail").text(activity['description']);
+    $("#needs-detail").text(activity['thingslist']);
+    $("#cost-detail").text("$" + activity['moneyupperlimit']);
+  }
 
-  function getProject(result)
-  {
-    activities= result;
-    console.log(result);
-    console.log(currId);
-    console.log(result['activities'][currId-1]);
-    $("#img-detail").attr('src', result['activities'][currId-1]['imageURL']);
-    $("#descrip-detail").text(result['activities'][currId-1]['description']);
-    $("#needs-detail").text(result['activities'][currId-1]['thingslist']);
-    $("#cost-detail").text("$" + result['activities'][currId-1]['moneyupperlimit']);
-  }  
+  // function getProject(result)
+  // {
+    // activities= result;
+    // console.log(result);
+    // console.log(currId);
+    // console.log(result['activities'][currId-1]);
+    // $("#img-detail").attr('src', result['activities'][currId-1]['imageURL']);
+    // $("#descrip-detail").text(result['activities'][currId-1]['description']);
+    // $("#needs-detail").text(result['activities'][currId-1]['thingslist']);
+    // $("#cost-detail").text("$" + result['activities'][currId-1]['moneyupperlimit']);
+  // }  
 
   leggo.testingfunction = function testingfunction(){
-    console.log(currId);
+    // console.log(currId);
     window.location.replace("/finalactivity/"+currId);
   }
 
 function callbackFunc(){
 
-  console.log("performed");
+  // console.log("performed");
 }
   
   function storePosition(position) {
@@ -420,7 +432,7 @@ function callbackFunc(){
   //swipes the current filter forward if isNext is true, backward if not
   leggo.changeFilter = function changeFilter (isNext) {
     var currPos = mySwipe.getPos();
-    console.log(currPos);
+    // console.log(currPos);
     
   
     var children = $('.nav-dots').children()[0].children;
@@ -444,8 +456,8 @@ function callbackFunc(){
     // var endStr = (anyTime) ? startStr : endTime.toDateString() + ' ' + endTime.toTimeString();
     var endStr = (anyTime) ? currTime.getTime() : endTime.getTime();
     
-    console.log('start: ' + startStr);
-    console.log('end : ' + endStr);
+    // console.log('start: ' + startStr);
+    // console.log('end : ' + endStr);
     var filterData = {
       'nofilter': ((noFilter === undefined) ? false : true),
       'coords': (latitude === null || longitude === null) ? [] : [ latitude, longitude ], //empty array if location data missing
