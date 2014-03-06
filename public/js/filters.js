@@ -184,6 +184,10 @@
       checkAndSetTime();
       this.scrolling = false;
       // $(document).unbind('touchmove');
+      if (timeSetHandle !== null) {
+        clearTimeout(timeSetHandle);
+      }
+      timeSetHandle = setTimeout( function () { leggo.findActivities(); }, 1000);
       console.log('end');
     }
     
