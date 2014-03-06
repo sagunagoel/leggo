@@ -48,7 +48,11 @@ var ActivitySchema = new Mongoose.Schema({
       // type: { type: String },
       // coordinates: []
     // },
-    coordinates: [],
+    // coordinates: [],
+    loc: {
+      type: { type: String },
+      coordinates: []
+    },
     address: String,
     hours: {allDays: {starttime: [Number],endtime: [Number]},
       weekDays: {starttime: [Number],endtime: [Number]},
@@ -70,7 +74,7 @@ var ActivitySchema = new Mongoose.Schema({
     moreinfoURL: String
 });
 
-ActivitySchema.index({ coordinates: '2d' });
+ActivitySchema.index({ loc: '2dsphere' });
 
 exports.Activity = Mongoose.model('Activity', ActivitySchema);
 

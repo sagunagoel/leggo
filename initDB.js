@@ -25,7 +25,7 @@ console.log(mongoose.version);
 // Do the initialization here
 
 // Step 1: load the JSON data
-var activities_json = require('./datamswap3.json');
+var activities_json = require('./datamswap2.json');
 
 // Step 2: Remove all existing documents
 models.Activity
@@ -42,6 +42,7 @@ function onceClear(err) {
   var to_save_count = activities_json.length;
   for(var i=0; i<activities_json.length; i++) {
     var json = activities_json[i];
+    console.log(json.loc);
     var proj = new models.Activity(json);
 
     proj.save(function(err, proj) {
