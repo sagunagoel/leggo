@@ -53,7 +53,7 @@ exports.filter = function (req, res) {
         },
         maxDistance: 1
       });
-      
+
       secondQuery.exec(afterQueryTwo);
     } else {
       afterQueryTwo(err, []);
@@ -61,7 +61,7 @@ exports.filter = function (req, res) {
     
     function afterQueryTwo (err, anywhereActivities) {
       if(err) console.log(err);
-      
+
       combinedActivities = activities.concat(anywhereActivities);
 
       combinedActivities = combinedActivities.filter( function(activity) {
@@ -71,7 +71,6 @@ exports.filter = function (req, res) {
         console.log('start: ' + startDate.toDateString() + ' ' + startDate.toTimeString());
         //fix for time zone
         var endDate = new Date(parseInt(filters['endtime']) - 28800000);
-        
         var totalMillisecs = (endDate.getTime() - startDate.getTime());
         //if time <= 30 minutes, just pass the filter...
         var foundMatch = true;
