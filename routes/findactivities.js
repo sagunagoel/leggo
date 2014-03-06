@@ -13,7 +13,7 @@ exports.filter = function (req, res) {
       var doesThisMatch = true;
       
       //distance filter
-      var activityCoords = activity['coords'];
+      var activityCoords = activity['loc']['coordinates'];
       var myCoords = filters['coords'];
       var distance = Geolocation.haversine(
         { 'latitude': activityCoords[0],
