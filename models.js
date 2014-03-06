@@ -36,7 +36,7 @@ var ActivitySchema = new Mongoose.Schema({
     // "imageURL": String,
     // "thingslist": [String],
     // "moreinfoURL": String
-    id: Number,
+    id: Number, 
     name: String,
     tags: [String],
     // loc: { type: [Number], index: 2d },
