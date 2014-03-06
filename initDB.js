@@ -20,7 +20,7 @@ var local_database_uri  = 'mongodb://localhost/' + local_database_name
 var database_uri = process.env.MONGOLAB_URI || local_database_uri
 mongoose.connect(database_uri);
 
-console.log(mongoose.version);
+console.log(database_uri);
 
 // Do the initialization here
 
