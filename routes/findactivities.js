@@ -57,7 +57,7 @@ exports.filter = function (req, res) {
       //if time <= 30 minutes, just pass the filter...
       if (totalMillisecs < activity['length']*3600000 && totalMillisecs >= 1800000) {
         doesThisMatch = false;
-      } else if (totalMillisecs >= 1800000) {
+      } else {
         var hasWeekDays = activity['hours']['weekDays'] !== undefined;
         var hasWeekEnds = activity['hours']['weekEnds'] !== undefined;
         

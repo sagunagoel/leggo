@@ -8,18 +8,21 @@
                 "relaxing",
                 "active"
             ],
-            "coords": [
-                37.896395,
-                -122.581185
-            ],
-            "address": "",
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    -122.581185,
+                    37.896395
+                ]
+            },
+            "address": "Mill Valley, CA",
             "hours": {
                 "allDays": {
                     "starttime": [
                         8
                     ],
                     "endtime": [
-                       18
+                        18
                     ]
                 }
             },
@@ -33,7 +36,8 @@
                 " water",
                 " $7 per person"
             ],
-            "moreinfoURL": "http://www.nps.gov/muwo/index.htm"
+            "moreinfoURL": "http://www.nps.gov/muwo/index.htm",
+            "moreinfoName": "National Park Service: Muir Woods National Monument"
         },
         {
             "id": 2,
@@ -44,11 +48,14 @@
                 "driving",
                 "view"
             ],
-            "coords": [
-                39.003578,
-                -123.696062
-            ],
-            "address": "",
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    -123.696062,
+                    39.003578
+                ]
+            },
+            "address": "Palo Alto, CA 94022",
             "hours": {
                 "allDays": {
                     "starttime": [
@@ -66,10 +73,11 @@
             "imageURL": "/images/lostrancos-olabel.jpg",
             "thingslist": [
                 " Trail Map",
-                " Water",
-                " Walking shoes"
+                " water",
+                " and walking shoes."
             ],
-            "moreinfoURL": "http://www.openspace.org/preserves/pr_los_trancos.asp"
+            "moreinfoURL": "http://www.openspace.org/preserves/pr_los_trancos.asp",
+            "moreinfoName": "OpenSpace.org: Los Trancos Open Space Preserve"
         },
         {
             "id": 3,
@@ -81,11 +89,14 @@
                 "creative",
                 "weird"
             ],
-            "coords": [
-                0,
-                0
-            ],
-            "address": "",
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    0,
+                    0
+                ]
+            },
+            "address": "Almost anywhere! (Check online for specific geocaches)",
             "hours": {
                 "allDays": {
                     "starttime": [
@@ -106,7 +117,8 @@
                 " Something small to hide",
                 " Curiosity"
             ],
-            "moreinfoURL": "http://www.geocaching.com/"
+            "moreinfoURL": "http://www.geocaching.com/",
+            "moreinfoName": "Geocaching.com"
         },
         {
             "id": 4,
@@ -118,10 +130,13 @@
                 "creative",
                 "weird"
             ],
-            "coords": [
-                0,
-                0
-            ],
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    0,
+                    0
+                ]
+            },
             "address": "",
             "hours": {
                 "allDays": {
@@ -144,7 +159,8 @@
                 " Someone you care about",
                 " A stamp (optional)"
             ],
-            "moreinfoURL": ""
+            "moreinfoURL": "http://www.wikihow.com/Write-a-Letter-to-Your-Best-Friend",
+            "moreinfoName": "How To Write A Letter To Your Best Friend"
         },
         {
             "id": 5,
@@ -156,10 +172,13 @@
                 "creative",
                 "weird"
             ],
-            "coords": [
-                37.447555,
-                -122.159804
-            ],
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    -122.159804,
+                    37.447555
+                ]
+            },
             "address": "440 University Ave, Palo Alto, CA 94301",
             "hours": {
                 "weekDays": {
@@ -177,7 +196,7 @@
                     ],
                     "endtime": [
                         2,
-                        23.59
+                        23.99
                     ]
                 }
             },
@@ -190,7 +209,8 @@
                 " Cash (for a discont!)",
                 " Sweet tooth"
             ],
-            "moreinfoURL": "http://creamnation.com"
+            "moreinfoURL": "http://creamnation.com",
+            "moreinfoName": "CREAM Online"
         },
         {
             "id": 6,
@@ -202,10 +222,13 @@
                 "creative",
                 "weird"
             ],
-            "coords": [
-                37.4177563,
-                -122.1235054
-            ],
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    -122.1235054,
+                    37.4177563
+                ]
+            },
             "address": "494 S California Ave, Palo Alto, CA 94306",
             "hours": {
                 "sundays": {
@@ -226,10 +249,10 @@
                 "Cash",
                 "Sunglasses"
             ],
-            "moreinfoURL": "http://www.urbanvillageonline.com/markets/california-avenue/"
+            "moreinfoURL": "http://www.urbanvillageonline.com/markets/california-avenue/",
+            "moreinfoName": "Urban Village: California Avenue Farmer's Market"
         },
-        
-                {
+        {
             "id": 7,
             "name": "Stanford Theater",
             "tags": [
@@ -239,10 +262,13 @@
                 "local flavor",
                 "relaxing"
             ],
-            "coords": [
-                37.445042, 
-                -122.1626228
-            ],
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    -122.1626228,
+                    37.445042
+                ]
+            },
             "address": "221 University Ave, Palo Alto, CA 94301",
             "hours": {
                 "wednesdays": {
@@ -250,7 +276,7 @@
                         18
                     ],
                     "endtime": [
-                        23.59
+                        23.99
                     ]
                 },
                 "thursdays": {
@@ -258,7 +284,7 @@
                         18
                     ],
                     "endtime": [
-                        23.59
+                        23.99
                     ]
                 },
                 "weekEnds": {
@@ -266,7 +292,7 @@
                         17.3
                     ],
                     "endtime": [
-                        23.59
+                        23.99
                     ]
                 },
                 "sundays": {
@@ -274,10 +300,9 @@
                         17.3
                     ],
                     "endtime": [
-                        23.59
+                        23.99
                     ]
                 }
-
             },
             "length": 3,
             "energylevel": 1,
@@ -289,19 +314,23 @@
                 "Snacks",
                 "Sweater"
             ],
-            "moreinfoURL": "http://www.stanfordtheatre.org/aboutWeek.html"
+            "moreinfoURL": "http://www.stanfordtheatre.org/aboutWeek.html",
+            "moreinfoName": "Stanford Theater This Week"
         },
-            {
+        {
             "id": 8,
             "name": "Thrift-shop at Savers",
             "tags": [
                 "shopping",
                 "discount"
             ],
-            "coords": [
-                37.485265, 
-                -122.225608
-            ],
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    -122.225608,
+                    37.485265
+                ]
+            },
             "address": "875 Main St, Redwood City, CA 94063",
             "hours": {
                 "allDays": {
@@ -323,11 +352,10 @@
                 " Sense of humor",
                 " A friend"
             ],
-            "moreinfoURL": "http://www.savers.com/"
-            },
-
-
-           {
+            "moreinfoURL": "http://www.savers.com/",
+            "moreinfoName": "Savers Online"
+        },
+        {
             "id": 9,
             "name": "Law Garden Terrace",
             "tags": [
@@ -339,10 +367,13 @@
                 "24-hour",
                 "peaceful"
             ],
-            "coords": [
-                37.42407761, 
-                -122.16762164
-            ],
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    -122.16762164,
+                    37.42407761
+                ]
+            },
             "address": "559 Nathan Abbott Way, Stanford, CA 94305",
             "hours": {
                 "allDays": {
@@ -350,7 +381,7 @@
                         0
                     ],
                     "endtime": [
-                        23.59
+                        23.99
                     ]
                 }
             },
@@ -362,9 +393,10 @@
             "thingslist": [
                 "Optional: Something to read or work on"
             ],
-            "moreinfoURL": ""
+            "moreinfoURL": "",
+            "moreinfoName": ""
         },
-                    {
+        {
             "id": 10,
             "name": "Fountain Hop",
             "tags": [
@@ -373,10 +405,13 @@
                 "adventurous",
                 "social"
             ],
-            "coords": [
-                37.4244756, 
-                -122.1696775
-            ],
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    -122.1696775,
+                    37.4244756
+                ]
+            },
             "address": "The Claw, 519 Lasuen Mall, Stanford, CA 94305",
             "hours": {
                 "allDays": {
@@ -384,7 +419,7 @@
                         0
                     ],
                     "endtime": [
-                        23.59
+                        23.99
                     ]
                 }
             },
@@ -397,7 +432,8 @@
                 " Swimsuit or clothes that can get wet",
                 " Flip flops"
             ],
-            "moreinfoURL": ""
+            "moreinfoURL": "https://findery.com/Campus/notemaps/stanford-fountain-hopping",
+            "moreinfoName": "Findery.com Guide to Fountain Hopping at Stanford"
         },
         {
             "id": 11,
@@ -408,10 +444,13 @@
                 "local flavor",
                 "social"
             ],
-            "coords": [
-                37.4127475, 
-                -122.1692681
-            ],
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    -122.1692681,
+                    37.4127475
+                ]
+            },
             "address": "Stanford Dish Hiking Trail, CA 94305",
             "hours": {
                 "allDays": {
@@ -433,7 +472,8 @@
                 "Water",
                 "Sunscreen"
             ],
-            "moreinfoURL": "http://www.everytrail.com/guide/the-stanford-dish-hike"
+            "moreinfoURL": "http://www.everytrail.com/guide/the-stanford-dish-hike",
+            "moreinfoName": "EveryTrail.com Guide to The Stanford Dish Hike"
         },
         {
             "id": 12,
@@ -446,10 +486,13 @@
                 " active",
                 " social"
             ],
-            "coords": [
-                37.25558, 
-                -121.798295
-            ],
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    -121.798295,
+                    37.25558
+                ]
+            },
             "address": "Santa Clara Paintball, 2542 Monterey Highway, San Jose, CA 95111",
             "hours": {
                 "wednesdays": {
@@ -495,29 +538,26 @@
                 "Long Pants",
                 "Rent or bring equipment"
             ],
-            "moreinfoURL": "http://santaclarapaintball.com/"
+            "moreinfoURL": "http://santaclarapaintball.com/",
+            "moreinfoName": "Santa Clara Paintball"
         },
-          {
+        {
             "id": 13,
-            "name": "Give Free Hugs",
-            "tags": [
-                "social",
-                "weird",
-                "funny",
-                "free"
-            ],
-            "coords": [
-                37.4127475, 
-                -122.1692681
-            ],
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    0,
+                    0
+                ]
+            },
             "address": "Any street",
             "hours": {
                 "allDays": {
                     "starttime": [
-                       0
+                        0
                     ],
                     "endtime": [
-                        23.59
+                        23.99
                     ]
                 }
             },
@@ -528,12 +568,13 @@
             "imageURL": "/images/13-freehugs.jpg",
             "thingslist": [
                 " Poster paper",
-                " Marker",
-                " Smile",
-                " Open arms",
-                " Safe street"
+                " a marker",
+                " your smile",
+                " open arms",
+                " and a safe street"
             ],
-            "moreinfoURL": "http://www.freehugscampaign.org/"
+            "moreinfoURL": "http://www.freehugscampaign.org/",
+            "moreinfoName": "Free Hugs Campaign"
         },
         {
             "id": 14,
@@ -547,10 +588,13 @@
                 "24-hour",
                 "peaceful"
             ],
-            "coords": [
-                0, 
-                0
-            ],
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    0,
+                    0
+                ]
+            },
             "address": "Wherever you have an Internet connection!",
             "hours": {
                 "allDays": {
@@ -558,7 +602,7 @@
                         0
                     ],
                     "endtime": [
-                        23.59
+                        23.99
                     ]
                 }
             },
@@ -569,10 +613,11 @@
             "imageURL": "/images/14-videocall.jpg",
             "thingslist": [
                 " Video calling program and account",
-                " Webcam or front-facing camera",
-                " A friend or family member online"
+                " webcam or front-facing camera",
+                " and a friend or family member online."
             ],
-            "moreinfoURL": ""
+            "moreinfoURL": "http://www.skype.com/en/",
+            "moreinfoName": "Check Out Skype"
         },
         {
             "id": 15,
@@ -586,10 +631,13 @@
                 "24-hour",
                 "peaceful"
             ],
-            "coords": [
-                0, 
-                0
-            ],
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    0,
+                    0
+                ]
+            },
             "address": "Wherever your music library is",
             "hours": {
                 "allDays": {
@@ -597,7 +645,7 @@
                         0
                     ],
                     "endtime": [
-                        23.59
+                        23.99
                     ]
                 }
             },
@@ -608,10 +656,10 @@
             "imageURL": "/images/15-playlist.jpg",
             "thingslist": [
                 " Some music software or online account (ex. iTunes, Spotify, or 8tracks",
-                " Webcam or front-facing camera",
-                " A friend or family member online"
+                " and a theme, person, or situation in mind to make a playlist for."
             ],
-            "moreinfoURL": "http://www.wikihow.com/Make-a-Perfect-Mix-Tape-or-CD"
+            "moreinfoURL": "http://www.wikihow.com/Make-a-Perfect-Mix-Tape-or-CD",
+            "moreinfoName": "WikiHow: How to Make a Perfect Mixtape or CD"
         },
         {
             "id": 16,
@@ -625,10 +673,13 @@
                 "24-hour",
                 "peaceful"
             ],
-            "coords": [
-                0, 
-                0
-            ],
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    0,
+                    0
+                ]
+            },
             "address": "Anywhere that captures your imagination",
             "hours": {
                 "allDays": {
@@ -636,7 +687,7 @@
                         0
                     ],
                     "endtime": [
-                        23.59
+                        23.99
                     ]
                 }
             },
@@ -647,12 +698,55 @@
             "imageURL": "/images/16-takepictures.jpg",
             "thingslist": [
                 " Any camera or camera phone",
-                " A subject to photograph"
+                " and a subject to photograph."
             ],
-            "moreinfoURL": "<a href=\"http://www.wikihow.com/Make-a-Perfect-Mix-Tape-or-CD\"></a>"
+            "moreinfoURL": "http://www.picturecorrect.com/",
+            "moreinfoName": "Photography Tips from PictureCorrect.com"
         },
         {
             "id": 17,
+            "name": "Hop on the CalTrain",
+            "tags": [
+                "relaxing",
+                "study",
+                "fresh air",
+                "romantic",
+                "peaceful",
+                "24-hour",
+                "peaceful"
+            ],
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    -122.170656,
+                    37.424096
+                ]
+            },
+            "address": " 459 Lagunita Dr #117, Stanford, CA 94305",
+            "hours": {
+                "allDays": {
+                    "starttime": [
+                        4.5
+                    ],
+                    "endtime": [
+                        21
+                    ]
+                }
+            },
+            "length": 2,
+            "energylevel": 2,
+            "moneyupperlimit": 10,
+            "description": "Head to the Stanford CalTrain Station, buy a ticket, and get on the next train. Trains head north as far as San Francisco and south as far as San Jose, so get off wherever you want and explore. Make sure to purchase a ticket appropriate for the distance you'd like to travel.",
+            "imageURL": "/images/17-caltrain.jpg",
+            "thingslist": [
+                " Money to buy a ticket",
+                " and a couple hours to spare exploring."
+            ],
+            "moreinfoURL": "http://www.caltrain.com/schedules.html",
+            "moreinfoName": "CalTrain Schedules"
+        },
+        {
+            "id": 18,
             "name": "Learn Phrases of a New Language",
             "tags": [
                 "relaxing",
@@ -663,10 +757,13 @@
                 "24-hour",
                 "peaceful"
             ],
-            "coords": [
-                0, 
-                0
-            ],
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    0,
+                    0
+                ]
+            },
             "address": " Anywhere with internet connection or a phrasebook",
             "hours": {
                 "allDays": {
@@ -674,7 +771,7 @@
                         0
                     ],
                     "endtime": [
-                        23.59
+                        23.99
                     ]
                 }
             },
@@ -685,12 +782,12 @@
             "imageURL": "/images/18-learnphrases.jpg",
             "thingslist": [
                 " Internet connection or phrasebook",
-                " Somewhere you can practice speaking out loud"
+                " and somewhere you can practice speaking out loud."
             ],
             "moreinfoURL": "http://www.wikihow.com/Make-a-Perfect-Mix-Tape-or-CD"
         },
-                {
-            "id": 18,
+        {
+            "id": 19,
             "name": "Stargaze near Lake Lagunita",
             "tags": [
                 "relaxing",
@@ -701,18 +798,23 @@
                 "24-hour",
                 "peaceful"
             ],
-            "coords": [
-                37.423139, 
-                -122.173950
-            ],
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    -122.17395,
+                    37.423139
+                ]
+            },
             "address": "Lake Lagunita, Lomita Dr, Stanford, CA 94305",
             "hours": {
                 "allDays": {
                     "starttime": [
-                        0, 19
+                        0,
+                        19
                     ],
                     "endtime": [
-                        4, 23.59
+                        4,
+                        23.99
                     ]
                 }
             },
@@ -727,7 +829,51 @@
                 " a flashlight",
                 " and (optional) music, blankets, and a warm drink"
             ],
-            "moreinfoURL": "http://www.wikihow.com/Make-a-Perfect-Mix-Tape-or-CD"
+            "moreinfoURL": "http://mashable.com/2011/06/21/astronomy-mobile-apps/",
+            "moreinfoName": "Mashable.com: 10 Mobile Astronomy Apps for Stargazers"
+        },
+        {
+            "id": 20,
+            "name": "Get Coffee at Philz",
+            "tags": [
+                "relaxing",
+                "study",
+                "fresh air",
+                "romantic",
+                "peaceful",
+                "24-hour",
+                "peaceful"
+            ],
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    -122.1616006,
+                    37.4422044
+                ]
+            },
+            "address": "101 Forest Ave, Palo Alto, CA 94301",
+            "hours": {
+                "allDays": {
+                    "starttime": [
+                        6
+                    ],
+                    "endtime": [
+                        21
+                    ]
+                }
+            },
+            "length": 0.5,
+            "energylevel": 1,
+            "moneyupperlimit": 4,
+            "description": "See what the buzz is all about! Check out this bay area coffee shop for some of the best brews and friendliest serivice around. Stick around to read or people watch on one of Philz's comfy couches.",
+            "imageURL": "/images/20-philz.jpg",
+            "thingslist": [
+                " $3 for a small drink or $4 for a large",
+                " something to read, play or work on",
+                " and think about bringing your own mug for a discount."
+            ],
+            "moreinfoURL": "http://www.philzcoffee.com/",
+            "moreinfoName": "Philz Coffee Website"
         }
     ]
 }
