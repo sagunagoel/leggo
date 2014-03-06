@@ -128,7 +128,7 @@
     function startTimeScroll () {
       this.scrolling = true;
       // $(document).bind('touchmove', function (e) { e.preventDefault(); });
-      console.log('start');
+      console.log('starting');
     }
     
     function endTimeScroll () {
