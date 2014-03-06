@@ -253,9 +253,8 @@ body {
 /* navigation panels are containers for previous/next filter buttons */
 .navigation-panel {
   display: inline-block;
-  vertical-align: top;
-  
-  padding: 50px 0 0 0;
+  vertical-align: middle;
+  padding: 50px 0;
   width: 10%;
   height: 100%;
 }
@@ -395,9 +394,9 @@ body {
   display: block;
   width:80%;
   margin: 0 auto;
+  padding: 5px;
   border: 1px solid #e0e4cc;
   /* padding: 10px; */
-  
 
   color:#3a3a3a;
   font-size: .75em;
