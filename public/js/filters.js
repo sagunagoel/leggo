@@ -111,6 +111,7 @@
       }
       this.scrolling = false;
       // $(document).unbind('touchmove');
+      leggo.findActivities();
       console.log('end');
     }
     
