@@ -469,20 +469,22 @@ function callbackFunc(){
     console.log('end : ' + endStr);
     var filterData = {
       'nofilter': ((noFilter === undefined) ? false : true),
-      'coords': [ latitude, longitude ],
+      'coords': (latitude === null || longitude === null) ? [] : [ latitude, longitude ], //empty array if location data missing
 /*
       'starttime':currTime.toDateString() + ' ' + currTime.toTimeString()
 */
       'starttime': startStr,
-      'endtime' : endStr
+      'endtime' : (noFilter) ? startStr : endStr
     };
     
     //note that I am pushing filter values to arrays. I'll leave it for now in case we return to non-exclusive buttons
-    $('.image-checkbox-checked').each(function (i, n) {
-      filterData[$(this).attr('filter')] = filterData[$(this).attr('filter')] || [];
-      filterData[$(this).attr('filter')].push($(this).attr('filtervalue'));
-      // console.log('filter: ' + $(this).attr('filter') + ' value: ' + $(this).attr('filtervalue'));
-    });
+    if (!noFilter) {
+      $('.image-checkbox-checked').each(function (i, n) {
+        filterData[$(this).attr('filter')] = filterData[$(this).attr('filter')] || [];
+        filterData[$(this).attr('filter')].push($(this).attr('filtervalue'));
+        // console.log('filter: ' + $(this).attr('filter') + ' value: ' + $(this).attr('filtervalue'));
+      });
+    }
     $.post('/findactivities', filterData, function (data) {
       activityData = data['activities'];
       populateActivities(activityData);
