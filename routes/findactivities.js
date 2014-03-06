@@ -56,16 +56,40 @@ exports.filter = function (req, res) {
       
       secondQuery.exec(afterQueryTwo);
     } else {
-      console.log('DERRP');
+      afterQueryTwo(err, []);
     }
-    
-    
     
     function afterQueryTwo (err, anywhereActivities) {
       if(err) console.log(err);
       
       combinedActivities = activities.concat(anywhereActivities);
-      console.log(combinedActivities);
+
+      combinedActivities = combinedActivities.filter( function(activity) {
+        //time filter. Is it open + do I have enough time. Note that transportation is NOT considered
+        //fix for time zone
+        var startDate = new Date(parseInt(filters['starttime']) - 28800000);
+        console.log('start: ' + startDate.toDateString() + ' ' + startDate.toTimeString());
+        //fix for time zone
+        var endDate = new Date(parseInt(filters['endtime']) - 28800000);
+        
+        var totalMillisecs = (endDate.getTime() - startDate.getTime());
+        //if time <= 30 minutes, just pass the filter...
+        var foundMatch = true;
+        if (totalMillisecs < activity['length']*3600000 && totalMillisecs >= 1800000) {
+          foundMatch = false;
+        } else {
+          foundMatch = checkDay(startDate, activity);
+        }
+        
+        return foundMatch;
+      });
+      
+      for (var i=0; i<combinedActivities.length; ++i)
+        console.log(combinedActivities[i].name);
+      
+      var returnSize = (combinedActivities.length > 3) ? 3 : combinedActivities.length;
+      res.json({ 'activities' : getRandomSubarray(combinedActivities, returnSize) });
+      
     }
     
   }
@@ -88,131 +112,131 @@ exports.filter = function (req, res) {
   // }
   
   
-  if (filters['nofilter'] === 'false') {
-    filtered = data.activities.filter( function (activity) {
-      var doesThisMatch = true;
+  // if (filters['nofilter'] === 'false') {
+    // filtered = data.activities.filter( function (activity) {
+      // var doesThisMatch = true;
       
-      //distance filter
-      var activityCoords = activity['coords'];
-      var myCoords = filters['coords'];
-      var distance = Geolocation.haversine(
-        { 'latitude': activityCoords[0],
-          'longitude': activityCoords[1], },
-        { 'latitude': myCoords[0],
-          'longitude': myCoords[1] });
-      //console.log('distance: ' + distance);
-      var myTransportation = filters['transportation'] || [];
-      var foundMatch = myTransportation.length === 0;
-      // check if activity has no location. right now that means coords (0, 0)
-      if (activityCoords[0] === 0 && activityCoords[1] === 0) {
-        foundMatch = true;
-        distance = 0;
-      }
-      for (var i = 0; i < myTransportation.length; i++) {
-        if (myTransportation[i] === 'walking' && distance < 3) {
-          foundMatch = true;
-        } else if (myTransportation[i] === 'biking' && distance < 20) {
-          foundMatch = true;
-        } else if (myTransportation[i] === 'driving' && distance < 500) {
-          foundMatch = true;
-        }
-      }
-      if (!foundMatch) {
-        doesThisMatch = false;
-      }
+      // //distance filter
+      // var activityCoords = activity['coords'];
+      // var myCoords = filters['coords'];
+      // var distance = Geolocation.haversine(
+        // { 'latitude': activityCoords[0],
+          // 'longitude': activityCoords[1], },
+        // { 'latitude': myCoords[0],
+          // 'longitude': myCoords[1] });
+      // //console.log('distance: ' + distance);
+      // var myTransportation = filters['transportation'] || [];
+      // var foundMatch = myTransportation.length === 0;
+      // // check if activity has no location. right now that means coords (0, 0)
+      // if (activityCoords[0] === 0 && activityCoords[1] === 0) {
+        // foundMatch = true;
+        // distance = 0;
+      // }
+      // for (var i = 0; i < myTransportation.length; i++) {
+        // if (myTransportation[i] === 'walking' && distance < 3) {
+          // foundMatch = true;
+        // } else if (myTransportation[i] === 'biking' && distance < 20) {
+          // foundMatch = true;
+        // } else if (myTransportation[i] === 'driving' && distance < 500) {
+          // foundMatch = true;
+        // }
+      // }
+      // if (!foundMatch) {
+        // doesThisMatch = false;
+      // }
     
-      //time filter. Is it open + do I have enough time. Note that transportation is NOT considered
-      // var startDate = new Date(Date.parse(filters['starttime']));
-      //fix for time zone
-      var startDate = new Date(parseInt(filters['starttime']) - 28800000);
-      // startDate = new Date();
-      // console.log('start: ' + startDate.toDateString());
-      // var endDate = new Date(Date.parse(filters['endtime']));
-      //fix for time zone
-      var endDate = new Date(parseInt(filters['endtime']) - 28800000);
+      // //time filter. Is it open + do I have enough time. Note that transportation is NOT considered
+      // // var startDate = new Date(Date.parse(filters['starttime']));
+      // //fix for time zone
+      // var startDate = new Date(parseInt(filters['starttime']) - 28800000);
+      // // startDate = new Date();
+      // // console.log('start: ' + startDate.toDateString());
+      // // var endDate = new Date(Date.parse(filters['endtime']));
+      // //fix for time zone
+      // var endDate = new Date(parseInt(filters['endtime']) - 28800000);
       
-      var totalMillisecs = (endDate.getTime() - startDate.getTime());
-      // totalMillisecs = 1800000;
-      // console.log('hours: ' + totalMillisecs);
-      //if time <= 30 minutes, just pass the filter...
-      if (totalMillisecs < activity['length']*3600000 && totalMillisecs >= 1800000) {
-        doesThisMatch = false;
-      } else if (totalMillisecs >= 1800000) {
-        var hasWeekDays = activity['hours']['weekDays'] !== undefined;
-        var hasWeekEnds = activity['hours']['weekEnds'] !== undefined;
+      // var totalMillisecs = (endDate.getTime() - startDate.getTime());
+      // // totalMillisecs = 1800000;
+      // // console.log('hours: ' + totalMillisecs);
+      // //if time <= 30 minutes, just pass the filter...
+      // if (totalMillisecs < activity['length']*3600000 && totalMillisecs >= 1800000) {
+        // doesThisMatch = false;
+      // } else if (totalMillisecs >= 1800000) {
+        // var hasWeekDays = activity['hours']['weekDays'] !== undefined;
+        // var hasWeekEnds = activity['hours']['weekEnds'] !== undefined;
         
-        var foundMatch = checkDay(startDate, activity);
-        if (!foundMatch) {
-          doesThisMatch = false;
-        }
-      }
+        // var foundMatch = checkDay(startDate, activity);
+        // if (!foundMatch) {
+          // doesThisMatch = false;
+        // }
+      // }
 
 
-      // var myStartTime = parseInt(filters['starttime']);
-      // var activityStartTime = activity['starttime'];
-      // var timeDiff = myStartTime - activityStartTime;
-      // //console.log('starttime diff: ' + timeDiff);
-      // if (timeDiff < 0) {
+      // // var myStartTime = parseInt(filters['starttime']);
+      // // var activityStartTime = activity['starttime'];
+      // // var timeDiff = myStartTime - activityStartTime;
+      // // //console.log('starttime diff: ' + timeDiff);
+      // // if (timeDiff < 0) {
+        // // doesThisMatch = false;
+      // // }
+      
+      // //energy level filter
+      // var myEnergy = filters['energy'] || [];
+      // //if there is no energy filter specified, all activities match
+      // var foundMatch = myEnergy.length === 0;
+      // for (var i = 0; i < myEnergy.length; i++) {
+        // if (activity['energylevel'] <= parseInt(myEnergy[i])) {
+          // foundMatch = true;
+        // }
+      // }
+      // if (!foundMatch) {
         // doesThisMatch = false;
       // }
       
-      //energy level filter
-      var myEnergy = filters['energy'] || [];
-      //if there is no energy filter specified, all activities match
-      var foundMatch = myEnergy.length === 0;
-      for (var i = 0; i < myEnergy.length; i++) {
-        if (activity['energylevel'] <= parseInt(myEnergy[i])) {
-          foundMatch = true;
-        }
-      }
-      if (!foundMatch) {
-        doesThisMatch = false;
-      }
+      // //number of people filter. This is currently not used
+      // var myPeople = filters['people'] || [];
+      // var foundMatch = myPeople.length === 0;
+      // for (var i = 0; i < myPeople.length; i++) {
+        // if (activity['maxpeople'] >= parseInt(myPeople[i])) {
+          // foundMatch = true;
+        // }
+      // }
+      // if (!foundMatch) {
+        // doesThisMatch = false;
+      // }
       
-      //number of people filter. This is currently not used
-      var myPeople = filters['people'] || [];
-      var foundMatch = myPeople.length === 0;
-      for (var i = 0; i < myPeople.length; i++) {
-        if (activity['maxpeople'] >= parseInt(myPeople[i])) {
-          foundMatch = true;
-        }
-      }
-      if (!foundMatch) {
-        doesThisMatch = false;
-      }
-      
-      //money filter
-      var myMoney = filters['money'] || [];
-      //console.log(activity['moneyupperlimit'] <= parseInt(myMoney[i]));
-      var foundMatch = myMoney.length === 0;
-      for (var i = 0; i < myMoney.length; i++) {
-        if (activity['moneyupperlimit'] <= parseInt(myMoney[i])) {
-          // console.log('theirmoney: ' + activity['moneyupperlimit']);
-          // console.log('mymoney: ' + parseInt(myMoney[i]));
-          foundMatch = true;
-        }
-      }
-      if (!foundMatch) {
-        doesThisMatch = false;
-      }
-      if (doesThisMatch) {
-        activity['distance'] = distance;
-      }
-      return doesThisMatch;
-    });
-  }
-  //console.log(filtered);
-  //truncate and shuffle results
-  var returnedActivities = filtered;
-  if (filtered.length > 3) {
-    var indices = [0, 1, 2];
-    indices[1] = Math.floor(1 + Math.random()*(filtered.length - 2));
-    indices[0] = Math.floor(Math.random()*indices[1]);
-    indices[2] = Math.floor(indices[1] + 1 + Math.random()*(filtered.length - indices[1] - 1));
-    returnedActivities = [ filtered[indices[0]], filtered[indices[1]], filtered[indices[2]] ];
-  }
+      // //money filter
+      // var myMoney = filters['money'] || [];
+      // //console.log(activity['moneyupperlimit'] <= parseInt(myMoney[i]));
+      // var foundMatch = myMoney.length === 0;
+      // for (var i = 0; i < myMoney.length; i++) {
+        // if (activity['moneyupperlimit'] <= parseInt(myMoney[i])) {
+          // // console.log('theirmoney: ' + activity['moneyupperlimit']);
+          // // console.log('mymoney: ' + parseInt(myMoney[i]));
+          // foundMatch = true;
+        // }
+      // }
+      // if (!foundMatch) {
+        // doesThisMatch = false;
+      // }
+      // if (doesThisMatch) {
+        // activity['distance'] = distance;
+      // }
+      // return doesThisMatch;
+    // });
+  // }
+  // //console.log(filtered);
+  // //truncate and shuffle results
+  // var returnedActivities = filtered;
+  // if (filtered.length > 3) {
+    // var indices = [0, 1, 2];
+    // indices[1] = Math.floor(1 + Math.random()*(filtered.length - 2));
+    // indices[0] = Math.floor(Math.random()*indices[1]);
+    // indices[2] = Math.floor(indices[1] + 1 + Math.random()*(filtered.length - indices[1] - 1));
+    // returnedActivities = [ filtered[indices[0]], filtered[indices[1]], filtered[indices[2]] ];
+  // }
   
-  res.json({ 'activities' : returnedActivities });
+  // res.json({ 'activities' : returnedActivities });
 }
 
 function checkDay (start, activity) {
@@ -220,22 +244,26 @@ function checkDay (start, activity) {
   var startTime = (start.getHours() + start.getMinutes()/60);
   var days = ['sundays', 'mondays', 'tuesdays', 'wednesdays', 'thursdays', 'fridays', 'saturdays'];
   
-  if (activity['hours']['allDays'] !== undefined) {
+  if (activity['hours']['allDays'] !== undefined && activity['hours']['allDays']['starttime'].length > 0) {
     return checkTime(startTime, activity['hours']['allDays']['starttime'], activity['hours']['allDays']['endtime']);
   }
   if (startDay < 5) {
-    if (activity['hours']['weekDays'] !== undefined) {
+    if (activity['hours']['weekDays'] !== undefined && activity['hours']['weekDays']['starttime'].length > 0) {
       return checkTime(startTime, activity['hours']['weekDays']['starttime'], activity['hours']['weekDays']['endtime']);
-    } else if (activity['hours'][days[startDay]] !== undefined) {
+      
+    } else if (activity['hours'][days[startDay]] !== undefined && activity['hours'][days[startDay]]['starttime'].length > 0) {
       return checkTime(startTime, activity['hours'][days[startDay]]['starttime'], activity['hours'][days[startDay]]['endtime']);
+      
     } else {
       return false;
     }
   } else {
-    if (activity['hours']['weekEnds'] !== undefined) {
+    if (activity['hours']['weekEnds'] !== undefined && activity['hours']['weekEnds']['starttime'].length > 0) {
       return checkTime(startTime, activity['hours']['weekEnds']['starttime'], activity['hours']['weekEnds']['endtime']);
-    } else if (activity['hours'][days[startDay]] !== undefined) {
+      
+    } else if (activity['hours'][days[startDay]] !== undefined && activity['hours'][days[startDay]]['starttime'].length > 0) {
       return checkTime(startTime, activity['hours'][days[startDay]]['starttime'], activity['hours'][days[startDay]]['endtime']);
+      
     } else {
       return false;
     }
@@ -248,10 +276,21 @@ function checkTime (myTime, theirStartTimes, theirEndTimes) {
   for (var i = 0; i < theirStartTimes.length; i++) {
     if (myTime >= parseFloat(theirStartTimes[i]) && myTime <= parseFloat(theirEndTimes[i])) {
       // console.log(myTime);
-      foundMatch = true;
+      return true;
     }
   }
-  return foundMatch;
+  return false;
+}
+
+function getRandomSubarray(arr, size) {
+  var shuffled = arr.slice(0), i = arr.length, temp, index;
+  while (i--) {
+    index = Math.floor((i + 1) * Math.random());
+    temp = shuffled[index];
+    shuffled[index] = shuffled[i];
+    shuffled[i] = temp;
+  }
+  return shuffled.slice(0, size);
 }
 
 //taken from some random guy on internet
