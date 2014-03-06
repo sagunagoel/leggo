@@ -6,11 +6,12 @@
   var timeRefreshHandle = null;
   var timeSetHandle = null;
   var activityRefreshHandle = null;
-  
+  var c=0000;
+  var firstTime=true;
   var currId;
   var activitySelected=false;
   var activityData = {};
-  
+  var t;
   var isMouseDown = false;
   
   var currTime;
@@ -37,12 +38,21 @@
       disableScroll: false,
       stopPropagation: false,
       callback: function(index, elem) {
+        console.log("index is now "+ index)
         if (index==5 && activitySelected!=true){
         mySwipe.prev();
       }
+        if (index==3 && firstTime) {
+        console.log("time filter is here!");
+        timedCount();
+      }
+      if(index==4){
+        console.log("what is the time now "+c);
+        stopCount(c);
+      }
       },
       transitionEnd: function(index, elem) {}
-    });
+    }); 
 
     // with jQuery
     // window.mySwipe = $('ß#mySwipe').Swipe().data('Swipe');
@@ -124,6 +134,17 @@
       }
     }
     
+    function timedCount(){
+      firstTime=false;
+      c=c+1;
+      console.log(c);
+      t=setTimeout(function(){timedCount()},1000);
+    }
+
+    function stopCount(){
+      clearTimeout(t);
+      console.log("final time taken was"+c);
+    }
     
     function setDisplayedTime(date) {
       //scroll to and highlight the hour
