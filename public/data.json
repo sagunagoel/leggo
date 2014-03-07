@@ -391,8 +391,8 @@
             "thingslist": [
                 "Optional: Something to read or work on"
             ],
-            "moreinfoURL": "",
-            "moreinfoName": ""
+            "moreinfoURL": "https://www.law.stanford.edu/",
+            "moreinfoName": "Learn more about Stanford's stellar law program"
         },
         {
             "id": 10,
@@ -782,7 +782,8 @@
                 " Internet connection or phrasebook",
                 " and somewhere you can practice speaking out loud."
             ],
-            "moreinfoURL": "http://www.wikihow.com/Make-a-Perfect-Mix-Tape-or-CD"
+            "moreinfoURL": "https://www.duolingo.com/",
+            "moreinfoName": "Duolingo.com: A Great Place to Start!"
         },
         {
             "id": 19,
