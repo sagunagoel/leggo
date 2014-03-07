@@ -120,9 +120,9 @@
             "moreinfoURL": "http://www.geocaching.com/",
             "moreinfoName": "Geocaching.com"
         },
-        {
+         {
             "id": 4,
-            "name": "Write a Letter ",
+            "name": "Go to Happy Donuts",
             "tags": [
                 "adventure",
                 "nature",
@@ -133,11 +133,11 @@
             "loc": {
                 "type": "Point",
                 "coordinates": [
-                    0,
-                    0
+                    -122.1298708,
+                    37.4165454
                 ]
             },
-            "address": "",
+            "address": "3916 El Camino Real, Palo Alto, CA 94306",
             "hours": {
                 "allDays": {
                     "starttime": [
@@ -150,17 +150,15 @@
             },
             "length": 0.5,
             "energylevel": 1,
-            "moneyupperlimit": 0,
-            "description": "Think about someone who could use some encouragement or who you haven't reached out to in a while. Write them a card or letter, and either send it in the mail or hand-deliver it!",
-            "imageURL": "/images/4-writealetter.jpg",
+            "moneyupperlimit": 3,
+            "description": "Experience one of the very few 24-hour establishments in Palo Alto. Buy some sweets, a cup of ramen, or questionable coffee and admire the giant donut on the ceiling, as well as the intereesting clientele. This is also a great place to play a board game, and you'll often find people willing to meet for a game of settlers at one of Happy Donut's round tables.",
+            "imageURL": "/images/4-happydonut.jpg",
             "thingslist": [
-                " Stationery, paper, or a card",
-                " Pen",
-                " Someone you care about",
-                " A stamp (optional)"
+                " Money for a snack or coffee",
+                " and optionally a board game and friends or work to do." 
             ],
-            "moreinfoURL": "http://www.wikihow.com/Write-a-Letter-to-Your-Best-Friend",
-            "moreinfoName": "How To Write A Letter To Your Best Friend"
+            "moreinfoURL": "http://happydonutspaloalto.tripod.com/",
+            "moreinfoName": "Happy Donuts Website"
         },
         {
             "id": 5,
@@ -393,8 +391,8 @@
             "thingslist": [
                 "Optional: Something to read or work on"
             ],
-            "moreinfoURL": "",
-            "moreinfoName": ""
+            "moreinfoURL": "https://www.law.stanford.edu/",
+            "moreinfoName": "Learn more about Stanford's stellar law program"
         },
         {
             "id": 10,
@@ -784,7 +782,8 @@
                 " Internet connection or phrasebook",
                 " and somewhere you can practice speaking out loud."
             ],
-            "moreinfoURL": "http://www.wikihow.com/Make-a-Perfect-Mix-Tape-or-CD"
+            "moreinfoURL": "https://www.duolingo.com/",
+            "moreinfoName": "Duolingo.com: A Great Place to Start!"
         },
         {
             "id": 19,
@@ -874,6 +873,48 @@
             ],
             "moreinfoURL": "http://www.philzcoffee.com/",
             "moreinfoName": "Philz Coffee Website"
+        },
+                {
+            "id": 21,
+            "name": "Visit the Cactus Garden and Mausoleum",
+            "tags": [
+                "relaxing",
+                "study",
+                "fresh air",
+                "romantic",
+                "peaceful",
+                "24-hour",
+                "peaceful"
+            ],
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    -122.170286, 
+                    37.435932 
+                ]
+            },
+            "address": "450 Serra Mall, Stanford, CA 94305",
+            "hours": {
+                "allDays": {
+                    "starttime": [
+                        0
+                    ],
+                    "endtime": [
+                        23.99
+                    ]
+                }
+            },
+            "length": 0.5,
+            "energylevel": 2,
+            "moneyupperlimit": 0,
+            "description": "Beautiful during the day and a little eerie at night, this parto of campus is home to some old treasures. Walk through the Arizona Cactus Garden and admire the many species of vegetation, then make your way to the white marble Mausoleum. This is the burial site of the Stanford family.",
+            "imageURL": "/images/21-cactusmausoleum.jpg",
+            "thingslist": [
+                " Walking shoes",
+                " a friend and flashlight if going at night."
+            ],
+            "moreinfoURL": "http://tusb.stanford.edu/2010/07/hidden-treasures-arizona-cactus-garden.html",
+            "moreinfoName": "The Unofficial Stanford Blog: Arizona Cactus Garden"
         }
     ]
 }
