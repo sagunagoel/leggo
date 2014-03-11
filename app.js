@@ -6,7 +6,8 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
-var handlebars = require('express3-handlebars')
+var handlebars = require('express3-handlebars');
+var mongoose = require('mongoose');
 
 var filters = require('./routes/filters');
 var findactivities = require('./routes/findactivities');
@@ -23,10 +24,17 @@ var details = require('./routes/details');
 var chosen = require('./routes/chosenactivity');
 var reflection = require('./routes/reflection');
 var help = require('./routes/help');
+var timetest= require('./routes/timetest');
 
 // var newPage= require('./routes/chosenactivity')
 // Example route
 // var user = require('./routes/user');
+
+// Connect to the Mongo database, whether locally or on Heroku
+var local_database_name = 'leggo';
+var local_database_uri  = 'mongodb://localhost/' + local_database_name
+var database_uri = process.env.MONGOLAB_URI || local_database_uri
+mongoose.connect(database_uri);
 
 var app = express();
 
@@ -53,6 +61,7 @@ if ('development' == app.get('env')) {
 // Add routes here
 app.get('/filters', filters.view);
 app.post('/findactivities', findactivities.filter);
+app.post('/timetest',timetest.filter);
 
 app.get('/', splashscreen.view);
 app.get('/categories',categories.view);
@@ -67,6 +76,7 @@ app.get('/chosenactivity', chosen.view);
 app.get('/reflection', reflection.view);
 app.get('/help', help.view);
 app.get('/finalactivity/:id', chosen.view)
+
 // Example route
 // app.get('/users', user.list);
 
