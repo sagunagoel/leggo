@@ -110,7 +110,7 @@
             "length": 2,
             "energylevel": 2,
             "moneyupperlimit": 0,
-            "description": "Geocaching is a real-world, outdoor treasure hunting game using GPS-enabled devices. Navigate to a specific set of GPS coordinates and then attempt to find the geocache (container) hidden at that location. Go here to find a treasure and replace it with something new: http://www.geocaching.com/",
+            "description": "Geocaching is a real-world, outdoor treasure hunting game using GPS-enabled devices. Navigate to a specific set of GPS coordinates and then attempt to find the geocache (container) hidden at that location. Use their site or app to find a treasure and replace it with something new.",
             "imageURL": "/images/3geocache-olabel.jpg",
             "thingslist": [
                 " Smartphone with Geocaching app OR GPS tracker",
@@ -122,7 +122,7 @@
         },
         {
             "id": 4,
-            "name": "Go to Happy Donut",
+            "name": "Go to Happy Donuts",
             "tags": [
                 "adventure",
                 "nature",
@@ -144,7 +144,7 @@
                         0
                     ],
                     "endtime": [
-                        23.9
+                        23.99
                     ]
                 }
             },

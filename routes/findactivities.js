@@ -121,9 +121,11 @@ exports.filter = function (req, res) {
       return doesThisMatch;
     });
   }
-  //console.log(filtered);
+  for (var i=0; i<filtered.length; ++i) 
+    console.log(filtered[i].name);
   //truncate and shuffle results
   var returnedActivities = filtered;
+
   if (filtered.length > 3) {
     var indices = [0, 1, 2];
     indices[1] = Math.floor(1 + Math.random()*(filtered.length - 2));
