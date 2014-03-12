@@ -341,7 +341,7 @@
                 }
             },
             "length": 1.5,
-            "energylevel": 2,
+            "energylevel": 1,
             "moneyupperlimit": 5,
             "description": "Peruse through this huge thrift store to find some hidden treasures for cheap! Whether you're looking for something strange, a good deal or just a good time, Savers is the place to find it.",
             "imageURL": "/images/8-savers.jpg",
@@ -560,7 +560,7 @@
                 }
             },
             "length": 1,
-            "energylevel": 2,
+            "energylevel": 3,
             "moneyupperlimit": 0,
             "description": "Make a 'FREE HUGS' sign and stand on a busy walking street. Hug everyone!",
             "imageURL": "/images/13-freehugs.jpg",
@@ -774,7 +774,7 @@
                 }
             },
             "length": 0.25,
-            "energylevel": 1,
+            "energylevel": 2,
             "moneyupperlimit": 0,
             "description": "You've always wanted to learn a little French, or Hindi, or Japanese-- get started learning a few basic phrases now. YouTube and other websites are full of free tutorial videos to start speaking the essentials! You can also try a language podcast.",
             "imageURL": "/images/18-learnphrases.jpg",
@@ -818,7 +818,7 @@
                 }
             },
             "length": 0.5,
-            "energylevel": 2,
+            "energylevel": 1,
             "moneyupperlimit": 0,
             "description": "Bring a friend and walk out to (usually dry) Lake Lagunita on a clear night. Find a darker area, lay down, and look up at the stars. Consider bringing music or a hot drink and see how many constellations you can spot. If you have a smartphone or tablet, you can always pull out a constellation-spotting app!",
             "imageURL": "/images/19-stargaze.jpg",
@@ -915,6 +915,151 @@
             ],
             "moreinfoURL": "http://tusb.stanford.edu/2010/07/hidden-treasures-arizona-cactus-garden.html",
             "moreinfoName": "The Unofficial Stanford Blog: Arizona Cactus Garden"
+        },
+                {
+            "id": 22,
+            "name": "Try a Spin Class at Soul Cycle",
+            "tags": [
+            ],
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    -122.1714038, 
+                    37.4416699
+                ]
+            },
+            "address": "600 Stanford Shopping Center, Palo Alto, California 94304",
+            "hours": {
+                "allDays": {
+                    "starttime": [
+                        6
+                    ],
+                    "endtime": [
+                        18.5
+                    ]
+                }
+            },
+            "length": 1,
+            "energylevel": 3,
+            "moneyupperlimit": 20,
+            "description": "Want to get your heart pumping? With a motivational workout, a beautiful environment and outstanding customer service, each 45-minute class can be a transformative experience. SoulCycle trains world-class instructors to teach the SoulCycle method which engages and empowers riders in a way that leaves them mentally and physically stronger than when they arrived.",
+            "imageURL": "/images/22-soulcycle.jpg",
+            "thingslist": [
+                " Workout clothes",
+                " a reservation",
+                " rented or personal cycle shoes",
+                " and water."
+            ],
+            "moreinfoURL": "https://www.soul-cycle.com/find-a-class/studio/28/",
+            "moreinfoName": "Soul Cycle Palo Alto Classes"
+        },
+                {
+            "id": 22,
+            "name": "Visit the Exploratorium",
+            "tags": [
+            ],
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    -122.3962277,
+                    37.8019659
+                ]
+            },
+            "address": "Pier 15, San Francisco, CA 94111",
+            "hours": {
+                "allDays": {
+                    "starttime": [
+                        10
+                    ],
+                    "endtime": [
+                        17.5
+                    ]
+                }
+            },
+            "length": 2,
+            "energylevel": 2,
+            "moneyupperlimit": 19,
+            "description": "Visit this innovative museum at its brand new Pier 15 location! The Exploratorium is a twenty-first-century learning laboratory, an eye-opening, always-changing, playful place to explore and tinker. For more than forty years, we’ve built creative, thought-provoking exhibits, tools, programs, and experiences that ignite curiosity, encourage exploration, and lead to profound learning.",
+            "imageURL": "/images/23-exploratorium.jpg",
+            "thingslist": [
+                " $19 admission for students, children, and seniors",
+                " or $25 for adults",
+                " and your curiosity."
+            ],
+            "moreinfoURL": "http://www.exploratorium.edu/",
+            "moreinfoName": "The San Francisco Exploratorium"
+        },
+                {
+            "id": 23,
+            "name": "Explore the Japanese Tea Garden",
+            "tags": [
+            ],
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                    -122.4701725, 
+                    37.7701915
+                ]
+            },
+            "address": "75 Hagiwara Tea Garden Dr, San Francisco, CA 94118",
+            "hours": {
+                "allDays": {
+                    "starttime": [
+                        9
+                    ],
+                    "endtime": [
+                        18
+                    ]
+                }
+            },
+            "length": 1.5,
+            "energylevel": 1,
+            "moneyupperlimit": 7,
+            "description": "Visit the oldest tea garden in the United States and explore 5 acres of landscape and culture. The Japanese Tea Garden provides visitors from around the world with an opportunity to experience the natural beauty, tranquility and harmony of a Japanese-style garden in the heart of San Francisco’s Golden Gate Park.",
+            "imageURL": "/images/24-teagarden.jpg",
+            "thingslist": [
+                " $7 for non-resident adult admission",
+                " additional money for tea, food or gifts"
+            ],
+            "moreinfoURL": "http://japaneseteagardensf.com/index.php",
+            "moreinfoName": "Japanese Tea Garden San Francisco"
+        },
+                {
+            "id": 24,
+            "name": "Climb at the Stanford Rock Wall",
+            "tags": [
+            ],
+            "loc": {
+                "type": "Point",
+                "coordinates": [
+                   -122.1775073, 
+                   37.42675
+                ]
+            },
+            "address": "285 Santa Teresa Street Stanford, CA 94305",
+            "hours": {
+                "allDays": {
+                    "starttime": [
+                        14
+                    ],
+                    "endtime": [
+                        20
+                    ]
+                }
+            },
+            "length": 1.5,
+            "energylevel": 3,
+            "moneyupperlimit": 0,
+            "description": "Take a free belay class (if you haven't already), then get climbing! Challenge your mind and body at Stanford's new rock climbing wall located in the Arillaga Outdoor Education and Recreation Center.",
+            "imageURL": "/images/25-rockwall.jpg",
+            "thingslist": [
+                " SUID",
+                " close-toed shoes",
+                "athletic clothing",
+                " equipment available for rent."
+            ],
+            "moreinfoURL": "https://outdoored.stanford.edu/center/climbing/",
+            "moreinfoName": "Stanford Climbing Wall Information"
         }
     ]
 }
