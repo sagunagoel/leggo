@@ -298,12 +298,12 @@ function callbackFunc(){
   
   //swipes the current filter forward if isNext is true, backward if not
   leggo.changeFilter = function changeFilter (isNext) {
-    var currPos = mySwipe.getPos();
+    // var currPos = mySwipe.getPos();
     // console.log(currPos);
     
   
-    var children = $('.nav-dots').children()[0].children;
-    $(children[currPos]).removeClass('selected');
+    // var children = $('.nav-dots').children()[0].children;
+    // $(children[currPos]).removeClass('selected');
     
     if (isNext) {
         mySwipe.next();
@@ -311,8 +311,8 @@ function callbackFunc(){
         mySwipe.prev();
     }
     
-    currPos = mySwipe.getPos();
-    $(children[currPos]).addClass('selected');
+    // currPos = mySwipe.getPos();
+    // $(children[currPos]).addClass('selected');
   }
   
   //aggregates the currently set filters and returns a list of activities that pass said filters
