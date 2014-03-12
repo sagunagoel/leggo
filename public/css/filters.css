@@ -327,7 +327,7 @@ body {
 }
 
 /* nav dots */
-.nav-dots {
+/*.nav-dots {
   display: block;
   margin: 0 auto;
 }
@@ -347,7 +347,7 @@ li.selected {
     font-weight: bold;
     color: orange;
 }
-
+*/
 body {
   font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   padding: 10px; /*centers guts*/
