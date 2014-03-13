@@ -21,6 +21,36 @@
     
     <div id='slider' class='swipe'>
       <div class='swipe-wrap'>
+      
+        <div class="current-slide">
+          <section class="intro">
+            INTRODUCTION
+          </section>
+          
+          <section class="filter-body">
+            <div class="navigation-panel">
+            </div>
+            
+            <section class="icons">
+              <img src="/images/ArrowRight.jpg"></img>
+            </section>
+            
+            <div class="navigation-panel">
+              <button class="next-filter" onclick="leggo.changeFilter(true)">
+                &gt;
+              </button>
+            </div>
+          <section>
+            
+          <section class="outro">
+            <button id="suggestion-button">
+              Suggest an activity!
+            </button></br>
+            <button id="help-button" > 
+             Help! Where am I?!
+            </button>
+          </section>
+        </div>
         
         <div>
           <section class="intro">
@@ -29,6 +59,9 @@
           
           <section class="filter-body">
             <div class="navigation-panel">
+              <button class="previous-filter" onclick="leggo.changeFilter(false)">
+                &lt;
+              </button>
             </div>
             
             <section class="icons">

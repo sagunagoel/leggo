@@ -25,6 +25,7 @@
   leggo.initializePage = function () {
     // $('#help-button').popover();
     // pure JS
+    var slides = $('.swipe-wrap').children();
     var elem = document.getElementById('slider');
     window.mySwipe = Swipe(elem, {
       startSlide: 0,
@@ -34,18 +35,20 @@
       disableScroll: false,
       stopPropagation: false,
       callback: function(index, elem) {
-        console.log("index is now "+ index)
-        if (index==5 && activitySelected!=true){
-        mySwipe.prev();
-      }
-        if (index==3 && firstTime) {
-        console.log("time filter is here!");
-        timedCount();
-      }
-      if(index==4){
-        console.log("what is the time now "+c);
-        stopCount(c);
-      }
+        console.log("index is now "+ index);
+        // $(slides).removeClass('current-slide');
+        // $(slides[index]).addClass('current-slide');
+        if (index==6 && activitySelected!=true){
+          mySwipe.prev();
+        }
+        if (index==4 && firstTime) {
+          console.log("time filter is here!");
+          timedCount();
+        }
+        if(index==5){
+          console.log("what is the time now "+c);
+          stopCount(c);
+        }
       },
       transitionEnd: function(index, elem) {}
     }); 
