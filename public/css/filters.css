@@ -284,12 +284,19 @@ body {
 
 
 /* buttons*/
+#start-page-outro {
+  
+}
 #suggestion-button {
-
+  display: inline-block;
+  width: 45%;
+  height: 50px;
 }
 
 #help-button {
-
+  display: inline-block;
+  width: 45%;
+  height: 50px;
 }
 
 /* outro section with text + start button */
