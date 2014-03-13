@@ -11,16 +11,17 @@
   font-weight: 100;
 }
 
-.hidden-checkbox {
-  visibility: hidden;
-}
-
-.image-checkbox {
-
-}
-
 .image-checkbox-checked {
   background-color: white;
+}
+
+.current-slide {
+  visibility: visible !important;
+}
+
+.swipe-wrap > div {
+  overflow: hidden;
+  visibility: visible;
 }
 
 /*iscroll*/
@@ -134,9 +135,10 @@ body {
 }
 
 .scroller li.selected-time{
-	background-color: #f37f47;
+  background-color:#8ac2bf;
   color: white;
 }
+
 .scroller li.selected-time-gray{
 	background-color: DarkGray !important;
 }
@@ -213,7 +215,7 @@ body {
   margin: 20px auto 0 auto;
   border-radius:5px 5px 0 0;
   padding: 20px;
-  width: 85%;
+  width: 100%;
   
   text-align: center;
   background-color: #e0e4cc;
@@ -282,8 +284,19 @@ body {
 
 
 /* buttons*/
-.nonexclusive-button {
+#start-page-outro {
   
+}
+#suggestion-button {
+  display: inline-block;
+  width: 45%;
+  height: 50px;
+}
+
+#help-button {
+  display: inline-block;
+  width: 45%;
+  height: 50px;
 }
 
 /* outro section with text + start button */
@@ -292,7 +305,7 @@ body {
   position: relative;
   margin: 15px auto 0 auto;
   padding: 10px 20px;
-  width: 85%;
+  width: 100%;
   border-radius:0 0 5px 5px;
   text-align: center;
   font: 'Helvetica Light', 'Helvetica', Arial, sans-serif;

@@ -59,11 +59,12 @@ if ('development' == app.get('env')) {
 }
 
 // Add routes here
-app.get('/filters', filters.view);
+// app.get('/filters', filters.view);
 app.post('/findactivities', findactivities.filter);
 app.post('/timetest',timetest.filter);
 
-app.get('/', splashscreen.view);
+// app.get('/', splashscreen.view);
+app.get('/', filters.view);
 app.get('/categories',categories.view);
 app.get('/time', time.view);
 app.get('/transport', transport.view);

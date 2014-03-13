@@ -25,6 +25,7 @@
   leggo.initializePage = function () {
     // $('#help-button').popover();
     // pure JS
+    var slides = $('.swipe-wrap').children();
     var elem = document.getElementById('slider');
     window.mySwipe = Swipe(elem, {
       startSlide: 0,
@@ -34,18 +35,20 @@
       disableScroll: false,
       stopPropagation: false,
       callback: function(index, elem) {
-        console.log("index is now "+ index)
-        if (index==5 && activitySelected!=true){
-        mySwipe.prev();
-      }
-        if (index==3 && firstTime) {
-        console.log("time filter is here!");
-        timedCount();
-      }
-      if(index==4){
-        console.log("what is the time now "+c);
-        stopCount(c);
-      }
+        console.log("index is now "+ index);
+        // $(slides).removeClass('current-slide');
+        // $(slides[index]).addClass('current-slide');
+        if (index==6 && activitySelected!=true){
+          mySwipe.prev();
+        }
+        if (index==4 && firstTime) {
+          console.log("time filter is here!");
+          timedCount();
+        }
+        if(index==5){
+          console.log("what is the time now "+c);
+          stopCount(c);
+        }
       },
       transitionEnd: function(index, elem) {}
     }); 
@@ -138,7 +141,28 @@
       updateSelectedTime();
       //15 minutes = 900000 millisecs. Yes this shouldn't be hardcoded
       //Yes I could have fixed that in the time it took to write this comment
-      millisecsAvailable = myScrollMinutes.selectedIndex * 900000;
+      switch (myScrollMinutes.selectedIndex)
+      {
+        case 2:
+        millisecsAvailable = myScrollMinutes.selectedIndex * 900000;
+        break;
+        case 3:
+        millisecsAvailable = myScrollMinutes.selectedIndex * 900000;
+        break;
+        case 4:
+        millisecsAvailable = (myScrollMinutes.selectedIndex+1) * 900000;
+        break;
+        case 5:
+        millisecsAvailable = (myScrollMinutes.selectedIndex+1) * 900000;
+        break;
+        case 6:
+        millisecsAvailable = (myScrollMinutes.selectedIndex+2) * 900000;
+        break;
+        case 7:
+        millisecsAvailable = (myScrollMinutes.selectedIndex+5) * 900000;
+        break;
+      }
+      
       if (myScrollMinutes.selectedIndex === 1) {
         millisecsAvailable = 0;
       }

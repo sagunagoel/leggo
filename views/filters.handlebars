@@ -21,6 +21,30 @@
     
     <div id='slider' class='swipe'>
       <div class='swipe-wrap'>
+      
+        <div class="current-slide">
+          <section class="intro">
+            INTRODUCTION
+          </section>
+          
+          <section class="filter-body">
+            <div class="navigation-panel">
+            </div>
+            
+            <section class="icons">
+              <img src="/images/ArrowRight.jpg" onclick="leggo.changeFilter(true)"></img>
+            </section>
+          <section>
+            
+          <section id="start-page-outro" class="outro">
+            <button id="suggestion-button" onclick="window.location.href='https://www.surveymonkey.com/s/KN8T2LN';">
+              Suggest an activity!
+            </button>
+            <button id="help-button" onclick="window.location.href='/help';"> 
+             Help! Where am I?
+            </button>
+          </section>
+        </div>
         
         <div>
           <section class="intro">
@@ -29,6 +53,9 @@
           
           <section class="filter-body">
             <div class="navigation-panel">
+              <button class="previous-filter" onclick="leggo.changeFilter(false)">
+                &lt;
+              </button>
             </div>
             
             <section class="icons">
@@ -192,7 +219,7 @@
         <div>
         
           <section class="intro">
-            How much time do you have? 
+            About how much time do you have? 
           </section>
           
           <section class="filter-body">
@@ -209,13 +236,12 @@
                     <ul>
                       <li class="minutes-spacer"></li>
                       <li class="selected-time selected-time">No limit!</li>
-                      <li>15 min</li>
                       <li>30 min</li>
                       <li>45 min</li>
-                      <li>About 1 hour</li>
-                      <li>1 hr 30 min</li>
-                      <li> Around 2 hours</li>
-                      <li>more than 3 hours</li>
+                      <li>1 hour</li>
+                      <li>1 hour 30 min</li>
+                      <li>2 hours</li>
+                      <li>3 hours +</li>
                       <li class="minutes-spacer"></li>
                     </ul>
                   </div>
