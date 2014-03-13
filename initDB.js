@@ -25,7 +25,7 @@ console.log(database_uri);
 // Do the initialization here
 
 // Step 1: load the JSON data
-var activities_json = require('./datamswap2.json');
+var activities_json = require('./data.json');
 
 // Step 2: Remove all existing documents
 models.Activity
