@@ -1,7 +1,6 @@
 .root-container {
   background-color: #fff;
   font: 'Helvetica Light', 'Helvetica', Arial, sans-serif;
-  padding-bottom: 20px;
   height: 100%;
   color:#3a3a3a
 }
@@ -227,6 +226,12 @@ body {
   height: 40%;
 }
 
+.swipe-button {
+  display: inline-block;
+  margin: 15px auto;
+  width: 10%;
+}
+
 /* icons */
 .icons {
   display: inline-block;
@@ -249,6 +254,7 @@ body {
   display: inline-block;
   margin:0 auto;
  width:90%;
+ border: ;
 }
 .icons img {
   display: block;
@@ -367,7 +373,6 @@ li.selected {
 */
 body {
   font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  padding: 10px; /*centers guts*/
 }
 
 
