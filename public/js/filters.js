@@ -53,6 +53,9 @@
     // with jQuery
     // window.mySwipe = $('ß#mySwipe').Swipe().data('Swipe');
     
+    //hides the ajax loading animation. I forget if this just works by toggling display: none but w/e
+    $('#activities-loading').hide();
+    
     $('#help-button').popover(); // does this work?
     getLocation();
     locationRefreshHandle = setInterval(getLocation, 30000);
@@ -362,9 +365,14 @@ function callbackFunc(){
         // console.log('filter: ' + $(this).attr('filter') + ' value: ' + $(this).attr('filtervalue'));
       });
     }
+    
+    $('#activities').hide();
+    $('#activities-loading').show();
     $.post('/findactivities', filterData, function (data) {
       activityData = data['activities'];
       populateActivities(activityData);
+      $('#activities-loading').hide();
+      $('#activities').show();
       
       console.log(data);
     });
