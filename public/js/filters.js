@@ -135,7 +135,28 @@
       updateSelectedTime();
       //15 minutes = 900000 millisecs. Yes this shouldn't be hardcoded
       //Yes I could have fixed that in the time it took to write this comment
-      millisecsAvailable = myScrollMinutes.selectedIndex * 900000;
+      switch (myScrollMinutes.selectedIndex)
+      {
+        case 2:
+        millisecsAvailable = myScrollMinutes.selectedIndex * 900000;
+        break;
+        case 3:
+        millisecsAvailable = myScrollMinutes.selectedIndex * 900000;
+        break;
+        case 4:
+        millisecsAvailable = (myScrollMinutes.selectedIndex+1) * 900000;
+        break;
+        case 5:
+        millisecsAvailable = (myScrollMinutes.selectedIndex+1) * 900000;
+        break;
+        case 6:
+        millisecsAvailable = (myScrollMinutes.selectedIndex+2) * 900000;
+        break;
+        case 7:
+        millisecsAvailable = (myScrollMinutes.selectedIndex+5) * 900000;
+        break;
+      }
+      
       if (myScrollMinutes.selectedIndex === 1) {
         millisecsAvailable = 0;
       }
