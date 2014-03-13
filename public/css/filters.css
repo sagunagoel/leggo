@@ -135,9 +135,10 @@ body {
 }
 
 .scroller li.selected-time{
-	background-color: #f37f47;
+  background-color:#8ac2bf;
   color: white;
 }
+
 .scroller li.selected-time-gray{
 	background-color: DarkGray !important;
 }
