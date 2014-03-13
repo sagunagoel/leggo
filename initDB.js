@@ -39,9 +39,9 @@ function onceClear(err) {
 
   // loop over the projects, construct and save an object from each one
   // Note that we don't care what order these saves are happening in...
-  var to_save_count = activities_json.length;
-  for(var i=0; i<activities_json.length; i++) {
-    var json = activities_json[i];
+  var to_save_count = activities_json.activities.length;
+  for(var i=0; i<activities_json.activities.length; i++) {
+    var json = activities_json.activities[i];
     // console.log(json.loc);
     var proj = new models.Activity(json);
 
