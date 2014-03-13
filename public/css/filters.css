@@ -202,10 +202,6 @@ body {
   text-align: left;
 }
 
-.help-button {
-  text-align: right;
-
-}
 
 /*first text block. not that useful a description I know*/
 .intro {
@@ -227,9 +223,30 @@ body {
 }
 
 .swipe-button {
-  display: inline-block;
+  display: block;
   margin: 15px auto;
-  width: 10%;
+  width: 70%;
+}
+
+#suggestion-button {
+  padding: 10px;
+  margin: 5px auto;
+  background-color: #ffffff;
+  color: #3a3a3a;
+  border: 3px solid #f37f47;
+  border-radius: 3px;
+
+ 
+}
+
+#help-button{
+  padding: 10px;
+  margin: 5px auto;
+  background-color: #ffffff;
+  color: #3a3a3a;
+  border: 3px solid #8ac2bf;
+  border-radius: 3px;
+
 }
 
 /* icons */
