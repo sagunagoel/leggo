@@ -1,0 +1,392 @@
+<!doctype html>
+
+<html>
+<head>
+	<title>Leggo</title>	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link href="css/filters.css" rel="stylesheet">
+	<link href="css/suggestion.css" rel="stylesheet">
+	<link href="css/swipe.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="root-container">
+    <section class="banner">
+      <div class="banner-text" onclick="window.location.href='/';">
+        <img src="/images/homeicon.png" style= "height:18px; width: 18px;">
+        LEGGO!
+      </div>
+      
+      <button class="back-help" onclick="history.back(-1)">
+        Back
+      </button>
+    </section>
+    
+    <div id='slider' class='swipe'>
+      <div class='swipe-wrap'>
+      
+        <div>
+          <section class="intro">
+            Fill out the form to share an idea! Choose a name for the activity you're suggesting, and swipe to continue.
+          </section>
+          
+          <section class="filter-body">
+            <div class="navigation-panel">
+            </div>
+            
+            <section class="icons">
+              <input type="text" name="name" id="name-input" value="Name">
+            </section>
+            
+            <div class="navigation-panel">
+              <button class="next-filter" onclick="mySwipe.next();">
+                &gt;
+              </button>
+            </div>
+          </section>
+        </div>
+        <div>
+          <section class="intro" onclick="mySwipe.next();">
+            Describe your suggestion!
+          </section>
+          
+          <section class="filter-body">
+            <div class="navigation-panel">
+              <button class="previous-filter" onclick="mySwipe.prev()">
+                &lt;
+              </button>
+            </div>
+            
+            <section class="icons">
+              <textarea rows="10" cols="20" id="description-input">Description</textarea>
+            </section>
+            
+            <div class="navigation-panel">
+              <button class="next-filter" onclick="mySwipe.next();">
+                &gt;
+              </button>
+            </div>
+          </section>
+        </div>
+        <div>
+          <section class="intro" onclick="mySwipe.next();">
+            Where is it located? Try to be specific, and write an address or list coordinates if you can!
+          </section>
+          
+          <section class="filter-body">
+            <div class="navigation-panel">
+              <button class="previous-filter" onclick="mySwipe.prev()">
+                &lt;
+              </button>
+            </div>
+            
+            <section class="icons">
+              <input type="text" name="location" id="location-input" value="Location">
+            </section>
+            
+            <div class="navigation-panel">
+              <button class="next-filter" onclick="mySwipe.next();">
+                &gt;
+              </button>
+            </div>
+          </section>
+        </div>
+        <div>
+          <section class="intro" onclick="mySwipe.next();">
+            List anything you might need for this activity! If it costs money, list how much.
+          </section>
+          
+          <section class="filter-body">
+            <div class="navigation-panel">
+              <button class="previous-filter" onclick="mySwipe.prev()">
+                &lt;
+              </button>
+            </div>
+            
+            <section class="icons">
+              <textarea rows="10" cols="20" id="things-input">Things you need</textarea>
+            </section>
+            
+            <div class="navigation-panel">
+              <button class="next-filter" onclick="mySwipe.next();">
+                &gt;
+              </button>
+            </div>
+          </section>
+        </div>
+        <div>
+          <section class="intro" onclick="mySwipe.next();">
+            If you can, rate how much energy this would take!
+          </section>
+          
+          <section class="filter-body">
+            <div class="navigation-panel">
+              <button class="previous-filter" onclick="mySwipe.prev()">
+                &lt;
+              </button>
+            </div>
+            
+            <section class="icons">
+              <select id="energy-input">
+                <option value="1">It's pretty mellow</option>
+                <option value="2">You'll have to get up and move</option>
+                <option value="3">You'll need plenty of energy!</option>
+              </select>
+            </section>
+            
+            <div class="navigation-panel">
+              <button class="next-filter" onclick="mySwipe.next();">
+                &gt;
+              </button>
+            </div>
+          </section>
+        </div>
+        <div>
+          <section class="intro" onclick="mySwipe.next();">
+            How much time does this usually take? (You're almost done with the form!)
+          </section>
+          
+          <section class="filter-body">
+            <div class="navigation-panel">
+              <button class="previous-filter" onclick="mySwipe.prev()">
+                &lt;
+              </button>
+            </div>
+            
+            <section class="icons">
+              <select id="length-input">
+                <option value="0" selected="selected">no selection</option>
+                <option value="1">30 min</option>
+                <option value="2">45 min</option>
+                <option value="3">1 hr</option>
+                <option value="4">1 hr 30 min</option>
+                <option value="5">2 hr</option>
+                <option value="6">3 hr</option>
+              </select>
+            </section>
+            
+            <div class="navigation-panel">
+              <button class="next-filter" onclick="mySwipe.next();">
+                &gt;
+              </button>
+            </div>
+          </section>
+        </div>
+        <div>
+          <section class="intro" onclick="mySwipe.next();">
+            Finally, choose a time window for this activity!
+          </section>
+          
+          <section class="filter-body">
+            <div class="navigation-panel">
+              <button class="previous-filter" onclick="mySwipe.prev()">
+                &lt;
+              </button>
+            </div>
+            
+            <section class="icons">
+              <br>
+              From
+              <br>
+              <select id="start-hours-input">
+                <option value="0" selected="selected">12</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+              </select>
+              
+              <select id="start-minutes-input">
+                <option value="0" selected="selected">0</option>
+                <option value="1">01</option>
+                <option value="2">02</option>
+                <option value="3">03</option>
+                <option value="4">04</option>
+                <option value="5">05</option>
+                <option value="6">06</option>
+                <option value="7">07</option>
+                <option value="8">08</option>
+                <option value="9">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+              </select>
+              
+              <select id="start-ampm-input">
+                <option value="0" selected="selected">AM</option>
+                <option value="1">PM</option>
+              </select>
+              <br>
+              To
+              <br>
+              <select id="end-hours-input">
+                <option value="0" selected="selected">12</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+              </select>
+              
+              <select id="end-minutes-input">
+                <option value="0" selected="selected">0</option>
+                <option value="1">01</option>
+                <option value="2">02</option>
+                <option value="3">03</option>
+                <option value="4">04</option>
+                <option value="5">05</option>
+                <option value="6">06</option>
+                <option value="7">07</option>
+                <option value="8">08</option>
+                <option value="9">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+              </select>
+              
+              <select id="end-ampm-input">
+                <option value="0" selected="selected">AM</option>
+                <option value="1">PM</option>
+              </select>
+            </section>
+            
+            <div class="navigation-panel">
+            </div>
+            
+            <section class="outro-details">
+              <button id="submit-suggestion-button" class="start-button" onclick="suggestion.submit()">
+                SUBMIT
+              </button>
+            </section>
+          </section>
+        </div>
+    
+    <section class="filter-body"></section>
+  </div>
+  
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src='js/suggestion.js'></script>
+   <script src='js/swipe.js'></script>
+  
+  <script>
+    $(document).ready( function () {
+      suggestion.initializePage();
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+

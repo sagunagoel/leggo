@@ -25,6 +25,7 @@ var chosen = require('./routes/chosenactivity');
 var reflection = require('./routes/reflection');
 var help = require('./routes/help');
 var timetest= require('./routes/timetest');
+var suggestion = require('./routes/suggestion');
 
 // var newPage= require('./routes/chosenactivity')
 // Example route
@@ -62,9 +63,11 @@ if ('development' == app.get('env')) {
 // app.get('/filters', filters.view);
 app.post('/findactivities', findactivities.filter);
 app.post('/timetest',timetest.filter);
+app.post('/submitsuggestion', suggestion.submit);
 
 // app.get('/', splashscreen.view);
 app.get('/', filters.view);
+app.get('/suggestion', suggestion.view);
 app.get('/categories',categories.view);
 app.get('/time', time.view);
 app.get('/transport', transport.view);
