@@ -1,6 +1,7 @@
 var Mongoose = require('mongoose');
 
 var ActivitySchema = new Mongoose.Schema({
+    id: Number,
     loc: {
       type: { type: String },
       coordinates: []

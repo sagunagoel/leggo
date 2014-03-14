@@ -110,9 +110,9 @@
         'finalTime':c
     };
 
-    $.post('/timetest', timeTestData, function (data) {
-      console.log(data);
-    });
+    // $.post('/timetest', timeTestData, function (data) {
+      // console.log(data);
+    // });
     }
     
     function setDisplayedTime(date) {
