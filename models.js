@@ -24,7 +24,8 @@ var ActivitySchema = new Mongoose.Schema({
     description: String,
     imageURL: String,
     thingslist: [String],
-    moreinfoURL: String
+    moreinfoURL: String,
+    moreinfoName: String
 });
 
 var suggestionSchema = new Mongoose.Schema({
