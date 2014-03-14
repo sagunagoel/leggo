@@ -1,0 +1,19 @@
+body {}
+
+.icons input {
+  margin-top: 60px;
+}
+
+.icons textarea {
+  margin-top: 30px;
+}
+
+.icons select {
+  margin-top: 60px;
+}
+
+#start-hours-input, #start-minutes-input, #start-ampm-input, 
+#end-hours-input, #end-minutes-input, #end-ampm-input {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
